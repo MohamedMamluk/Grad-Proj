@@ -7,6 +7,7 @@ ITI graduation project
 3. Dashboard analytics that shows individual course stats for Instructors/Students.
 4. Deathmatch e-learning edition
 5. Live video sessions
+---------------------------
 #Stacks:
 Front-End:
 React<-------->NextJs
