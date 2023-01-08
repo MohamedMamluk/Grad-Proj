@@ -1,12 +1,68 @@
 
 ![ITI graduation project](https://pps.whatsapp.net/v/t61.24694-24/310861688_861288728332667_2611192479083902775_n.jpg?ccb=11-4&oh=01_AdTfYfcJR7HQC9upsOCnP0IbqR668bwmlTn7ehG5w-DIdQ&oe=63C774C6)
 # ***E-Learning / LMS***.
+
+## Must have features:
+- Courses (free - paid) {}.
+- Dashboard analytics that shows individual course stats for Instructors/Students.
+  - Instructor CRUD on Courses.
+  - Students Access to Enrolled Courses.
+  - Students cont. button
+- Feedback using email.
+- (Login / Register {Email - Google - Facebook}) / Forget Password.
+- Tasks
+- Assignments to pass the course.
+- Certificate upon completion.
+- Videos as Youtube Link <sub>(todo: Upload on out database)</sub>
+- Easy to Navigate / Responsive
+
 ### Bonus Features:
-1. Game like system where students can gain achivements from interacting with the app *<sub>(maybe a leaderboard)</sub>*.
-2. Students can chat with Instructors only on the courses they are enrolled in.
-3. Dashboard analytics that shows individual course stats for Instructors/Students.
-4. Deathmatch e-learning edition
-5. Live video sessions
+- Game like system where students can gain achivements from interacting with the app *<sub>(maybe a leaderboard)</sub>*.
+- Students can chat with Instructors only on the courses they are enrolled in.
+- Deathmatch e-learning edition
+- Live video sessions
+- parental advisory
+- Download video
+- Points if score on exam > 95%
+
+### Main Routes:
+- /home
+- /about
+- /register
+- /login
+- /forget-password
+- /dashboard *** to be filled ***
+  - /dashboard/overview {Analytics}
+  - /dashboard/edit-profile
+  - /dashboard/logout
+    - Instructor:
+      - /dashboard/courses
+      - /dashboard/courses/new
+      - /dashboard/courses/[course-id]
+      - /dashboard/courses/[course-id]/analytics
+      - /dashboard/courses/[course-id]/update
+      - /dashboard/courses/[course-id]/add
+      - /dashboard/courses/[course-id]/delete
+      - /dashboard/earnings
+    - Student:
+      - /dashboard/courses
+      - /dashboard/courses/[course-id]
+      - /dashboard/courses/[course-id]/options
+      - /dashboard/courses/[course-id]/analytics
+      - /dashboard/courses/[course-id]/[lect-id]
+    - Admin:
+      - /dashboard/courses
+      - /dashboard/courses/[course-id]
+      - /dashboard/users
+      - /dashboard/earnings
+- /search
+- /categories
+- /categories/[cate-id]
+- /courses
+- /courses/[course-id]
+- /courses/[course-id]/payment
+- /courses/[course-id]/[lect-id]
+
 ---------------------------
 ### Stacks:
 #### Front-End:
@@ -28,3 +84,5 @@
 - Typescript.
 
 - Socket-io.
+
+- Stripe.
