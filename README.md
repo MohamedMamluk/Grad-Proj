@@ -1,5 +1,5 @@
 
-![ITI graduation project](https://pps.whatsapp.net/v/t61.24694-24/310861688_861288728332667_2611192479083902775_n.jpg?ccb=11-4&oh=01_AdTfYfcJR7HQC9upsOCnP0IbqR668bwmlTn7ehG5w-DIdQ&oe=63C774C6)
+![ITI graduation project](https://i.ibb.co/92vhbZL/310861688-861288728332667-2611192479083902775-n.jpg)
 # ***E-Learning / LMS***.
 
 ## Must have features:
