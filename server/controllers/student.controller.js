@@ -1,13 +1,15 @@
 const Student = require('../models/student.model');
-
+const { StatusCodes } = require('http-status-codes');
 const addStudent = async (req, res) => {
   try {
     let student = await Student.create(req.body);
     res
-      .status(201)
+      .status(StatusCodes.CREATED)
       .json({ status: 'ok', data: [student], message: 'Student registered' });
   } catch (error) {
-    res.status(400).json({ status: 'failed', data: [], message: error });
+    res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ status: 'failed', data: [], message: error });
   }
 };
 
