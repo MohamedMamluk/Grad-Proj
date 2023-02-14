@@ -1,17 +1,14 @@
 require('dotenv').config();
 const express = require('express');
-const mongoose = require('mongoose');
 const app = express();
-const studentRoutes = require('./routes/student.route');
 const connect = require('./DB/connect');
-mongoose.set('strictQuery', true);
+const authRoutes = require('./components/auth/auth.route');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.get('/', (req, res) => {
   res.send('<h1>Welcome to our project</h1>');
 });
-
-app.use('/api/v1/students', studentRoutes);
+app.use('/api/auth', authRoutes);
 
 const connection = async () => {
   try {
