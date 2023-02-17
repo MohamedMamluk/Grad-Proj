@@ -1,5 +1,6 @@
 const AdminModel = require('../admin/admin.model');
 
+//Register user based on role, admin will be removed
 const registerService = async (USER) => {
   switch (USER.role) {
     case 'admin':

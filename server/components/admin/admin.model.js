@@ -27,13 +27,9 @@ adminSchema.pre('save', async function () {
     console.log(error);
   }
 });
-// $2b$10$mMi4haNvuuleuUAYLsjbF.2eUaQPtaN/Rs7ittv.BLtPUilvNO6QO
-// $2b$10$wDBOhQifG2WCG2./kUTEJOJKnLuMjy8N2pX7fkRzrr.wwsQvM4tAi
 adminSchema.methods.comparePassword = async function (
   USER_PASSWORD_FROM_FRONT
 ) {
-  console.log(USER_PASSWORD_FROM_FRONT == this.password);
-
   const isValid = bcrypt.compareSync(USER_PASSWORD_FROM_FRONT, this.password);
   return isValid;
 };
