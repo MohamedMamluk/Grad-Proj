@@ -33,4 +33,5 @@ adminSchema.methods.comparePassword = async function (
   const isValid = bcrypt.compareSync(USER_PASSWORD_FROM_FRONT, this.password);
   return isValid;
 };
+
 module.exports = mongoose.model('admin', adminSchema);
