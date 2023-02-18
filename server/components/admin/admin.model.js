@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const adminSchema = new mongoose.Schema(
   {
     email: {
@@ -33,5 +34,16 @@ adminSchema.methods.comparePassword = async function (
   const isValid = bcrypt.compareSync(USER_PASSWORD_FROM_FRONT, this.password);
   return isValid;
 };
-
+adminSchema.methods.genJWT = function () {
+  const token = jwt.sign(
+    {
+      id: this._id,
+    },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: '1d',
+    }
+  );
+  return token;
+};
 module.exports = mongoose.model('admin', adminSchema);
