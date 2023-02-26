@@ -1,8 +1,12 @@
-const CourseInfo_Schema = require('./courseInfo.model.js');
+const {getAllCourseInfoService,
+    getCourseInfoByIDService,
+    addNewCourseInfoService,
+    deleteCourseInfoByIDService,
+    updateCourseInfoByIDService} = require('./courseInfo.service')
 
 let getAllCourseInfo = async (req,res)=>{
     try {
-        var data = await CourseInfo_Schema.find();
+        var data = await getAllCourseInfoService();
         res.status(200).json(data);
     } catch (err) {
         res.status(400).json(err);
@@ -12,7 +16,7 @@ let getAllCourseInfo = async (req,res)=>{
 let getCourseInfoByID = async (req,res)=>{
     try {
         var _id = req.params.id;
-        var data = await CourseInfo_Schema.findByID({_id});
+        var data = await getCourseInfoByIDService(_id);
         res.status(200).json(data);
     } catch (err) {
         res.status(400).json(err);
@@ -21,7 +25,7 @@ let getCourseInfoByID = async (req,res)=>{
 
 let addNewCourseInfo = async (req,res)=>{
     try {
-        var data = await CourseInfo_Schema.create(req.body);
+        var data = await addNewCourseInfoService(req.body)
         res.status(200).json(data);
     } catch (err) {
         res.status(400).json(err);
@@ -31,7 +35,7 @@ let addNewCourseInfo = async (req,res)=>{
 let deleteCourseInfoByID = async (req,res)=>{
     try {
         var _id = req.params.id;
-        var data = await CourseInfo_Schema.findByIdAndDelete({_id});
+        var data = deleteCourseInfoByIDService(_id);
         if(data){
             res.status(200).json({data , msg:"Deleted Successfuly!..."});
         }else{
@@ -46,7 +50,7 @@ let updateCourseInfoByID = async(req,res)=>{
     try {
         var _id = req.params.id;
         var newData = req.body;
-        var data = await CourseInfo_Schema.findByIdAndUpdate({_id} , newData , {new:true});
+        var data = await updateCourseInfoByIDService(_id,newData);
         res.status(200).json(data);
     } catch (err) {
         res.status(404).json(err);
