@@ -3,6 +3,8 @@ const express = require('express');
 const app = express();
 const connect = require('./DB/connect');
 const authRoutes = require('./components/auth/auth.route');
+var cors = require('cors');
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
