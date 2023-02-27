@@ -4,6 +4,7 @@ const app = express();
 const connect = require('./DB/connect');
 const authRoutes = require('./components/auth/auth.route');
 const lessonRoutes = require('./components/lesson/lesson.routes');
+const courseInfoRoute = require('./components/courseInfo/courseInfo.route');
 var cors = require('cors');
 app.use(cors());
 app.use(express.json());
@@ -12,8 +13,12 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/', (req, res) => {
   res.send('<h1>Welcome to our project</h1>');
 });
+//auth route
 app.use('/api/auth', authRoutes);
 app.use('/api/lesson', lessonRoutes);
+
+//courseInfo  route
+app.use('/api/courseinfo',courseInfoRoute)
 
 const connection = async () => {
   try {
