@@ -9,6 +9,7 @@ const {
 let getAllCourseInfo = async (req, res) => {
   try {
     var data = await getAllCourseInfoService();
+    console.log('Ahmed');
     res.status(200).json(data);
   } catch (err) {
     res.status(400).json(err);
