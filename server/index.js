@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const connect = require('./DB/connect');
 const authRoutes = require('./components/auth/auth.route');
+const lessonRoutes = require('./components/lesson/lesson.routes');
 var cors = require('cors');
 app.use(cors());
 app.use(express.json());
@@ -12,6 +13,7 @@ app.get('/', (req, res) => {
   res.send('<h1>Welcome to our project</h1>');
 });
 app.use('/api/auth', authRoutes);
+app.use('/api/lesson', lessonRoutes);
 
 const connection = async () => {
   try {
