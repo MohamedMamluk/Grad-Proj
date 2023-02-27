@@ -4,6 +4,7 @@ const app = express();
 const connect = require('./DB/connect');
 const authRoutes = require('./components/auth/auth.route');
 const courseInfoRoute = require('./components/courseInfo/courseInfo.route');
+const StudentRoutes = require('./components/student/StudentsRoutes');
 var cors = require('cors');
 app.use(cors());
 app.use(express.json());
@@ -17,6 +18,7 @@ app.use('/api/auth', authRoutes);
 
 //courseInfo  route
 app.use('/api/courseinfo',courseInfoRoute)
+app.use('/api/student',StudentRoutes)
 
 const connection = async () => {
   try {
