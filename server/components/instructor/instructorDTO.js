@@ -41,5 +41,15 @@ const instructorDTO = {
     'levelOfExperience',
   ],
 };
+exports.validateInstructor = (req, res, next) => {
+  const validate = ajv.compile(instructorDTO);
+  const isValid = validate(req.body);
+  if (!isValid) {
+    res.status(400).json({ message: 'Invalid instructor data', errors: validate.errors });
+  } else {
+    next();
+  }
+};
 
-module.exports = Ajv_Instance.compile(instructorDTO);
+module.exports =   Ajv_Instance.compile(instructorDTO)   
+
