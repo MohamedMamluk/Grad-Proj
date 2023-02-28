@@ -15,6 +15,8 @@ app.get('/', (req, res) => {
 });
 //auth route
 app.use('/api/auth', authRoutes);
+
+//lesson route
 app.use('/api/lesson', lessonRoutes);
 
 //courseInfo  route

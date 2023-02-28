@@ -24,7 +24,6 @@ const loginService = async (USER) => {
       return StudentModel.findOne({ email: USER.email });
     case 'instructor':
       return InstructorModel.findOne({ email: USER.email });
-
     default:
       console.log('Please Register');
   }
