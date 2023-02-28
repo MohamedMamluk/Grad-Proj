@@ -5,6 +5,7 @@ const connect = require('./DB/connect');
 const authRoutes = require('./components/auth/auth.route');
 const courseInfoRoute = require('./components/courseInfo/courseInfo.route');
 const StudentRoutes = require('./components/student/StudentsRoutes');
+const instructorRoutes = require('./components/instructor/instructor.route');
 var cors = require('cors');
 app.use(cors());
 app.use(express.json());
@@ -17,8 +18,9 @@ app.get('/', (req, res) => {
 app.use('/api/auth', authRoutes);
 
 //courseInfo  route
-app.use('/api/courseinfo',courseInfoRoute)
-app.use('/api/student',StudentRoutes)
+app.use('/api/courseinfo', courseInfoRoute);
+app.use('/api/student', StudentRoutes);
+app.use('/api/instructor', instructorRoutes);
 
 const connection = async () => {
   try {
