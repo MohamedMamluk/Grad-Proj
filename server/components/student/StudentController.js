@@ -1,19 +1,10 @@
-const {createNewStudent,
+const {
     getAllStudentsService,
     getAStudentService,
     updateStudentByIdService,
     deleteStudentByIdService} = require('./student.service')
 
-var AddNewStudent = async (req,res)=>{
-    try{
-        const data = req.body;
-        let newStudent = await createNewStudent(data);
-        res.status(201).json(newStudent)
-    }
-    catch(err){
-        console.log(err);
-    }
-}
+
 
 var GetAllStudents = async (req,res)=>{
     try{

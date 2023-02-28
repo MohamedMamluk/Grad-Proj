@@ -3,20 +3,6 @@ const router =  express.Router();
 const studentsControllers = require("./StudentController");
 const studentDTO = require("./studentDTO")
 
-//POST
-router.post(
-    "/",
-    (req,res,next)=>{
-        const valid = studentDTO(req.body);
-        if(valid){
-            return next();
-        }else{
-            res.status(400).json(studentDTO.errors)
-        }
-    },
-    studentsControllers.AddNewStudent
-)
-
 //GET
 router.get(
     "/",

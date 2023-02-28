@@ -1,10 +1,5 @@
 const StudentSchema = require('./student.model.js');
 
-//create new student
-const createNewStudent = async(data)=>{
-    return StudentSchema.create(data)
-}
-
 //get all students
 const getAllStudentsService  = async()=>{
     return StudentSchema.find();
@@ -26,7 +21,6 @@ const deleteStudentByIdService = async(_id)=>{
 }
 
 module.exports = {
-    createNewStudent,
     getAllStudentsService,
     getAStudentService,
     updateStudentByIdService,
