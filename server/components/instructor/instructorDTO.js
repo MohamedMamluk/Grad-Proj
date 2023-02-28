@@ -1,6 +1,5 @@
-const Ajv = require('ajv');
-const ajv = new Ajv();
-const instructorSchema = {
+const Ajv_Instance = require('../../utils/ajv');
+const instructorDTO = {
   type: 'object',
   properties: {
     firstName: {
@@ -42,8 +41,8 @@ const instructorSchema = {
     'levelOfExperience',
   ],
 };
-const validateInstructor = (req, res, next) => {
-  const validate = ajv.compile(instructorSchema);
+exports.validateInstructor = (req, res, next) => {
+  const validate = ajv.compile(instructorDTO);
   const isValid = validate(req.body);
   if (!isValid) {
     res.status(400).json({ message: 'Invalid instructor data', errors: validate.errors });
@@ -52,5 +51,5 @@ const validateInstructor = (req, res, next) => {
   }
 };
 
-module.exports = { validateInstructor };
+module.exports =   Ajv_Instance.compile(instructorDTO)   
 

@@ -4,7 +4,7 @@ module.exports = {
     getAllInstructors: async (req, res) => {
         try {
             const instructors = await instructorService.getAllInstructors();
-            res.json(instructors);
+            res.status(200).json(instructors);
         } catch (err) {
             res.status(500).send(err.message);
         }
@@ -17,7 +17,7 @@ module.exports = {
             if (!instructor) {
                 return res.status(404).send('Instructor not found');
             }
-            res.json(instructor);
+            res.status(200).json(instructor);
         } catch (err) {
             res.status(500).send(err.message);
         }
@@ -26,7 +26,7 @@ module.exports = {
     createInstructor: async (req, res) => {
         try {
             const newInstructor = await instructorService.createInstructor(req.body);
-            res.json(newInstructor);
+            res.status(200).json(newInstructor);
         } catch (err) {
             res.status(500).send(err.message);
         }
@@ -40,7 +40,7 @@ module.exports = {
             if (!updatedInstructor) {
                 return res.status(404).send('Instructor not found');
             }
-            res.json(updatedInstructor);
+            res.status(200).json(updatedInstructor);
         } catch (err) {
             res.status(500).send(err.message);
         }
@@ -52,7 +52,7 @@ module.exports = {
             if (!deletedInstructor) {
                 return res.status(404).send('Instructor not found');
             }
-            res.json(deletedInstructor);
+            res.status(200).json(deletedInstructor);
         } catch (err) {
             res.status(500).send(err.message);
         }
