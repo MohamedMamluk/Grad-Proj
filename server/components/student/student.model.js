@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
+// var DB_URL = "mongodb://127.0.0.1:27017/Students";
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const valid = require("validator")
 
 const studentSchema = new mongoose.Schema({
     firstName: {
@@ -18,6 +20,10 @@ const studentSchema = new mongoose.Schema({
     email: {
         type: String,
         required: [true, 'Please provide an email'],
+        validate:{
+            validator:(val)=>{return valid.isEmail(val)},
+            message:"{This email is not in a correct format}"
+        }
     },
     password: {
         type: String,
@@ -31,6 +37,7 @@ const studentSchema = new mongoose.Schema({
     },
     phone: {
         type: String,
+        minLength: [11 , 'Enter your Mobile phone number '],
         required: [true, 'Please provide a working number from your country']
     },
     interests: {
@@ -74,6 +81,10 @@ studentSchema.methods.genJWT = function () {
     );
     return token;
 };
+
+
+
+
 module.exports = mongoose.model('student', studentSchema);
 
 
