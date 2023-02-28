@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const connect = require('./DB/connect');
 const authRoutes = require('./components/auth/auth.route');
+const lessonRoutes = require('./components/lesson/lesson.routes');
 const courseInfoRoute = require('./components/courseInfo/courseInfo.route');
 const StudentRoutes = require('./components/student/StudentsRoutes');
 const instructorRoutes = require('./components/instructor/instructor.route');
@@ -16,6 +17,9 @@ app.get('/', (req, res) => {
 });
 //auth route
 app.use('/api/auth', authRoutes);
+
+//lesson route
+app.use('/api/lesson', lessonRoutes);
 
 //courseInfo  route
 app.use('/api/courseinfo', courseInfoRoute);
