@@ -1,10 +1,29 @@
 const express = require("express");
-const router = new express.Router();
+const router =  express.Router();
 const studentsControllers = require("./StudentController");
+const studentDTO = require("./studentDTO")
 
-router.post("/",studentsControllers.AddNewStudent)
-router.get("/",studentsControllers.GetAllStudents)
-router.get("/:id",studentsControllers.GetStudentByID)
-router.put("/:id",studentsControllers.UpdateStudent)
-router.delete("/:id",studentsControllers.DeleteStudentByID)
+//GET
+router.get(
+    "/",
+    studentsControllers.GetAllStudents
+)
+
+router.get(
+    "/:id",
+    studentsControllers.GetStudentByID
+)
+
+//UPDATE
+router.patch(
+    "/:id",
+    studentsControllers.UpdateStudent
+)
+
+//DELETE
+router.delete(
+    "/:id",
+    studentsControllers.DeleteStudentByID
+)
+
 module.exports = router;

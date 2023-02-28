@@ -9,7 +9,7 @@ var StudentSchema = {
         "password":{"type":"string","minLength":6},
         "role":{"type":"string"},
         "phone":{"type":"string","minLength":11 , "maxLength":11  },
-        "interests":{"type":"string","enum":["Web_Development","Flutter","JavaScript"]},
+        "interests":{"type":"string"},
     },
     "required":["firstName","lastName" , "email" , "password" , "role" , "phone" , "interests" ],
     "minProperties":7,
