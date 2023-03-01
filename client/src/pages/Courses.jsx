@@ -1,0 +1,22 @@
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+const Courses = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios
+      .get('http://localhost:7000/api/courseinfo')
+      .then((res) => setData(res.data));
+  }, []);
+  if (data.length == 0) {
+    return <p>loading</p>;
+  }
+  return (
+    <div>
+      {data.map((course) => (
+        <p key={course._id}>{course.categories[0].name}</p>
+      ))}
+    </div>
+  );
+};
+
+export default Courses;
