@@ -1,13 +1,14 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const connect = require("./DB/connect");
-const authRoutes = require("./components/auth/auth.route");
-const courseInfoRoute = require("./components/courseInfo/courseInfo.route");
-const StudentRoutes = require("./components/student/StudentsRoutes");
-const instructorRoutes = require("./components/instructor/instructor.route");
 const courseRoutes = require("./components/course/course.route");
-var cors = require("cors");
+const connect = require('./DB/connect');
+const authRoutes = require('./components/auth/auth.route');
+const lessonRoutes = require('./components/lesson/lesson.routes');
+const courseInfoRoute = require('./components/courseInfo/courseInfo.route');
+const StudentRoutes = require('./components/student/StudentsRoutes');
+const instructorRoutes = require('./components/instructor/instructor.route');
+var cors = require('cors');
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -17,6 +18,9 @@ app.get("/", (req, res) => {
 });
 //auth route
 app.use("/api/auth", authRoutes);
+
+//lesson route
+app.use('/api/lesson', lessonRoutes);
 
 //courseInfo  route
 app.use("/api/courseinfo", courseInfoRoute);

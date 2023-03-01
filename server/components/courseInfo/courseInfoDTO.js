@@ -15,7 +15,7 @@ const courseInfoDTO = {
           level: {
             type: "string",
             enum: ['Beginner', 'Intermediate', 'Advanced'],
-          },
+          }
     },
     required: ['description','level']
 }
