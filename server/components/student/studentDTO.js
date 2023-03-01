@@ -1,4 +1,13 @@
 const Ajv_Instance = require('../../utils/ajv');
+const reviewsSchema = {
+  type: 'object',
+  properties: {
+    stars: { type: 'number' },
+    text: { type: 'string' },
+  },
+  required: ['stars'],
+};
+
 const studentDTO = {
   type: 'object',
   properties: {
@@ -27,8 +36,20 @@ const studentDTO = {
     phone: {
       type: 'string',
     },
+    reviews: {
+      type: 'array',
+      items: reviewsSchema,
+    },
   },
-  required: ['firstName', 'lastName', 'email', 'password', 'role', 'phone'],
+  required: [
+    'firstName',
+    'lastName',
+    'email',
+    'password',
+    'role',
+    'phone',
+    'reviews',
+  ],
 };
 
 module.exports = Ajv_Instance.compile(studentDTO);
