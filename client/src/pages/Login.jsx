@@ -3,17 +3,21 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
+import Paper from '@mui/material/Paper';
+import { Link } from 'react-router-dom';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
+// import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
+// import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
+import { setUser, logout } from '../features/auth/authSlice';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Copyright(props) {
   return (
@@ -25,7 +29,7 @@ function Copyright(props) {
     >
       {'Copyright © '}
       <Link color='inherit' href='https://mui.com/'>
-        Your Website
+        MindsOn{' '}
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -36,106 +40,127 @@ function Copyright(props) {
 const theme = createTheme({});
 
 export default function SignIn() {
+  const dispatch = useDispatch();
+  const authSelector = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
   const [data, setData] = React.useState({
     email: '',
     password: '',
   });
+  React.useEffect(() => {
+    if (authSelector != null) {
+      navigate('/dashboard');
+    }
+  }, []);
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
       .post('http://localhost:7000/api/auth/login', data)
       .then((res) => {
-        console.log(res.data);
-        // navigate('/dashboard');
+        dispatch(setUser(res.data.token));
+        navigate('/dashboard');
       })
       .catch((err) => console.log(err));
   };
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component='main' maxWidth='xs' sx={{}}>
+      <Grid container component='main' sx={{ height: '100vh' }}>
         <CssBaseline />
-        <Box
+        <Grid
+          item
+          xs={false}
+          sm={4}
+          md={7}
           sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            backgroundImage: 'url(https://source.unsplash.com/random)',
+            backgroundRepeat: 'no-repeat',
+            backgroundColor: (t) =>
+              t.palette.mode === 'light'
+                ? t.palette.grey[50]
+                : t.palette.grey[900],
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
           }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component='h1' variant='h5'>
-            Sign in
-          </Typography>
+        />
+        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <Box
-            component='form'
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
+            sx={{
+              my: 8,
+              mx: 4,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
           >
-            <TextField
-              margin='normal'
-              required
-              fullWidth
-              id='email'
-              label='Email Address'
-              name='email'
-              value={data.email}
-              onChange={(e) => {
-                setData((prev) => {
-                  return { ...prev, email: e.target.value };
-                });
-              }}
-              autoComplete='email'
-              autoFocus
-            />
-            <TextField
-              margin='normal'
-              required
-              fullWidth
-              name='password'
-              label='Password'
-              type='password'
-              value={data.password}
-              onChange={(e) => {
-                setData((prev) => {
-                  return { ...prev, password: e.target.value };
-                });
-              }}
-              id='password'
-              autoComplete='current-password'
-            />
-            <FormControlLabel
-              control={<Checkbox value='remember' color='primary' />}
-              label='Remember me'
-            />
-            <Button
-              type='submit'
-              fullWidth
-              variant='contained'
-              sx={{ mt: 3, mb: 2 }}
+            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component='h1' variant='h5'>
+              Sign in
+            </Typography>
+            <Box
+              component='form'
+              noValidate
+              onSubmit={handleSubmit}
+              sx={{ mt: 1 }}
             >
-              Sign In
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href='#' variant='body2'>
-                  Forgot password?
-                </Link>
+              <TextField
+                margin='normal'
+                required
+                fullWidth
+                id='email'
+                value={data.email}
+                onChange={(e) => {
+                  setData((prev) => {
+                    return { ...prev, email: e.target.value };
+                  });
+                }}
+                label='Email Address'
+                name='email'
+                autoComplete='email'
+                autoFocus
+              />
+              <TextField
+                margin='normal'
+                required
+                fullWidth
+                name='password'
+                label='Password'
+                type='password'
+                id='password'
+                value={data.password}
+                onChange={(e) => {
+                  setData((prev) => {
+                    return { ...prev, password: e.target.value };
+                  });
+                }}
+                autoComplete='current-password'
+              />
+              <FormControlLabel
+                control={<Checkbox value='remember' color='primary' />}
+                label='Remember me'
+              />
+              <Button
+                type='submit'
+                fullWidth
+                variant='contained'
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Sign In
+              </Button>
+              <Grid container>
+                <Grid item>
+                  <Link to='/register' variant='body2'>
+                    {"Don't have an account? Sign Up"}
+                  </Link>
+                </Grid>
               </Grid>
-              <Grid item>
-                <Link href='#' variant='body2'>
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
+              <Copyright sx={{ mt: 5 }} />
+            </Box>
           </Box>
-        </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
-      </Container>
+        </Grid>
+      </Grid>
     </ThemeProvider>
   );
 }
