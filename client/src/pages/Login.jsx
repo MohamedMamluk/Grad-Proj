@@ -41,7 +41,7 @@ const theme = createTheme({});
 
 export default function SignIn() {
   const dispatch = useDispatch();
-  const authSelector = useSelector((state) => state.auth.user);
+  const authSelector = useSelector((state) => state.auth.token);
   const navigate = useNavigate();
   const [data, setData] = React.useState({
     email: '',
@@ -57,7 +57,7 @@ export default function SignIn() {
     axios
       .post('http://localhost:7000/api/auth/login', data)
       .then((res) => {
-        dispatch(setUser(res.data.token));
+        dispatch(setUser(res.data));
         navigate('/dashboard');
       })
       .catch((err) => console.log(err));
@@ -73,7 +73,7 @@ export default function SignIn() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://source.unsplash.com/random)',
+            backgroundImage: 'url(/registerPic-removebg.png)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light'
