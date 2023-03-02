@@ -2,6 +2,7 @@ const { StatusCodes } = require('http-status-codes');
 const validateInstructor = require('../components/instructor/instructorDTO');
 const validateStudent = require('../components/student/studentDTO');
 const registerValidation = (req, res, next) => {
+  console.log(req.body)
   const bodyData = req.body;
   let valid;
   let errors;

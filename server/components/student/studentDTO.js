@@ -36,10 +36,7 @@ const studentDTO = {
     phone: {
       type: 'string',
     },
-    reviews: {
-      type: 'array',
-      items: reviewsSchema,
-    },
+
   },
   required: [
     'firstName',
@@ -48,7 +45,6 @@ const studentDTO = {
     'password',
     'role',
     'phone',
-    'reviews',
   ],
 };
 
