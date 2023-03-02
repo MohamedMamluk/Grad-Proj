@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Header from '../components/Header';
 const Courses = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -12,6 +13,7 @@ const Courses = () => {
   }
   return (
     <div>
+      <Header />
       {data.map((course) => (
         <p key={course._id}>{course.categories[0].name}</p>
       ))}
