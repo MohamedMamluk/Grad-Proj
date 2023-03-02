@@ -5,7 +5,7 @@ import { store } from './app/store';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import App from './App';
 import './index.css';
-
+import Header from "./components/header/header"
 const container = document.getElementById('root');
 const root = createRoot(container);
 
@@ -13,13 +13,14 @@ root.render(
   <>
     <Provider store={store}>
       <Router>
-        <header>
+        {/* <header>
           <Link to='/'>Home</Link>
           <Link to='/login'>login</Link>
           <Link to='/register'>Register</Link>
           <Link to='/courses'>Courses</Link>
           <Link to='/dashboard'>Dashboard</Link>
-        </header>
+        </header> */}
+        <Header></Header>
         <App />
       </Router>
     </Provider>
