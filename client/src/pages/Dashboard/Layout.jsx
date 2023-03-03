@@ -15,7 +15,7 @@ import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { MainListItems } from './ListItems';
+import { MainListItems } from './listItems';
 import { ListItemIcon } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
