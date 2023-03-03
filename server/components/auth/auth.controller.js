@@ -2,7 +2,7 @@ const { StatusCodes } = require('http-status-codes');
 const { registerService, loginService } = require('./auth.service');
 
 const register = async (req, res) => {
-  console.log(req.body)
+  console.log(req.body);
   const userData = req.body;
   try {
     const user = await registerService(userData);
@@ -32,7 +32,7 @@ const login = async (req, res) => {
     //   maxAge: 3.154e10, // 1 year,
     //   httpOnly: true, //can only be accessed with http requests and not js
     // });
-    res.status(StatusCodes.OK).json({ token });
+    res.status(StatusCodes.OK).json({ token, id: user._id, role: user.role });
   } catch (error) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error });
   }

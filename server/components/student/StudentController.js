@@ -18,7 +18,7 @@ var GetStudentByID = async (req, res) => {
   try {
     var StudentID = req.params.id;
     var foundStudent = await getAStudentService(StudentID);
-    res.status(200).json(foundStudent);
+    res.status(200).json({ user: foundStudent });
   } catch (err) {
     res.status(400).json(err);
   }
