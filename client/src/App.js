@@ -5,6 +5,7 @@ import DashboardCourses from './pages/Dashboard/Course';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Courses from './pages/Courses';
+import Explore from './pages/Dashboard/Explore';
 import Layout from './pages/Dashboard/Layout';
 import DashboardHome from './pages/Dashboard/Home';
 import { Route, Routes, useNavigate } from 'react-router-dom';
@@ -28,7 +29,7 @@ function App() {
       <Route path='courses' element={<Courses />} />
       <Route path='/dashboard' element={<Layout />}>
         <Route index element={<DashboardHome />} />
-        <Route path='explore' element={<DashboardCourses />} />
+        <Route path='explore' element={<Explore />} />
         <Route path='profile' element={<Profile />} />
       </Route>
     </Routes>
