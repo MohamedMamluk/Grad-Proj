@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Header from '../components/Header';
+import Header from '../components/header/header';
+import AllCourses from '../components/AllCourses/AllCourses';
+import CouHeader from '../components/CoursesHeader/CouHeader';
+import courses from '../udemy_courses.json';
 const Courses = () => {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    axios
-      .get('http://localhost:7000/api/courseinfo')
-      .then((res) => setData(res.data));
-  }, []);
-  if (data.length == 0) {
-    return <p>loading</p>;
-  }
+  const [data, setData] = useState(courses);
+  // useEffect(() => {
+  //   axios
+  //     .get('http://localhost:7000/api/courseinfo')
+  //     .then((res) => setData(res.data));
+  // }, []);
+  // if (data.length == 0) {
+  //   return <p>loading</p>;
+  // }
   return (
     <div>
-      <Header />
-      {data.map((course) => (
-        <p key={course._id}>{course.categories[0].name}</p>
-      ))}
+      <Header></Header>
+      <CouHeader />
+      <AllCourses />
     </div>
   );
 };
