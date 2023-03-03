@@ -28,7 +28,7 @@ function Copyright(props) {
       {...props}
     >
       {'Copyright © '}
-      <Link color='inherit' href='https://mui.com/'>
+      <Link color='inherit' to='/'>
         MindsOn{' '}
       </Link>{' '}
       {new Date().getFullYear()}
@@ -46,18 +46,26 @@ export default function SignIn() {
   const [data, setData] = React.useState({
     email: '',
     password: '',
+    rememberMe: false,
   });
   React.useEffect(() => {
     if (authSelector != null) {
       navigate('/dashboard');
     }
   }, []);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
       .post('http://localhost:7000/api/auth/login', data)
       .then((res) => {
+        console.log(res.data);
         dispatch(setUser(res.data));
+        if (data.rememberMe) {
+          localStorage.setItem('token', res.data.token);
+          localStorage.setItem('id', res.data.id);
+          localStorage.setItem('role', res.data.role);
+        }
         navigate('/dashboard');
       })
       .catch((err) => console.log(err));
@@ -140,6 +148,10 @@ export default function SignIn() {
               <FormControlLabel
                 control={<Checkbox value='remember' color='primary' />}
                 label='Remember me'
+                value={data.rememberMe}
+                onChange={(e) =>
+                  setData((prev) => ({ ...prev, rememberMe: e.target.checked }))
+                }
               />
               <Button
                 type='submit'

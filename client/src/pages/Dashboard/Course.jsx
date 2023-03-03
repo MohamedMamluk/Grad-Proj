@@ -1,7 +1,7 @@
 import React from 'react';
 
-const DashboardCourses = () => {
-  return <div>DashboardCourses</div>;
+const SingleCourse = () => {
+  return <div>SingleCourse</div>;
 };
 
-export default DashboardCourses;
+export default SingleCourse;

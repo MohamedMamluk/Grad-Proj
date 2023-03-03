@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet, useLocation, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
@@ -11,20 +11,15 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-
-import Badge from '@mui/material/Badge';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import { mainListItems, secondaryListItems } from './listItems';
-import Chart from './Chart';
-import Deposits from './Deposits';
-import Orders from './Orders';
+import { MainListItems } from './ListItems';
 import { ListItemIcon } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+
 function Copyright(props) {
   return (
     <Typography
@@ -94,12 +89,16 @@ const mdTheme = createTheme();
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);
   const pageTitle = useLocation();
-  console.log(pageTitle.pathname.split('/'));
-  console.log(pageTitle);
+  const navigate = useNavigate();
   const toggleDrawer = () => {
     setOpen(!open);
   };
-
+  const user = useSelector((store) => store.auth);
+  useEffect(() => {
+    if (!user.id) {
+      navigate('/login');
+    }
+  }, []);
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
@@ -131,7 +130,7 @@ function DashboardContent() {
               variant='h6'
               color='inherit'
               noWrap
-              sx={{ flexGrow: 1 }}
+              sx={{ flexGrow: 1, textTransform: 'capitalize' }}
             >
               {pageTitle.pathname == '/dashboard'
                 ? 'dashboard'
@@ -159,7 +158,8 @@ function DashboardContent() {
           </Toolbar>
           <Divider />
           <List component='nav'>
-            {mainListItems}
+            {/* {mainListItems} */}
+            <MainListItems />
             {/* <Divider sx={{ my: 1 }} />
             {secondaryListItems} */}
           </List>
