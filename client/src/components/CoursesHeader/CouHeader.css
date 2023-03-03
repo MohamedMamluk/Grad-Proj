@@ -63,13 +63,13 @@ button {
   border-radius: 10px;
   border-color: azure;
   color: darkblue;
-  background-color: azure;
+  /* background-color: azure; */
 }
 label {
   margin: 5px;
-  background-color: azure;
+  /* background-color: azure; */
   border-radius: 10px;
-  width: 6vw;
+  /* width: 6vw; */
   color: darkblue;
   font-family: 'monospace';
 }

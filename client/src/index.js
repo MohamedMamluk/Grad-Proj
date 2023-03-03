@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Link } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
-import Header from './components/header/header';
 import { setUser } from './features/auth/authSlice';
 const container = document.getElementById('root');
 const root = createRoot(container);
