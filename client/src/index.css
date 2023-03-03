@@ -1,15 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap');
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'Manrope', sans-serif;
 }
 .navLink {
   color: #fff;
@@ -22,4 +13,48 @@ code {
   display: flex;
   gap: 1rem;
   padding: 1rem;
+}
+.hello-section {
+  background: rgb(109, 84, 222);
+  background: linear-gradient(
+    133deg,
+    rgba(109, 84, 222, 1) 48%,
+    rgba(164, 148, 234, 1) 100%
+  );
+
+  color: white;
+}
+.left-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: max-content;
+  padding: 20px 0;
+}
+.home-welcome {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.home-introduction {
+  font-size: 0.8rem;
+}
+@media screen and (min-width: 500px) {
+  .home-welcome {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .home-introduction {
+    font-size: 1rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .left-box {
+    width: 60%;
+    letter-spacing: 1px;
+  }
+  .home-welcome {
+    font-size: 2rem;
+  }
 }
