@@ -1,26 +1,50 @@
+const { StatusCodes } = require('http-status-codes');
 const { getCourseByIDService } = require('../course/course.service');
-const { handleEnrollment } = require('./enrollment.service');
+const { handleEnrollment, createIntent } = require('./enrollment.service');
+
+// If student is already enrolled do nothing TODO
+
 const createPaymentIntent = async (req, res) => {
   try {
     const courseData = await getCourseByIDService(req.params.courseID);
     if (!courseData.is_paid) {
-      const handleEnroll = handleEnrollment(
+      const tryToEnroll = handleEnrollment(
         req.user.id,
         courseData.courseInfo,
         req.params.courseID
       );
-      if (handleEnroll) {
-        return res.send('course Enrolled');
+      if (tryToEnroll) {
+        return res.status(StatusCodes.OK).send('course Enrolled');
       } else {
-        return res.send('something went wrong');
+        return res.status(StatusCodes.BAD_REQUEST).send('something went wrong');
       }
     }
-    res.send('course is paid');
-  } catch (error) {}
+    //Handle payment intent and send it back to front
+    const intent = await createIntent(courseData.cost);
+    res.send({
+      clientSecret: intent.client_secret,
+    });
+  } catch (error) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Server is on fire');
+  }
 };
 
 const confirmAddition = async (req, res) => {
-  res.send('in confirm route');
+  try {
+    const courseData = await getCourseByIDService(req.body.courseId);
+    const tryToEnroll = handleEnrollment(
+      req.user.id,
+      courseData.courseInfo,
+      req.body.courseId
+    );
+    if (tryToEnroll) {
+      return res.status(StatusCodes.OK).send('course Enrolled');
+    } else {
+      return res.status(StatusCodes.BAD_REQUEST).send('something went wrong');
+    }
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 module.exports = { createPaymentIntent, confirmAddition };
