@@ -74,6 +74,16 @@ const courseInfoSchema = new mongoose.Schema({
       message: 'WhatYouWillLearn is required, Provide at least 1 object.',
     },
   },
+  courseLessons: {
+    type: [
+      new mongoose.Schema({
+        lessonId: {
+          type: String,
+          required: true,
+        },
+      }),
+    ],
+  },
 });
 
 module.exports = mongoose.model('courseInfo', courseInfoSchema);
