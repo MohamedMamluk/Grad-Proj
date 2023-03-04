@@ -1,37 +1,37 @@
-const mongoose = require("mongoose");
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
+const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 const instructorSchema = new mongoose.Schema(
   {
     firstName: {
       type: String,
-      required: [true, "please provide your first name"],
+      required: [true, 'please provide your first name'],
       minLength: 3,
       maxLength: 20,
     },
     lastName: {
       type: String,
-      required: [true, "please provide your last name"],
+      required: [true, 'please provide your last name'],
       minLength: 3,
       maxLength: 20,
     },
     email: {
       type: String,
-      required: [true, "Please provide an email"],
+      required: [true, 'Please provide an email'],
     },
     password: {
       type: String,
-      minLength: [6, "Enter a password no less than 6 characters"],
-      required: [true, "Please provide an appropriate password"],
+      minLength: [6, 'Enter a password no less than 6 characters'],
+      required: [true, 'Please provide an appropriate password'],
     },
     role: {
       type: String,
-      required: [true, "Please tell us your role"],
-      default: "instructor",
+      required: [true, 'Please tell us your role'],
+      default: 'instructor',
     },
     phone: {
       type: String,
-      required: [true, "Please provide a working number from your country"],
+      required: [true, 'Please provide a working number from your country'],
     },
     courses: {
       type: [mongoose.Schema.Types.ObjectId],
@@ -39,13 +39,16 @@ const instructorSchema = new mongoose.Schema(
     },
     levelOfExperience: {
       type: String,
-      required: [true, "Please provide a level of experience"],
+      required: [true, 'Please provide a level of experience'],
+    },
+    image: {
+      type: String,
     },
   },
   { timestamps: true }
 );
 
-instructorSchema.pre("save", async function () {
+instructorSchema.pre('save', async function () {
   try {
     const salt = await bcrypt.genSalt(10);
     const hashed = await bcrypt.hash(this.password, salt);
@@ -67,9 +70,9 @@ instructorSchema.methods.genJWT = function () {
     },
     process.env.JWT_SECRET,
     {
-      expiresIn: "1d",
+      expiresIn: '1d',
     }
   );
   return token;
 };
-module.exports = mongoose.model("instructor", instructorSchema);
+module.exports = mongoose.model('instructor', instructorSchema);
