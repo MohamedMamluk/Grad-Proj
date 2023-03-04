@@ -1,7 +1,13 @@
 import React from 'react';
+import AddingNewCourseForm from '../../components/AddingNewCourseForm/addingNewCourse';
 
 const Profile = () => {
-  return <div>Profile</div>;
+  return <>
+  <AddingNewCourseForm/>
+  {/* <div>Profile</div> */}
+  
+  
+  </>
 };
 
 export default Profile;
