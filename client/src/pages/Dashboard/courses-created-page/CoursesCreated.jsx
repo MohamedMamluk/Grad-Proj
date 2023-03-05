@@ -13,7 +13,7 @@ const CoursesCreated = () => {
     <div>
       <div className={styles.add__course_container}>
         <Link
-          to='/dashboard/course/new'
+          to='/dashboard/courses-created/new'
           style={{
             textDecoration: 'none',
             color: 'GrayText',

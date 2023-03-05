@@ -38,7 +38,7 @@ function App() {
         <Route index element={<DashboardHome />} />
         <Route path='explore' element={<Explore />} />
         <Route path='profile' element={<Profile />} />
-        <Route path='course/new' element={<CreateCourse />} />
+        <Route path='courses-created/new' element={<CreateCourse />} />
         <Route path='courses-created' element={<CoursesCreated />} />
         <Route path='users' element={<Users />} />
       </Route>
