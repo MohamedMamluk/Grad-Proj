@@ -19,6 +19,7 @@ import { MainListItems } from './listItems';
 import { ListItemIcon } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import Breadcrumb from './breadcrumb/Breadcrumb';
 
 function Copyright(props) {
   return (
@@ -125,17 +126,16 @@ function DashboardContent() {
             >
               <MenuIcon />
             </IconButton>
-            <Typography
+            {/* <Typography
               component='h1'
               variant='h6'
-              color='inherit'
-              noWrap
-              sx={{ flexGrow: 1, textTransform: 'capitalize' }}
+              
             >
               {pageTitle.pathname == '/dashboard'
                 ? 'dashboard'
                 : pageTitle.pathname.split('/')[2]}
-            </Typography>
+            </Typography> */}
+            <Breadcrumb />
             <IconButton color='inherit'>
               <ListItemIcon>
                 <AccountCircleIcon style={{ fill: 'white' }} fontSize='large' />
