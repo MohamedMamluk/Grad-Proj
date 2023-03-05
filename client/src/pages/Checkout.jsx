@@ -1,0 +1,66 @@
+import { PaymentElement } from '@stripe/react-stripe-js';
+import { useState } from 'react';
+import { useStripe, useElements } from '@stripe/react-stripe-js';
+import { Container } from '@mui/material';
+import Sidebar from './Payment/Sidebar';
+import styles from './checkout.module.css';
+import CoursePaymentCard from './Payment/Sidebar';
+export default function Checkout({ courseData }) {
+  const stripe = useStripe();
+  const elements = useElements();
+
+  const [message, setMessage] = useState(null);
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!stripe || !elements) {
+      // Stripe.js has not yet loaded.
+      // Make sure to disable form submission until Stripe.js has loaded.
+      return;
+    }
+
+    setIsProcessing(true);
+
+    const { error } = await stripe.confirmPayment({
+      elements,
+      confirmParams: {
+        // Make sure to change this to your payment completion page
+        return_url: `${window.location.origin}/enrolled`,
+      },
+    });
+
+    if (error.type === 'card_error' || error.type === 'validation_error') {
+      setMessage(error.message);
+    } else {
+      setMessage('An unexpected error occured.');
+    }
+
+    setIsProcessing(false);
+  };
+
+  return (
+    <Container className={styles.checkout_container}>
+      <CoursePaymentCard courseData={courseData} />
+      <form
+        id='payment-form'
+        className={styles.payment_form}
+        onSubmit={handleSubmit}
+      >
+        <PaymentElement id='payment-element' />
+        <button
+          className={styles.checkout__button}
+          disabled={isProcessing || !stripe || !elements}
+          id='submit'
+        >
+          <span id='button-text'>
+            {isProcessing ? 'Processing ... ' : 'Pay now'}
+          </span>
+        </button>
+        {/* Show any error or success messages */}
+        {message && <div id='payment-message'>{message}</div>}
+      </form>
+    </Container>
+  );
+}

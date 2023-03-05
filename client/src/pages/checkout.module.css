@@ -1,0 +1,25 @@
+.checkout__button {
+  background-color: rgba(109, 84, 222, 1);
+  color: white;
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  word-break: keep-all;
+}
+.checkout_container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  height: 100vh;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.payment_form {
+  flex: 3;
+}
+@media screen and (min-width: 768px) {
+  .checkout_container {
+    flex-direction: row-reverse;
+  }
+}
