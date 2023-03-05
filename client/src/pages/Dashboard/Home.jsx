@@ -5,6 +5,8 @@ import { setUserData } from '../../features/auth/authSlice';
 import HomeHeader from './components/homeComponents/HomeHeader';
 import { Container } from '@mui/material';
 import LearningProgress from './components/homeComponents/LearningProgress';
+import CourseProgress from './components/homeComponents/courseProgress';
+import Grid from '@mui/material/Grid';
 
 const DashboardHome = () => {
   const user = useSelector((state) => state.auth);
@@ -26,7 +28,12 @@ const DashboardHome = () => {
   return (
     <Container>
       <HomeHeader user={user}/>
-      <LearningProgress/>
+      <Grid container spacing={4} padding={5}>
+        
+          <LearningProgress/>
+          <CourseProgress/>
+        
+      </Grid>
     </Container>
   );
 };
