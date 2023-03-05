@@ -4,8 +4,10 @@ import { useLocation, useParams } from 'react-router-dom';
 import coursesData from '../../udemy_courses.json';
 import './allCourses.css';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 const AllCourses = () => {
   const [courses, setCourse] = useState([]);
+  const user = useSelector((state) => state.auth.userData);
   useEffect(() => {
     axios.get('http://localhost:7000/api/course').then((res) => {
       setCourse(res.data);
@@ -28,6 +30,7 @@ const AllCourses = () => {
             </p>
             <p className='card-text'>{course.cost}</p>
             <p className='card-text'>{course.duration}</p>
+            {user.role == 'admin' && <button>Delete</button>}
           </div>
         </div>
       ))}
