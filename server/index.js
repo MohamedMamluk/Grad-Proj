@@ -10,8 +10,8 @@ const StudentRoutes = require('./components/student/StudentsRoutes');
 const lessonsFinishedRoutes = require('./components/lessonsFinished/lessonFinished.routes');
 const instructorRoutes = require('./components/instructor/instructor.route');
 const enrollmentRoutes = require('./components/enrollment/enrollment.routes');
+const uploadRoutes = require('./components/upload/upload.route');
 const AdminModel = require('./components/admin/admin.model');
-// const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 var cors = require('cors');
 app.use(cors());
 app.use(express.json());
@@ -20,31 +20,6 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/', (req, res) => {
   res.send('<h1>Welcome to our project</h1>');
 });
-// app.get('/config', (req, res) => {
-//   res.send({
-//     publishableKey: process.env.STRIPE_PUBLIC_KEY,
-//   });
-// });
-// app.post('/create-payment-intent', async (req, res) => {
-//   try {
-//     const paymentIntent = await stripe.paymentIntents.create({
-//       currency: 'EUR',
-//       amount: req.body.price,
-//       automatic_payment_methods: { enabled: true },
-//     });
-
-//     // Send publishable key and PaymentIntent details to client
-//     res.send({
-//       clientSecret: paymentIntent.client_secret,
-//     });
-//   } catch (e) {
-//     return res.status(400).send({
-//       error: {
-//         message: e.message,
-//       },
-//     });
-//   }
-// });
 
 //auth route
 app.use('/api/auth', authRoutes);
@@ -60,6 +35,7 @@ app.get('/api/admin/:id', async (req, res) => {
 
 //lesson route
 app.use('/api/lesson', lessonRoutes);
+app.use('/api/upload', uploadRoutes);
 
 //courseInfo  route
 app.use('/api/courseinfo', courseInfoRoute);
