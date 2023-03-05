@@ -32,7 +32,6 @@ const courseInfoSchema = new mongoose.Schema({
         },
         reviewText: {
           type: String,
-          required: true,
         },
       }),
     ],

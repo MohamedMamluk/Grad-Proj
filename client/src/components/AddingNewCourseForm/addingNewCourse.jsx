@@ -66,10 +66,19 @@ export default function AddingNewCourseForm() {
             name="courseTitle"
             label="Course title"
             value={data.courseTitle}
+            onChange={(e)=>{setData((pre)=>{
+              return {...pre , courseTitle:e.target.value}
+            })}}
             fullWidth
             autoComplete="given-name"
             variant="standard"
           />
+          {!data.courseTitle && <label
+          style={{color:'#ff0000'}}
+        >
+          Course title is required!
+          </label>
+        }
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
@@ -80,7 +89,16 @@ export default function AddingNewCourseForm() {
             label="Please enter course duration"
             fullWidth
             variant="standard"
+            onChange={(e)=>{setData((pre)=>{
+              return {...pre , courseDuration:e.target.value}
+            })}}
           />
+          {!data.courseDuration && <label
+          style={{color:'#ff0000'}}
+        >
+          Course duration is required!
+          </label>
+        }
         </Grid>
         <Grid item xs={12} >
           <Typography variant="h6" gutterBottom textAlign="center">
@@ -148,6 +166,7 @@ export default function AddingNewCourseForm() {
                       name='isPaied'
                       label='Enter your payment'
                       type='isPaied'
+                      variant="standard"
                       value={data.isPaied}
                       onChange={(e) => {
                         setData((prev) => {
@@ -157,9 +176,15 @@ export default function AddingNewCourseForm() {
                       id='isPaied'
                       autoComplete='isPaied'
                     />
+                    {!data.isPaied && <label
+          style={{color:'#ff0000'}}
+        >
+          Payment is required!
+          </label>
+        }
                   </Grid>
                 )}
-                <Grid item xs={3}>
+                {/* <Grid item xs={3}>
                 <Button
                 type='submit'
                 fullWidth
@@ -172,7 +197,7 @@ export default function AddingNewCourseForm() {
                 >
                 Submit
               </Button>
-                  </Grid>
+                  </Grid> */}
       </Grid>
       </Box>
     </React.Fragment>
