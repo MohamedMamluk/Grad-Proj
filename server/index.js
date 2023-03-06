@@ -46,7 +46,7 @@ app.use('/api/course', courseRoutes);
 
 const connection = async () => {
   try {
-    await connect(process.env.MONGOURI_PROD);
+    await connect(process.env.MONGOURI_DEV);
     app.listen(7000, () => {
       console.log('server is running on port http://localhost:' + 7000);
     });
