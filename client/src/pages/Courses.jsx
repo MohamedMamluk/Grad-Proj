@@ -3,9 +3,9 @@ import axios from 'axios';
 import Header from '../components/header/header';
 import AllCourses from '../components/AllCourses/AllCourses';
 import CouHeader from '../components/CoursesHeader/CouHeader';
-import courses from '../udemy_courses.json';
+// import courses from '../udemy_courses.json';
 const Courses = () => {
-  const [data, setData] = useState(courses);
+  // const [data, setData] = useState(courses);
   // useEffect(() => {
   //   axios
   //     .get('http://localhost:7000/api/courseinfo')
