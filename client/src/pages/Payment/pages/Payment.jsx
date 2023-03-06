@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Elements } from '@stripe/react-stripe-js';
-import CheckoutForm from './Checkout';
+import CheckoutForm from '../components/checkout/Checkout';
 import { loadStripe } from '@stripe/stripe-js';
 import axios from 'axios';
 import { Container } from '@mui/material';
@@ -25,9 +25,6 @@ function Payment() {
 
     getCourse();
   }, []);
-  useEffect(() => {
-    console.log(stripePromise);
-  }, [stripePromise]);
 
   useEffect(() => {
     axios
@@ -41,7 +38,7 @@ function Payment() {
         }
       )
       .then((result) => {
-        console.log(result.data);
+        // //console.log(result.data);
         var { clientSecret } = result.data;
         setClientSecret(clientSecret);
       });

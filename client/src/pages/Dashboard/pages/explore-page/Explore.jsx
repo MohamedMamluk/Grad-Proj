@@ -1,6 +1,6 @@
 import React from 'react';
-import AllCourses from '../../components/AllCourses/AllCourses';
-import CouHeader from '../../components/CoursesHeader/CouHeader';
+import AllCourses from '../../../../components/AllCourses/AllCourses';
+import CouHeader from '../../../../components/CoursesHeader/CouHeader';
 
 const DashboardCourses = () => {
   return (

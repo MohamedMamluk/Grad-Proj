@@ -12,7 +12,7 @@ router.post('/upload-image', async (req, res) => {
     const result = await cloudinary.uploader.upload(req.body.data);
     res.send(result.public_id);
   } catch (error) {
-    console.log(error);
+    //console.log(error);
   }
 });
 

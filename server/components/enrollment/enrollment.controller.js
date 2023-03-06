@@ -43,7 +43,7 @@ const confirmAddition = async (req, res) => {
       return res.status(StatusCodes.BAD_REQUEST).send('something went wrong');
     }
   } catch (error) {
-    console.log(error);
+    //console.log(error);
   }
 };
 

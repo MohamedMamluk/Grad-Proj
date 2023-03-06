@@ -33,7 +33,7 @@ const handleEnrollment = async (studentID, courseInfoID, courseID) => {
     }
     return true;
   } catch (error) {
-    console.log(error);
+    //console.log(error);
   }
 };
 

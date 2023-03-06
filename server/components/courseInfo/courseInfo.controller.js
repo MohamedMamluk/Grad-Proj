@@ -30,7 +30,7 @@ let addNewCourseInfo = async (req, res) => {
     var data = await addNewCourseInfoService(req.body);
     res.status(200).json(data);
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(400).json(err);
   }
 };
@@ -52,10 +52,12 @@ let deleteCourseInfoByID = async (req, res) => {
 };
 
 let updateCourseInfoByID = async (req, res) => {
+  //console.log(req.body);
   try {
     var _id = req.params.id;
     var newData = req.body;
     var data = await updateCourseInfoByIDService(_id, newData);
+    //console.log(data);
     res.status(200).json(data);
   } catch (err) {
     res.status(404).json(err);

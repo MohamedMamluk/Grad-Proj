@@ -39,7 +39,7 @@ const CourseProgress = (props) => {
       .get('http://localhost:7000/api/course/64015f9840852f37b25ce2ee')
       .then((res) => {
         setCourse(res.data);
-        console.log(res.data);
+        //console.log(res.data);
       });
   }, []);
 

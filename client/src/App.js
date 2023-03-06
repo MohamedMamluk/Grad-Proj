@@ -1,23 +1,23 @@
 import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
-import DashboardCourses from './pages/Dashboard/Course';
+// import DashboardCourses from './pages/Dashboard/Course';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Courses from './pages/Courses';
-import Explore from './pages/Dashboard/Explore';
+import Explore from './pages/Dashboard/pages/explore-page/Explore';
 import Layout from './pages/Dashboard/components/Layout';
-import DashboardHome from './pages/Dashboard/Home';
+import DashboardHome from './pages/Dashboard/pages/home-page/Home';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import Home from './pages/Home';
 import './App.css';
-import Profile from './pages/Dashboard/Profile';
-import Payment from './pages/Payment';
-import Enrolled from './pages/Enrolled';
-import CoursesCreated from './pages/Dashboard/courses-created-page/CoursesCreated';
-import Users from './pages/Dashboard/users-page/Users';
-import CreateCourse from './pages/Dashboard/create-course-page/CreateCourse';
-import UpdateCourse from './pages/Dashboard/update-course-page/UpdateCourse';
+import Profile from './pages/Dashboard/pages/profile-page/Profile';
+import Payment from './pages/Payment/pages/Payment';
+import Enrolled from './pages/Payment/pages/Enrolled';
+import CoursesCreated from './pages/Dashboard/pages/courses-created-page/CoursesCreated';
+import Users from './pages/Dashboard/pages/users-page/Users';
+import CreateCourse from './pages/Dashboard/pages/courses-created-page/create-course-page/CreateCourse';
+import UpdateCourse from './pages/Dashboard/pages/courses-created-page/update-course-page/UpdateCourse';
 
 function App() {
   const navigate = useNavigate();

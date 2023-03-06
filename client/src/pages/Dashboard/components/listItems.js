@@ -17,7 +17,7 @@ import { logout, getAuth } from '../../../features/auth/authSlice';
 export const MainListItems = () => {
   const dispatch = useDispatch();
   const auth = useSelector(getAuth);
-  console.log(auth);
+  //console.log(auth);
   return (
     <React.Fragment>
       <Link

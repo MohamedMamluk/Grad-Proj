@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useCallback } from 'react';
-import AddingLessonForm from '../../../components/AddingNewCourseForm/addingLesson';
-import AddingNewCourseForm from '../../../components/AddingNewCourseForm/addingNewCourse';
-import AddingCourseInfoForm from '../../../components/AddingNewCourseForm/addingCourseInfo';
-import FullSizeButton from '../../../components/buttons/FullSizeButton';
+import AddingLessonForm from '../../../../../components/AddingNewCourseForm/addingLesson';
+import AddingNewCourseForm from '../../../../../components/AddingNewCourseForm/addingNewCourse';
+import AddingCourseInfoForm from '../../../../../components/AddingNewCourseForm/addingCourseInfo';
+import FullSizeButton from '../../../../../components/buttons/FullSizeButton';
 import axios from 'axios';
 import { Box, Button, Grid } from '@mui/material';
 import { useSelector } from 'react-redux';
@@ -69,9 +69,7 @@ const CreateCourse = () => {
               courseInfo: res.data._id,
               instructor: auth.id,
             };
-            axios
-              .post('http://localhost:7000/api/course', newCourseData)
-              .then((res) => console.log(res.data));
+            axios.post('http://localhost:7000/api/course', newCourseData);
           });
       });
   };

@@ -27,6 +27,7 @@ export default function AddingLessonForm({
 }) {
   const authSelector = useSelector((state) => state.auth.token);
   // const navigate = useNavigate();
+  // //console.log(type, title, link, description, index, updateState);
   const [data, setData] = React.useState({});
 
   const handleChange = (event) => {
