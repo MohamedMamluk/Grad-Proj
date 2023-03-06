@@ -8,6 +8,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
 import styles from './course-created.module.css';
+import LinkButton from '../../../components/buttons/LinkButton';
 const CoursesCreated = () => {
   return (
     <div>
@@ -25,7 +26,11 @@ const CoursesCreated = () => {
             </ListItemIcon>
             <ListItemText primary='Add New Course' />
           </ListItemButton>
-        </Link>{' '}
+        </Link>
+        <LinkButton
+          label='Update Course'
+          link='/dashboard/courses-created/update/6404db623374769d23cf5c48'
+        />
       </div>
     </div>
   );

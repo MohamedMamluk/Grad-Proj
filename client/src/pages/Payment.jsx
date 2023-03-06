@@ -36,7 +36,7 @@ function Payment() {
         {
           headers: {
             Authorization:
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZmI2NjA3NjY2ODZiZGE0OTBlYTRjYSIsImlhdCI6MTY3Nzk1NDc4NywiZXhwIjoxNjc4MDQxMTg3fQ.cz57K2PSc6ZN5oAHrq-Vm8MB0BnSAuVTv_Ac2ifqEFU',
+              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZmI2NjA3NjY2ODZiZGE0OTBlYTRjYSIsImlhdCI6MTY3ODA4Nzc5NiwiZXhwIjoxNjc4MTc0MTk2fQ.vHQDtH2XY0srCOAi7ZFeotu1XWojO0S0ubarV9yeErk',
           },
         }
       )
