@@ -26,15 +26,15 @@ const DashboardHome = () => {
     return <h1>loading...</h1>;
   }
   return (
-    <Container>
-      <HomeHeader user={user}/>
+    <div>
+      <HomeHeader user={user} />
       <Grid container spacing={4} padding={5}>
-        
-          <LearningProgress/>
-          <CourseProgress/>
-        
+        <div id='progress_container'>
+          <LearningProgress />
+          <CourseProgress />
+        </div>
       </Grid>
-    </Container>
+    </div>
   );
 };
 
