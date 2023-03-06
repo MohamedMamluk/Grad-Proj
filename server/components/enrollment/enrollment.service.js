@@ -10,6 +10,8 @@ const {
   addNewLessonsFinishedService,
 } = require('../lessonsFinished/lessonsFinished.service');
 
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
 const handleEnrollment = async (studentID, courseInfoID, courseID) => {
   try {
     const student = await getAStudentService(studentID);
@@ -26,10 +28,21 @@ const handleEnrollment = async (studentID, courseInfoID, courseID) => {
       studentID,
       courseInfoID
     );
+    if (!newLessonsFinished) {
+      return false;
+    }
     return true;
   } catch (error) {
     console.log(error);
   }
 };
 
-module.exports = { handleEnrollment };
+const createIntent = async (coursePrice) => {
+  return stripe.paymentIntents.create({
+    currency: 'EUR',
+    amount: coursePrice * 100,
+    automatic_payment_methods: { enabled: true },
+  });
+};
+
+module.exports = { handleEnrollment, createIntent };

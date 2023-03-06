@@ -32,7 +32,6 @@ const courseInfoSchema = new mongoose.Schema({
         },
         reviewText: {
           type: String,
-          required: true,
         },
       }),
     ],
@@ -78,7 +77,8 @@ const courseInfoSchema = new mongoose.Schema({
     type: [
       new mongoose.Schema({
         lessonId: {
-          type: String,
+          type: mongoose.Types.ObjectId,
+          ref: 'lesson',
           required: true,
         },
       }),

@@ -8,6 +8,6 @@ const {
 //this will handle creating a payment intent
 router.get('/intent/:courseID', authorization, createPaymentIntent);
 //this will handle all the remaining operation "maybe"
-router.post('/confirm', confirmAddition);
+router.post('/confirm', authorization, confirmAddition);
 
 module.exports = router;
