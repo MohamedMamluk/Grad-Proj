@@ -17,6 +17,7 @@ import Enrolled from './pages/Enrolled';
 import CoursesCreated from './pages/Dashboard/courses-created-page/CoursesCreated';
 import Users from './pages/Dashboard/users-page/Users';
 import CreateCourse from './pages/Dashboard/create-course-page/CreateCourse';
+import UpdateCourse from './pages/Dashboard/update-course-page/UpdateCourse';
 
 function App() {
   const navigate = useNavigate();
@@ -39,6 +40,7 @@ function App() {
         <Route path='explore' element={<Explore />} />
         <Route path='profile' element={<Profile />} />
         <Route path='courses-created/new' element={<CreateCourse />} />
+        <Route path='courses-created/update/:id' element={<UpdateCourse />} />
         <Route path='courses-created' element={<CoursesCreated />} />
         <Route path='users' element={<Users />} />
       </Route>
