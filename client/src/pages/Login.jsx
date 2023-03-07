@@ -130,7 +130,6 @@ export default function SignIn() {
             </Typography>
             <Box
               component='form'
-              noValidate
               onSubmit={handleSubmit}
               sx={{ mt: 1 }}
             >
@@ -138,6 +137,7 @@ export default function SignIn() {
                 margin='normal'
                 required
                 fullWidth
+                type="email"
                 id='email'
                 value={data.email}
                 onChange={(e) => {
@@ -150,6 +150,7 @@ export default function SignIn() {
                 autoComplete='email'
                 autoFocus
               />
+              {data.email.length<5 && <div style={{color:"red"}}>Enter a valid email.</div>}
               <TextField
                 margin='normal'
                 required
@@ -166,6 +167,7 @@ export default function SignIn() {
                 }}
                 autoComplete='current-password'
               />
+              {(data.password.length<6)  && <div style={{color:"red"}}>Enter a valid password.</div>}
               <FormControlLabel
                 control={<Checkbox value='remember' color='primary' />}
                 label='Remember me'
