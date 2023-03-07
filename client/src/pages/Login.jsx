@@ -14,7 +14,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 // import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { setUser, logout } from '../features/auth/authSlice';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
@@ -40,6 +40,7 @@ function Copyright(props) {
 const theme = createTheme({});
 
 export default function SignIn() {
+  const location = useLocation();
   const dispatch = useDispatch();
   const authSelector = useSelector((state) => state.auth.token);
   const navigate = useNavigate();
@@ -56,19 +57,17 @@ export default function SignIn() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios
-      .post('http://localhost:7000/api/auth/login', data)
-      .then((res) => {
-        console.log(res.data);
-        dispatch(setUser(res.data));
-        if (data.rememberMe) {
-          localStorage.setItem('token', res.data.token);
-          localStorage.setItem('id', res.data.id);
-          localStorage.setItem('role', res.data.role);
-        }
-        navigate('/dashboard');
-      })
-      .catch((err) => console.log(err));
+    axios.post('/auth/login', data).then((res) => {
+      //console.log(res.data);
+      dispatch(setUser(res.data));
+      if (data.rememberMe) {
+        localStorage.setItem('token', res.data.token);
+        localStorage.setItem('id', res.data.id);
+        localStorage.setItem('role', res.data.role);
+      }
+      const redirect = location.state?.from?.pathname || '/dashboard';
+      navigate(redirect, { replace: true });
+    });
   };
 
   return (

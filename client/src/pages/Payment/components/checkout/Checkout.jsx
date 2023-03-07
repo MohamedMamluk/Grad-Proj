@@ -2,9 +2,9 @@ import { PaymentElement } from '@stripe/react-stripe-js';
 import { useState } from 'react';
 import { useStripe, useElements } from '@stripe/react-stripe-js';
 import { Container } from '@mui/material';
-import Sidebar from './Payment/Sidebar';
+import Sidebar from '../sidebar/Sidebar';
 import styles from './checkout.module.css';
-import CoursePaymentCard from './Payment/Sidebar';
+import CoursePaymentCard from '../sidebar/Sidebar';
 export default function Checkout({ courseData }) {
   const stripe = useStripe();
   const elements = useElements();

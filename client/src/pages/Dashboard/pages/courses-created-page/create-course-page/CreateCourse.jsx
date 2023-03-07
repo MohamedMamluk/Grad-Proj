@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useCallback } from 'react';
-import AddingLessonForm from '../../../components/AddingNewCourseForm/addingLesson';
-import AddingNewCourseForm from '../../../components/AddingNewCourseForm/addingNewCourse';
-import AddingCourseInfoForm from '../../../components/AddingNewCourseForm/addingCourseInfo';
-import FullSizeButton from '../../../components/buttons/FullSizeButton';
+import AddingLessonForm from '../../../../../components/AddingNewCourseForm/addingLesson';
+import AddingNewCourseForm from '../../../../../components/AddingNewCourseForm/addingNewCourse';
+import AddingCourseInfoForm from '../../../../../components/AddingNewCourseForm/addingCourseInfo';
+import FullSizeButton from '../../../../../components/buttons/FullSizeButton';
 import axios from 'axios';
 import { Box, Button, Grid } from '@mui/material';
 import { useSelector } from 'react-redux';
@@ -45,7 +45,7 @@ const CreateCourse = () => {
       .all(
         lessonData.map((lesson) =>
           axios
-            .post('http://localhost:7000/api/lesson', lesson)
+            .post('/lesson', lesson)
             .then((response) =>
               courseLessonsIds.push({ lessonId: response.data._id })
             )
@@ -57,22 +57,18 @@ const CreateCourse = () => {
           courseLessons: courseLessonsIds,
           instructorId: auth.id,
         };
-        axios
-          .post('http://localhost:7000/api/courseinfo', newCourseInfo)
-          .then((res) => {
-            const newCourseData = {
-              name: newCourse.courseTitle,
-              cost: newCourse.isPaied,
-              is_paid: newCourse.paid == 'free' ? false : true,
-              duration: newCourse.courseDuration,
-              image: newCourse.img,
-              courseInfo: res.data._id,
-              instructor: auth.id,
-            };
-            axios
-              .post('http://localhost:7000/api/course', newCourseData)
-              .then((res) => console.log(res.data));
-          });
+        axios.post('/courseinfo', newCourseInfo).then((res) => {
+          const newCourseData = {
+            name: newCourse.courseTitle,
+            cost: newCourse.isPaied,
+            is_paid: newCourse.paid == 'free' ? false : true,
+            duration: newCourse.courseDuration,
+            image: newCourse.img,
+            courseInfo: res.data._id,
+            instructor: auth.id,
+          };
+          axios.post('/course', newCourseData);
+        });
       });
   };
 

@@ -5,15 +5,6 @@ import AllCourses from '../components/AllCourses/AllCourses';
 import CouHeader from '../components/CoursesHeader/CouHeader';
 // import courses from '../udemy_courses.json';
 const Courses = () => {
-  // const [data, setData] = useState(courses);
-  // useEffect(() => {
-  //   axios
-  //     .get('http://localhost:7000/api/courseinfo')
-  //     .then((res) => setData(res.data));
-  // }, []);
-  // if (data.length == 0) {
-  //   return <p>loading</p>;
-  // }
   return (
     <div>
       <Header></Header>

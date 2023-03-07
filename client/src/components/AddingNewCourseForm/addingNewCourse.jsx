@@ -38,7 +38,7 @@ export default function AddingNewCourseForm({
       .post('https://api.cloudinary.com/v1_1/dsra1ldsf/image/upload', formData)
       .then((res) => {
         setUploading(false);
-        console.log(res.data);
+        // //console.log(res.data);
         setUploaded(res.data.public_id);
         setNewCourse((prev) => ({ ...prev, img: res.data.secure_url }));
       });

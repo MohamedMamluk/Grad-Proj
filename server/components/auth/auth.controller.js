@@ -2,7 +2,7 @@ const { StatusCodes } = require('http-status-codes');
 const { registerService, loginService } = require('./auth.service');
 
 const register = async (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   const userData = req.body;
   try {
     const user = await registerService(userData);

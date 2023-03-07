@@ -4,11 +4,25 @@ import { Provider, useDispatch, useSelector } from 'react-redux';
 import { store } from './app/store';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import App from './App';
+import axios from 'axios';
 import './index.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import { setUser } from './features/auth/authSlice';
 const container = document.getElementById('root');
 const root = createRoot(container);
+axios.defaults.baseURL = 'https://mindson.onrender.com/api/';
+// axios.interceptors.request.use(
+//   (request) => {
+//     console.log(request);
+//     request.baseURL = 'https://mindson.onrender.com/api/';
+//     return request;
+//   },
+//   (error) => {
+//     console.log(error);
+//     return Promise.reject(error);
+//   }
+// );
+
 function Index() {
   const user = useSelector((store) => store.auth.token);
   const dispatch = useDispatch();
@@ -43,5 +57,5 @@ root.render(
 );
 
 // If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
+// to log results (for example: reportWebVitals(//console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

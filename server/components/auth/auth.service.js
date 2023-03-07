@@ -12,7 +12,7 @@ const registerService = async (USER) => {
     case 'instructor':
       return await InstructorModel.create(USER);
     default:
-      console.log('bara');
+    //console.log('bara');
   }
 };
 
@@ -25,7 +25,7 @@ const loginService = async (USER) => {
     case 'instructor':
       return InstructorModel.findOne({ email: USER.email });
     default:
-      console.log('Please Register');
+    //console.log('Please Register');
   }
 };
 module.exports = {

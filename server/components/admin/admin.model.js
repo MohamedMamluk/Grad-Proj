@@ -28,7 +28,7 @@ adminSchema.pre('save', async function () {
     const hashed = await bcrypt.hash(this.password, salt);
     this.password = hashed;
   } catch (error) {
-    console.log(error);
+    //console.log(error);
   }
 });
 adminSchema.methods.comparePassword = async function (

@@ -18,7 +18,7 @@ const checkUserCanModify = (mainModel, ...userModels) => {
 
     // If the user isn't an admin or an instructor throw an error
     if (!userExists) {
-      console.log('User');
+      //console.log('User');
       return res.status(StatusCodes.UNAUTHORIZED).json({
         message: 'User is not authorized',
       });
