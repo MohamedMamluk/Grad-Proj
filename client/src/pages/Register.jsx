@@ -74,6 +74,8 @@ export default function Register() {
       //console.log(res.data);
     });
   };
+  var emaill =/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
 
   return (
     
@@ -134,7 +136,6 @@ export default function Register() {
             </Typography>
             <Box
               component='form'
-              noValidate
               onSubmit={handleSubmit}
               sx={{ mt: 3 }}
             >
@@ -161,6 +162,7 @@ export default function Register() {
                     label='First Name'
                     autoFocus
                   />
+                  {(!data.firstName) && <div style={{color:"red"}}>Last Name must be provided.</div>}
                 </Grid>
                 {/* last name */}
                 <Grid item xs={12} sm={6}>
@@ -178,6 +180,7 @@ export default function Register() {
                     }}
                     autoComplete='family-name'
                   />
+                  {(!data.lastName) && <div style={{color:"red"}}>Last Name must be provided.</div>}
                 </Grid>
                 {/* email */}
                 <Grid item xs={12}>
@@ -185,6 +188,7 @@ export default function Register() {
                     required
                     fullWidth
                     id='email'
+                    type='email'
                     label='Email Address'
                     name='email'
                     value={data.email}
@@ -195,6 +199,7 @@ export default function Register() {
                     }}
                     autoComplete='email'
                   />
+                  {(!emaill.test(data.email)) && <div style={{color:"red"}}>Enter a valid email.</div>}
                 </Grid>
                 {/* password */}
                 <Grid item xs={12}>
@@ -202,8 +207,8 @@ export default function Register() {
                     required
                     fullWidth
                     name='password'
-                    label='Password'
                     type='password'
+                    label='Password'
                     id='password'
                     value={data.password}
                     onChange={(e) => {
@@ -213,6 +218,8 @@ export default function Register() {
                     }}
                     autoComplete='new-password'
                   />
+                  {(!data.password.match(passw)) && <div style={{color:"red"}}>Enter a stronger password.</div>}
+                  
                 </Grid>
                 {/* phone number */}
                 <Grid item xs={12}>
@@ -231,6 +238,7 @@ export default function Register() {
                     id='phoneNumber'
                     autoComplete='phoneNumber'
                   />
+                  {data.phone.length<11 && <div style={{color:"red"}}>Enter a valid mobile.</div>}
                 </Grid>
                 {/* Role => student || instructor */}
                 <Grid item xs={12}>
@@ -275,6 +283,7 @@ export default function Register() {
                       />
                     </RadioGroup>
                   </FormControl>
+                  {(!data.role) && <div style={{color:"red"}}>choose your role.</div>}
                 </Grid>
                 {/* level of experience accourding to instructor role */}
                 {data.role == 'instructor' && (
