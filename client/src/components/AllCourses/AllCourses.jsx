@@ -1,10 +1,14 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
-import coursesData from '../../udemy_courses.json';
 import './allCourses.css';
-import axios from 'axios';
-import { useSelector } from 'react-redux';
+import Button from "@mui/material/Button";
+import {
+  ListItemButton,
+  ListItemText,
+} from '@mui/material';
+import axios from "axios";
+import { Link } from "react-router-dom";
+
 const AllCourses = () => {
   const [courses, setCourse] = useState([]);
   useEffect(() => {
@@ -29,6 +33,12 @@ const AllCourses = () => {
             </p>
             <p className='card-text'>{course.cost}</p>
             <p className='card-text'>{course.duration}</p>
+            <Button variant="text">Enroll</Button>
+            <Link to={`/dashboard/courses/${course._id}`} variant="body2">
+              <ListItemButton style={{ width: "max-content" }}>
+                <ListItemText primary="See More" />
+              </ListItemButton>
+            </Link>
           </div>
         </div>
       ))}

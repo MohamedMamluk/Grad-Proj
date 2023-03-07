@@ -19,16 +19,12 @@ import Users from './pages/Dashboard/pages/users-page/Users';
 import CreateCourse from './pages/Dashboard/pages/courses-created-page/create-course-page/CreateCourse';
 import UpdateCourse from './pages/Dashboard/pages/courses-created-page/update-course-page/UpdateCourse';
 import AuthWrapper from './components/AuthWrapper';
+import SingleCourse from './pages/Dashboard/pages/course-page/Course';
+import Lesson from './pages/Dashboard/pages/lesson-page/Lesson';
 import SearchPage from './pages/SearchPage';
 
 function App() {
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   const user = localStorage.getItem('token');
-  //   if (user) {
-  //     navigate('/dashboard');
-  //   }
-  // }, []);
   return (
     <Routes>
       <Route path='' element={<Home />} />
@@ -47,6 +43,8 @@ function App() {
           <Route path='courses-created/update/:id' element={<UpdateCourse />} />
           <Route path='courses-created' element={<CoursesCreated />} />
           <Route path='users' element={<Users />} />
+          <Route path="courses/:id" element={<SingleCourse />} />
+          <Route path='courses/:id/lesson/:id' element={<Lesson />} />
         </Route>
       </Route>
       <Route path='*' element={<h1>Route not found</h1>} />
