@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
+const PORT = process.env.PORT||7000;
 const courseRoutes = require('./components/course/course.route');
 const connect = require('./DB/connect');
 const authRoutes = require('./components/auth/auth.route');
@@ -47,9 +48,9 @@ app.use('/api/course', courseRoutes);
 const connection = async () => {
   try {
     //console.log(process.env.MONGOURI_DEV);
-    await connect(process.env.MONGOURI_DEV);
-    app.listen(7000, () => {
-      //console.log('server is running on port http://localhost:' + 7000);
+    await connect(process.env.MONGOURI_PROD);
+    app.listen(PORT, () => {
+      console.log(PORT)
     });
   } catch (error) {
     //console.log(error);
