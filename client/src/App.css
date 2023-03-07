@@ -6,6 +6,22 @@
   width: 100% !important;
 }
 
+#search__wrapper {
+  background-color: rgba(255, 255, 255, 0.108);
+  border-radius: 10px;
+}
+#search__wrapper input {
+  background-color: transparent;
+  border: none;
+  transition: all 200ms ease-in-out;
+  color: white;
+}
+#search__wrapper input:focus {
+  /* background-color: transparent; */
+  outline: none;
+  padding: 10px 20px;
+}
+
 @media screen and (min-width: 500px) {
   #course-progress-imga_text {
     display: flex;

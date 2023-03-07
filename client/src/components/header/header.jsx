@@ -15,15 +15,16 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const pages = ['Home', 'Login', 'Register', 'Courses'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const Header = () => {
-  // let navigate= useNavigate()
+  let navigate = useNavigate();
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [search, setSearch] = React.useState('');
 
   const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -67,9 +68,6 @@ const Header = () => {
     },
   }));
 
-  function ganna() {
-    // return navigate("/Courses")
-  }
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -169,36 +167,6 @@ const Header = () => {
             sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
             style={{ gap: '10px' }}
           >
-            {/* 
-            {pages.map((page) => (
-              
-              <Button
-                
-                key={page}
-                // onClick={handleCloseNavMenu}
-                
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                <Link to={`/${page}`} style={{color:"white",textDecoration:'none',display:"block"}}>
-                {page}
-
-                </Link>
-              </Button>
-              
-
-              // <Link
-              // key={page}
-              // to={'/' + {page}}
-              // sx={{ my: 2, color: 'white', display: 'block' }}
-              // >
-              // {page}
-              // </Link>
-
-              // <Link to='/'>Home</Link>
-
-            
-            ))
-            } */}
             <Link to='/' className='navLink'>
               Home
             </Link>
@@ -216,15 +184,42 @@ const Header = () => {
             </Link>
           </Box>
 
-          <Search sx={{ m: 2 }}>
+          {/* <Search sx={{ m: 2 }}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
               placeholder='Search…'
               inputProps={{ 'aria-label': 'search' }}
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
-          </Search>
+          </Search> */}
+          <div style={{ display: 'flex' }} id='search__wrapper'>
+            <input
+              type='text'
+              value={search}
+              style={{
+                height: '100%',
+                display: 'block',
+                borderTopLeftRadius: '10px',
+                borderBottomLeftRadius: '10px',
+              }}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <Button
+              sx={{
+                padding: 0,
+                borderTopRightRadius: '10px',
+                borderBottomRightRadius: '10px',
+              }}
+              onClick={() => {
+                navigate('/search?' + search);
+              }}
+            >
+              <SearchIcon />
+            </Button>
+          </div>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title='Open settings'>
