@@ -23,6 +23,7 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
+import {motion,AnimatePresence} from "framer-motion";
 
 function Copyright(props) {
   return (
@@ -33,9 +34,7 @@ function Copyright(props) {
       {...props}
     >
       {'Copyright © '}
-      <Link color='inherit' href='https://mui.com/'>
         MindsOn{' '}
-      </Link>{' '}
       {new Date().getFullYear()}
       {'.'}{' '}
     </Typography>
@@ -77,7 +76,29 @@ export default function Register() {
   };
 
   return (
+    
+    
     <ThemeProvider theme={theme}>
+      <motion.div
+      key={"MM"}
+     animate={{
+       transition:"ease-in",
+         x: 0,
+         opacity:1,
+        }}
+       initial={{
+         transition:"ease-out",
+         opacity:0,
+         x:-100,
+       }}
+       transition={{
+         // type:"spring",
+         // stiffness:60,
+         // damping:100,
+         duration: 2,
+         // transition:"ease-in"
+       }}
+       >
       <CssBaseline />
       <Grid container component='main' sx={{ height: '90vh' }}>
         <CssBaseline />
@@ -320,6 +341,7 @@ export default function Register() {
         />
       </Grid>
       <Copyright sx={{ mt: 5 }} />
+      </motion.div>
     </ThemeProvider>
   );
 }

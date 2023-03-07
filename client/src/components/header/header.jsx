@@ -87,7 +87,7 @@ const Header = () => {
     <AppBar position='static' style={{ backgroundColor: '#3f51b5' }}>
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant='h6'
             noWrap
@@ -104,8 +104,7 @@ const Header = () => {
             }}
           >
             LOGO
-          </Typography>
-
+          </Typography> */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size='large'
@@ -144,7 +143,9 @@ const Header = () => {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <img src='logo-04.png' style={{ display: { xs: 'none', md: 'flex' }, mr: 1,width:'150px',aspectRatio:16/9 }}/>
+
+          {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant='h5'
             noWrap
@@ -162,7 +163,7 @@ const Header = () => {
             }}
           >
             LOGO
-          </Typography>
+          </Typography> */}
           <Box
             sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
             style={{ gap: '10px' }}
@@ -170,17 +171,8 @@ const Header = () => {
             <Link to='/' className='navLink'>
               Home
             </Link>
-            <Link to='/login' className='navLink'>
-              login
-            </Link>
-            <Link to='/register' className='navLink'>
-              Register
-            </Link>
             <Link to='/courses' className='navLink'>
               Courses
-            </Link>
-            <Link to='/dashboard' className='navLink'>
-              Dashboard
             </Link>
           </Box>
 
@@ -221,34 +213,17 @@ const Header = () => {
             </Button>
           </div>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title='Open settings'>
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt='Remy Sharp' src='/static/images/avatar/2.jpg' />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id='menu-appbar'
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign='center'>{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>
+            <Button sx={{fontSize:"10px !important",textTransform:"capitalize",padding:"0px",width:"auto"}}>
+            <Link to='/login' className='navLink'>
+              login
+            </Link>
+            </Button>
+          <Button sx={{fontSize:"10px !important",textTransform:"capitalize",padding:"0px" }}>
+            <Link to='/register' className='navLink'>
+              /Register
+            </Link>
+          </Button>
           </Box>
         </Toolbar>
       </Container>
