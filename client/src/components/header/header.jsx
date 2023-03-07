@@ -214,12 +214,12 @@ const Header = () => {
           </div>
 
           <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>
-            <Button sx={{fontSize:"10px !important",textTransform:"capitalize",padding:"0px",width:"auto"}}>
+            <Button sx={{textTransform:"capitalize",padding:"0px",width:"auto"}}>
             <Link to='/login' className='navLink'>
               login
             </Link>
             </Button>
-          <Button sx={{fontSize:"10px !important",textTransform:"capitalize",padding:"0px" }}>
+          <Button sx={{textTransform:"capitalize",padding:"0px" }}>
             <Link to='/register' className='navLink'>
               /Register
             </Link>
