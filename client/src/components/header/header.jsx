@@ -87,24 +87,6 @@ const Header = () => {
     <AppBar position='static' style={{ backgroundColor: '#3f51b5' }}>
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
-          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant='h6'
-            noWrap
-            component='a'
-            href='/'
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography> */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size='large'
@@ -143,27 +125,16 @@ const Header = () => {
               ))}
             </Menu>
           </Box>
-          <img src='logo-04.png' style={{ display: { xs: 'none', md: 'flex' }, mr: 1,width:'150px',aspectRatio:16/9 }}/>
-
-          {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant='h5'
-            noWrap
-            component='a'
-            href=''
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
+          <img
+            src='logo-04.png'
+            style={{
+              display: { xs: 'none', md: 'flex' },
+              mr: 1,
+              width: '150px',
+              aspectRatio: 16 / 9,
             }}
-          >
-            LOGO
-          </Typography> */}
+          />
+
           <Box
             sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
             style={{ gap: '10px' }}
@@ -176,17 +147,6 @@ const Header = () => {
             </Link>
           </Box>
 
-          {/* <Search sx={{ m: 2 }}>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder='Search…'
-              inputProps={{ 'aria-label': 'search' }}
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          </Search> */}
           <div style={{ display: 'flex' }} id='search__wrapper'>
             <input
               type='text'
@@ -214,6 +174,7 @@ const Header = () => {
           </div>
 
           <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>
+
             <Button sx={{textTransform:"capitalize",padding:"0px",width:"auto"}}>
             <Link to='/login' className='navLink'>
               login
@@ -224,6 +185,7 @@ const Header = () => {
               /Register
             </Link>
           </Button>
+
           </Box>
         </Toolbar>
       </Container>

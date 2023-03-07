@@ -23,7 +23,7 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import {motion,AnimatePresence} from "framer-motion";
+import { motion, AnimatePresence } from 'framer-motion';
 
 function Copyright(props) {
   return (
@@ -34,8 +34,7 @@ function Copyright(props) {
       {...props}
     >
       {'Copyright © '}
-        MindsOn{' '}
-      {new Date().getFullYear()}
+      MindsOn {new Date().getFullYear()}
       {'.'}{' '}
     </Typography>
   );
@@ -78,57 +77,50 @@ export default function Register() {
   var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
 
   return (
-    
-    
     <ThemeProvider theme={theme}>
       <motion.div
-      key={"MM"}
-     animate={{
-       transition:"ease-in",
-         x: 0,
-         opacity:1,
+        key={'MM'}
+        animate={{
+          transition: 'ease-in',
+          x: 0,
+          opacity: 1,
         }}
-       initial={{
-         transition:"ease-out",
-         opacity:0,
-         x:-100,
-       }}
-       transition={{
-         // type:"spring",
-         // stiffness:60,
-         // damping:100,
-         duration: 2,
-         // transition:"ease-in"
-       }}
-       >
-      <CssBaseline />
-      <Grid container component='main' sx={{ height: '90vh' }}>
+        initial={{
+          transition: 'ease-out',
+          opacity: 0,
+          x: -100,
+        }}
+        transition={{
+          // type:"spring",
+          // stiffness:60,
+          // damping:100,
+          duration: 2,
+          // transition:"ease-in"
+        }}
+      >
         <CssBaseline />
+        <Grid container component='main' sx={{ height: '90vh' }}>
+          <CssBaseline />
 
-        <Grid
-          item
-          xs={12}
-          sm={8}
-          md={5}
-          component={Paper}
-          elevation={6}
-          padding={2}
-          square
-        >
-          <Box
-            sx={{
-              marginTop: 8,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
+          <Grid
+            item
+            xs={12}
+            sm={8}
+            md={5}
+            component={Paper}
+            elevation={6}
+            padding={2}
+            square
           >
-            <Avatar
+            <Box
               sx={{
-                m: 1,
-                bgcolor: 'secondary.main',
+                marginTop: 8,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
               }}
             >
+
               <LockOutlinedIcon />
             </Avatar>
             <Typography component='h1' variant='h5'>
@@ -287,69 +279,171 @@ export default function Register() {
                 </Grid>
                 {/* level of experience accourding to instructor role */}
                 {data.role == 'instructor' && (
+
                   <Grid item xs={12}>
                     <TextField
                       required
                       fullWidth
-                      name='levelOfExperience'
-                      label='Level Of Experience'
-                      type='levelOfExperience'
-                      value={data.levelOfExperience}
+                      id='email'
+                      label='Email Address'
+                      name='email'
+                      value={data.email}
                       onChange={(e) => {
                         setData((prev) => {
-                          return { ...prev, levelOfExperience: e.target.value };
+                          return { ...prev, email: e.target.value };
                         });
                       }}
-                      id='levelOfExperience'
-                      autoComplete='levelOfExperience'
+                      autoComplete='email'
                     />
                   </Grid>
-                )}
-              </Grid>
-              {/* submit button */}
-              <Button
-                type='submit'
-                fullWidth
-                variant='contained'
-                style={{ backgroundColor: '#3f51b5' }}
-                sx={{
-                  mt: 3,
-                  mb: 2,
-                }}
-              >
-                Sign Up
-              </Button>
-              {/* already have an account? ==> sign in */}
-              <Grid container justifyContent='flex-end'>
-                <Grid item>
-                  <Link to='/login' variant='body2'>
-                    Already have an account? Sign in
-                  </Link>
+                  {/* password */}
+                  <Grid item xs={12}>
+                    <TextField
+                      required
+                      fullWidth
+                      name='password'
+                      label='Password'
+                      type='password'
+                      id='password'
+                      value={data.password}
+                      onChange={(e) => {
+                        setData((prev) => {
+                          return { ...prev, password: e.target.value };
+                        });
+                      }}
+                      autoComplete='new-password'
+                    />
+                  </Grid>
+                  {/* phone number */}
+                  <Grid item xs={12}>
+                    <TextField
+                      required
+                      fullWidth
+                      name='phoneNumber'
+                      value={data.phone}
+                      onChange={(e) => {
+                        setData((prev) => {
+                          return { ...prev, phone: e.target.value };
+                        });
+                      }}
+                      label='Phone Number'
+                      type='phoneNumber'
+                      id='phoneNumber'
+                      autoComplete='phoneNumber'
+                    />
+                  </Grid>
+                  {/* Role => student || instructor */}
+                  <Grid item xs={12}>
+                    <FormControl>
+                      <FormLabel id='demo-controlled-radio-buttons-group'>
+                        Gender
+                      </FormLabel>
+                      <RadioGroup
+                        aria-labelledby='demo-controlled-radio-buttons-group'
+                        row={true}
+                        name='controlled-radio-buttons-group'
+                        value={data.role}
+                        onChange={handleChange}
+                      >
+                        <FormControlLabel
+                          value='student'
+                          control={
+                            <Radio
+                              sx={{
+                                color: '#3f51b5',
+                                '&.Mui-checked': {
+                                  color: '#3f51b5',
+                                },
+                              }}
+                            />
+                          }
+                          label='Studnet'
+                        />
+                        <FormControlLabel
+                          value='instructor'
+                          control={
+                            <Radio
+                              sx={{
+                                color: '#3f51b5',
+                                '&.Mui-checked': {
+                                  color: '#3f51b5',
+                                },
+                              }}
+                            />
+                          }
+                          label='Instructor'
+                        />
+                      </RadioGroup>
+                    </FormControl>
+                  </Grid>
+                  {/* level of experience accourding to instructor role */}
+                  {data.role == 'instructor' && (
+                    <Grid item xs={12}>
+                      <TextField
+                        required
+                        fullWidth
+                        name='levelOfExperience'
+                        label='Level Of Experience'
+                        type='levelOfExperience'
+                        value={data.levelOfExperience}
+                        onChange={(e) => {
+                          setData((prev) => {
+                            return {
+                              ...prev,
+                              levelOfExperience: e.target.value,
+                            };
+                          });
+                        }}
+                        id='levelOfExperience'
+                        autoComplete='levelOfExperience'
+                      />
+                    </Grid>
+                  )}
                 </Grid>
-              </Grid>
+                {/* submit button */}
+                <Button
+                  type='submit'
+                  fullWidth
+                  variant='contained'
+                  style={{ backgroundColor: '#3f51b5' }}
+                  sx={{
+                    mt: 3,
+                    mb: 2,
+                  }}
+                >
+                  Sign Up
+                </Button>
+                {/* already have an account? ==> sign in */}
+                <Grid container justifyContent='flex-end'>
+                  <Grid item>
+                    <Link to='/login' variant='body2'>
+                      Already have an account? Sign in
+                    </Link>
+                  </Grid>
+                </Grid>
+              </Box>
             </Box>
-          </Box>
+          </Grid>
+          {/* register picture */}
+          <Grid
+            item
+            // style={{ maxWidth: '75%' }}
+            xs={false}
+            sm={4}
+            md={7}
+            sx={{
+              backgroundImage: 'url(/registerPic-removebg.png)',
+              backgroundRepeat: 'no-repeat',
+              backgroundColor: (t) =>
+                t.palette.mode === 'light'
+                  ? t.palette.grey[50]
+                  : t.palette.grey[900],
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          />
         </Grid>
-        {/* register picture */}
-        <Grid
-          item
-          // style={{ maxWidth: '75%' }}
-          xs={false}
-          sm={4}
-          md={7}
-          sx={{
-            backgroundImage: 'url(/registerPic-removebg.png)',
-            backgroundRepeat: 'no-repeat',
-            backgroundColor: (t) =>
-              t.palette.mode === 'light'
-                ? t.palette.grey[50]
-                : t.palette.grey[900],
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
-      </Grid>
-      <Copyright sx={{ mt: 5 }} />
+        <Copyright sx={{ mt: 5 }} />
       </motion.div>
     </ThemeProvider>
   );

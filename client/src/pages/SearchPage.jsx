@@ -19,7 +19,7 @@ const SearchPage = () => {
       );
     };
     getSearch();
-  }, []);
+  }, [search]);
   useEffect(() => {
     console.log(searchOutput);
   }, [searchOutput]);
