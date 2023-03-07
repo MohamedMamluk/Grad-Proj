@@ -35,12 +35,10 @@ const CourseProgress = (props) => {
   const [progress, setProgress] = React.useState(10);
   const [courses, setCourse] = useState([]);
   useEffect(() => {
-    axios
-      .get('http://localhost:7000/api/course/64015f9840852f37b25ce2ee')
-      .then((res) => {
-        setCourse(res.data);
-        //console.log(res.data);
-      });
+    axios.get('/course/64015f9840852f37b25ce2ee').then((res) => {
+      setCourse(res.data);
+      //console.log(res.data);
+    });
   }, []);
 
   return (

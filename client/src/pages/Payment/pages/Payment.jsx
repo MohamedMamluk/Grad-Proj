@@ -17,9 +17,7 @@ function Payment() {
     );
 
     const getCourse = async () => {
-      const courseData = await axios.get(
-        'http://localhost:7000/api/course/64015f9840852f37b25ce2ee'
-      );
+      const courseData = await axios.get('/course/64015f9840852f37b25ce2ee');
       setCourse(courseData.data);
     };
 
@@ -28,15 +26,12 @@ function Payment() {
 
   useEffect(() => {
     axios
-      .get(
-        'http://localhost:7000/api/enrollment/intent/64015f9840852f37b25ce2ee',
-        {
-          headers: {
-            Authorization:
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZmI2NjA3NjY2ODZiZGE0OTBlYTRjYSIsImlhdCI6MTY3ODA4Nzc5NiwiZXhwIjoxNjc4MTc0MTk2fQ.vHQDtH2XY0srCOAi7ZFeotu1XWojO0S0ubarV9yeErk',
-          },
-        }
-      )
+      .get('/enrollment/intent/64015f9840852f37b25ce2ee', {
+        headers: {
+          Authorization:
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZmI2NjA3NjY2ODZiZGE0OTBlYTRjYSIsImlhdCI6MTY3ODA4Nzc5NiwiZXhwIjoxNjc4MTc0MTk2fQ.vHQDtH2XY0srCOAi7ZFeotu1XWojO0S0ubarV9yeErk',
+        },
+      })
       .then((result) => {
         // //console.log(result.data);
         var { clientSecret } = result.data;

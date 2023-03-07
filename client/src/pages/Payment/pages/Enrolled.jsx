@@ -8,7 +8,7 @@ const Enrolled = () => {
   useEffect(() => {
     const getEnrolled = async () => {
       const message = await axios.post(
-        'http://localhost:7000/api/enrollment/confirm/',
+        '/enrollment/confirm/',
         { courseId: '64015f9840852f37b25ce2ee' },
         {
           headers: {

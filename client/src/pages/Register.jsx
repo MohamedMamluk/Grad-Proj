@@ -70,7 +70,7 @@ export default function Register() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('http://localhost:7000/api/auth/register', data).then((res) => {
+    axios.post('/auth/register', data).then(() => {
       navigate('/login');
       //console.log(res.data);
     });

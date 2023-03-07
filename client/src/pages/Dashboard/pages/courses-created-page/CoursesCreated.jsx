@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
 import styles from './course-created.module.css';
 import LinkButton from '../../../../components/buttons/LinkButton';
+import EnhancedTable from '../../../../components/Table';
 const CoursesCreated = () => {
   return (
     <div>
@@ -32,6 +33,7 @@ const CoursesCreated = () => {
           link='/dashboard/courses-created/update/6405d0fd6b9f612f3c41e0f6'
         />
       </div>
+      <EnhancedTable />
     </div>
   );
 };

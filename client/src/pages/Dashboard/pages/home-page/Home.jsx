@@ -16,12 +16,10 @@ const DashboardHome = () => {
     const id = localStorage.getItem('id');
     const role = localStorage.getItem('role');
 
-    axios
-      .get(`http://localhost:7000/api/${user.role || role}/${user.id || id}`)
-      .then((res) => {
-        dispatch(setUserData(res.data.user));
-        //console.log(user);
-      });
+    axios.get(`/${user.role || role}/${user.id || id}`).then((res) => {
+      dispatch(setUserData(res.data.user));
+      //console.log(user);
+    });
   }, []);
   if (!user.userData) {
     return <h1>loading...</h1>;

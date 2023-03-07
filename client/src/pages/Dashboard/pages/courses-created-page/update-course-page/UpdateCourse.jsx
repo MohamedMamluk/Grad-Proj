@@ -43,7 +43,7 @@ const UpdateCourse = () => {
   const { id } = useParams();
   useEffect(() => {
     const getCourse = async () => {
-      const course = await axios.get(`http://localhost:7000/api/course/${id}`);
+      const course = await axios.get(`/course/${id}`);
       setNewCourse({
         courseTitle: course.data.name,
         courseDuration: course.data.duration,
@@ -53,7 +53,7 @@ const UpdateCourse = () => {
         courseInfo: course.data.courseInfo,
       });
       const { data: courseInfo } = await axios.get(
-        `http://localhost:7000/api/courseinfo/${course.data.courseInfo}`
+        `/courseinfo/${course.data.courseInfo}`
       );
       setcourseInfoData({
         categories: [{ name: 'name' }],
@@ -64,9 +64,7 @@ const UpdateCourse = () => {
       });
       await axios.all(
         courseInfo.courseLessons.map(async (lesson) => {
-          const lessonDataAxios = await axios.get(
-            `http://localhost:7000/api/lesson/${lesson.lessonId}`
-          );
+          const lessonDataAxios = await axios.get(`/lesson/${lesson.lessonId}`);
           setLessonData((prev) => {
             return [
               ...prev,
@@ -93,11 +91,11 @@ const UpdateCourse = () => {
       is_paid: newCourse.paid == 'free' ? false : true,
       duration: newCourse.courseDuration,
     };
-    axios.patch(`http://localhost:7000/api/course/${id}`, newCourseData);
+    axios.patch(`/course/${id}`, newCourseData);
   };
   const handleCourseInfoPatch = () => {
     axios.patch(
-      `http://localhost:7000/api/courseinfo/${newCourse.courseInfo}`,
+      `/courseinfo/${newCourse.courseInfo}`,
       {
         categories: [{ name: 'name' }],
         description: courseInfoData.description,
@@ -114,9 +112,9 @@ const UpdateCourse = () => {
   const handleLessonsPatch = () => {
     lessonData.map((lesson) => {
       if (!lesson.id) {
-        axios.post('http://localhost:7000/api/lesson', lesson).then((res) => {
+        axios.post('/lesson', lesson).then((res) => {
           axios.patch(
-            `http://localhost:7000/api/courseinfo/${newCourse.courseInfo}`,
+            `/courseinfo/${newCourse.courseInfo}`,
             {
               courseLessons: [
                 ...courseInfoData.courseLessons,
@@ -131,7 +129,7 @@ const UpdateCourse = () => {
           );
         });
       } else {
-        axios.patch(`http://localhost:7000/api/lesson/${lesson.id}`, lesson, {
+        axios.patch(`/lesson/${lesson.id}`, lesson, {
           headers: {
             Authorization: `Bearer ${auth.token}`,
           },

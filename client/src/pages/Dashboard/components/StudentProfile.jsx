@@ -41,9 +41,8 @@ const StudentProfile = ({ userData }) => {
     const getCourses = async () => {
       await axios.all(
         userData.courses.map(async (course) => {
-          const courseData = await axios.get(
-            `http://localhost:7000/api/course/${course}`
-          );
+          const courseData = await axios.get(`/course/${course}`);
+
           setCourses((prev) => [...prev, courseData.data]);
         })
       );
@@ -72,21 +71,6 @@ const StudentProfile = ({ userData }) => {
       <div>
         {isVisible && (
           <div>
-            <Breadcrumbs
-              separator={<NavigateNextIcon fontSize='small' />}
-              aria-label='breadcrumb'
-            >
-              {breadcrumbs}
-            </Breadcrumbs>
-
-            <Alert
-              iconMapping={{
-                success: <CheckCircleOutlineIcon fontSize='inherit' />,
-              }}
-            >
-              Your profile is verified as a student profile !
-            </Alert>
-
             <Card sx={{ minWidth: 275 }}>
               <CardContent>
                 <Typography
@@ -105,10 +89,17 @@ const StudentProfile = ({ userData }) => {
                 >
                   <Box sx={{ mx: 'auto', width: 150 }}>
                     <Stack direction='row' spacing={1} align='center'>
-                      <Avatar
-                        src='/broken-image.jpg'
-                        sx={{ width: 80, height: 80, mx: 'auto' }}
-                      />
+                      {userData.image ? (
+                        <Avatar
+                          src={userData.image}
+                          sx={{ width: 150, height: 150, mx: 'auto' }}
+                        />
+                      ) : (
+                        <Avatar
+                          src='/broken-image.jpg'
+                          sx={{ width: 80, height: 80, mx: 'auto' }}
+                        />
+                      )}
                     </Stack>
                   </Box>
                   <Typography

@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 const AllCourses = () => {
   const [courses, setCourse] = useState([]);
   useEffect(() => {
-    axios.get('http://localhost:7000/api/course').then((res) => {
+    axios.get('/course').then((res) => {
       setCourse(res.data);
       // //console.log(res.data);
     });
