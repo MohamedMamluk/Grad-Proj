@@ -30,9 +30,7 @@ function Copyright(props) {
       {...props}
     >
       {'Copyright © '}
-      <Link color='inherit' to='/'>
-        MindsOn
-      </Link>{' '}
+        MindsOn{' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -100,6 +98,7 @@ function DashboardContent() {
       navigate('/login');
     }
   }, []);
+  console.log(user);
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
@@ -136,11 +135,20 @@ function DashboardContent() {
                 : pageTitle.pathname.split('/')[2]}
             </Typography> */}
             <Breadcrumb />
-            <IconButton color='inherit'>
+            {user.userData.image && <IconButton color='inherit'>
               <ListItemIcon>
-                <AccountCircleIcon style={{ fill: 'white' }} fontSize='large' />
+                <Link to={'/dashboard/profile'}>
+                <img src={user.userData.image} style={{borderRadius:'50%',border:'solid 2px white',width:'30px',height:'30px'}}/>
+                </Link>
               </ListItemIcon>
-            </IconButton>
+            </IconButton>}
+            {!user.userData.image && <IconButton color='inherit'>
+              <ListItemIcon>
+              <Link to={'/dashboard/profile'}>
+                <AccountCircleIcon style={{ fill: 'white' }} fontSize='large' />
+                </Link>
+              </ListItemIcon>
+            </IconButton>}
           </Toolbar>
         </AppBar>
         <Drawer variant='permanent' open={open}>
