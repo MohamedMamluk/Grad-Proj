@@ -49,7 +49,7 @@ const connection = async () => {
   try {
     await connect(process.env.MONGOURI_PROD);
     app.listen(7000, () => {
-      console.log('server is running on port http://localhost:' + 7000);
+      console.log('server is running on port http://localhost:' + PORT);
     });
   } catch (error) {
     console.log(error);
