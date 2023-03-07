@@ -21,6 +21,7 @@ import UpdateCourse from './pages/Dashboard/pages/courses-created-page/update-co
 import AuthWrapper from './components/AuthWrapper';
 import SingleCourse from './pages/Dashboard/pages/course-page/Course';
 import Lesson from './pages/Dashboard/pages/lesson-page/Lesson';
+import SearchPage from './pages/SearchPage';
 
 function App() {
   const navigate = useNavigate();
@@ -32,6 +33,7 @@ function App() {
       <Route path='payment' element={<Payment />} />
       <Route path='courses' element={<Courses />} />
       <Route path='enrolled' element={<Enrolled />} />
+      <Route path='search' element={<SearchPage />} />
       <Route element={<AuthWrapper />}>
         <Route path='/dashboard' element={<Layout />}>
           <Route index element={<DashboardHome />} />
