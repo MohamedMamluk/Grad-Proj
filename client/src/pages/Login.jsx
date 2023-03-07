@@ -18,6 +18,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { setUser, logout } from '../features/auth/authSlice';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
+import {motion,AnimatePresence} from "framer-motion";
+
 
 function Copyright(props) {
   return (
@@ -28,9 +30,7 @@ function Copyright(props) {
       {...props}
     >
       {'Copyright © '}
-      <Link color='inherit' to='/'>
         MindsOn{' '}
-      </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -69,9 +69,31 @@ export default function SignIn() {
       navigate(redirect, { replace: true });
     });
   };
-
   return (
     <ThemeProvider theme={theme}>
+      {/* <AnimatePresence exitBeforeEnter> */}
+       <motion.div
+       key={"MM"}
+      animate={{
+        transition:"ease-in",
+          x: 0,
+          opacity:1,
+          overflow:"hidden",
+         }}
+        initial={{
+          transition:"ease-out",
+          opacity:0,
+          x:50,
+          overflow:"hidden",
+        }}
+        transition={{
+          // type:"spring",
+          // stiffness:60,
+          // damping:100,
+          duration: 3,
+          // transition:"ease-in"
+        }}
+       >
       <Grid container component='main' sx={{ height: '100vh' }}>
         <CssBaseline />
         <Grid
@@ -173,6 +195,8 @@ export default function SignIn() {
           </Box>
         </Grid>
       </Grid>
+      </motion.div> 
+      {/* </AnimatePresence> */}
     </ThemeProvider>
   );
 }
