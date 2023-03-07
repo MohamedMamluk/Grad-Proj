@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
+const PORT = process.env.PORT||7000;
 const courseRoutes = require('./components/course/course.route');
 const connect = require('./DB/connect');
 const authRoutes = require('./components/auth/auth.route');
