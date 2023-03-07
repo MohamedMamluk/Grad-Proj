@@ -57,7 +57,9 @@ export default function SignIn() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('/auth/login', data).then((res) => {
+    axios
+    .post('/auth/login', data)
+    .then((res) => {
       //console.log(res.data);
       dispatch(setUser(res.data));
       if (data.rememberMe) {
