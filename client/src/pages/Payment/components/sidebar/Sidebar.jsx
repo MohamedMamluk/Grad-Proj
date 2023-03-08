@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './sidebar.module.css';
-const CoursePaymentCard = ({ courseData }) => {
+const CoursePaymentCard = ({ courseData, clientSecret }) => {
   return (
     <div className={styles.sidebar_container}>
       <div id='image-container' className={styles.image_container}>
@@ -8,13 +8,13 @@ const CoursePaymentCard = ({ courseData }) => {
       </div>
       <div id='course-Data-Container' className={styles.course_data_container}>
         <h2 className={styles.course_data_title}>
-          course title: Learn Business
+          course title: {courseData.name}
         </h2>
-        <h3 className={styles.course_data_instructor}>
+        {/* <h3 className={styles.course_data_instructor}>
           instructor: insert name here
-        </h3>
+        </h3> */}
         <h4 className={styles.course_data_payNumber}>
-          payment number: 12314121
+          payment number: {clientSecret}
         </h4>
         <p className={styles.course_data_cost}>
           price:{' '}

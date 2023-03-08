@@ -30,8 +30,7 @@ function Copyright(props) {
       {...props}
     >
       {'Copyright © '}
-        MindsOn{' '}
-      {new Date().getFullYear()}
+      MindsOn {new Date().getFullYear()}
       {'.'}
     </Typography>
   );
@@ -87,7 +86,6 @@ const mdTheme = createTheme();
 
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);
-  const pageTitle = useLocation();
   const navigate = useNavigate();
   const toggleDrawer = () => {
     setOpen(!open);
@@ -135,20 +133,35 @@ function DashboardContent() {
                 : pageTitle.pathname.split('/')[2]}
             </Typography> */}
             <Breadcrumb />
-            {user.userData.image && <IconButton color='inherit'>
-              <ListItemIcon>
-                <Link to={'/dashboard/profile'}>
-                <img src={user.userData.image} style={{borderRadius:'50%',border:'solid 2px white',width:'30px',height:'30px'}}/>
-                </Link>
-              </ListItemIcon>
-            </IconButton>}
-            {!user.userData.image && <IconButton color='inherit'>
-              <ListItemIcon>
-              <Link to={'/dashboard/profile'}>
-                <AccountCircleIcon style={{ fill: 'white' }} fontSize='large' />
-                </Link>
-              </ListItemIcon>
-            </IconButton>}
+            {user.userData?.image && (
+              <IconButton color='inherit'>
+                <ListItemIcon>
+                  <Link to={'/dashboard/profile'}>
+                    <img
+                      src={user.userData.image}
+                      style={{
+                        borderRadius: '50%',
+                        border: 'solid 2px white',
+                        width: '30px',
+                        height: '30px',
+                      }}
+                    />
+                  </Link>
+                </ListItemIcon>
+              </IconButton>
+            )}
+            {!user.userData?.image && (
+              <IconButton color='inherit'>
+                <ListItemIcon>
+                  <Link to={'/dashboard/profile'}>
+                    <AccountCircleIcon
+                      style={{ fill: 'white' }}
+                      fontSize='large'
+                    />
+                  </Link>
+                </ListItemIcon>
+              </IconButton>
+            )}
           </Toolbar>
         </AppBar>
         <Drawer variant='permanent' open={open}>
