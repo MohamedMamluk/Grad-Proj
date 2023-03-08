@@ -27,7 +27,6 @@ const CourseProgress = (props) => {
   });
   let UserCourse= user.userData.courses;
   let lastElement = UserCourse.slice(-3)[0];
-  
   console.log("lastelement ",lastElement)
   const [courseProgress, setCourseProgress] = useState(0);
   const [courses, setCourse] = useState([]);

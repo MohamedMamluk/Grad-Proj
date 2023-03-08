@@ -18,16 +18,18 @@ const AllCourses = () => {
   }, []);
 
   return (
-    <div id='coursesContainer' className='container'>
-      {courses.map((course) => (
-        <div key={course._id} className='card p-3 m-2 '>
-          <div id='card-image__container'>
-            <img src={course.image} id='card-image' alt='...' />
+    <div id="coursesContainer" className="container">
+      {courses.map((course) =>{ 
+        // console.log(course)
+        return(
+        <div key={course._id} className="card p-3 m-2 ">
+          <div id="card-image__container">
+            <img src={course.image} id="card-image" alt="..." />
           </div>
-          <div className='card-body'>
-            <p className='card-text' title={course.name}>
+          <div className="card-body">
+            <p className="card-text" title={course.name}>
               {course.name.length > 50
-                ? course.name.substring(0, 45) + '...'
+                ? course.name.substring(0, 45) + "..."
                 : course.name}
             </p>
             <p className='card-text'>{course.cost}</p>
@@ -42,7 +44,7 @@ const AllCourses = () => {
             </Link>
           </div>
         </div>
-      ))}
+      )})}
     </div>
   );
 };
