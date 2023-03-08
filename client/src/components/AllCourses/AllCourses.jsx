@@ -1,16 +1,15 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import './allCourses.css';
-import Button from "@mui/material/Button";
-import {
-  ListItemButton,
-  ListItemText,
-} from '@mui/material';
-import axios from "axios";
-import { Link } from "react-router-dom";
+import Button from '@mui/material/Button';
+import { ListItemButton, ListItemText } from '@mui/material';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const AllCourses = () => {
   const [courses, setCourse] = useState([]);
+  const userData = useSelector((store) => store.auth.userData);
   useEffect(() => {
     axios.get('/course').then((res) => {
       setCourse(res.data);
@@ -33,10 +32,12 @@ const AllCourses = () => {
             </p>
             <p className='card-text'>{course.cost}</p>
             <p className='card-text'>{course.duration}</p>
-            <Button variant="text">Enroll</Button>
-            <Link to={`/dashboard/courses/${course._id}`} variant="body2">
-              <ListItemButton style={{ width: "max-content" }}>
-                <ListItemText primary="See More" />
+            {!userData.courses.includes(course._id) && (
+              <Button variant='text'>Enroll</Button>
+            )}
+            <Link to={`/dashboard/courses/${course._id}`} variant='body2'>
+              <ListItemButton style={{ width: 'max-content' }}>
+                <ListItemText primary='See More' />
               </ListItemButton>
             </Link>
           </div>

@@ -5,8 +5,9 @@ import { Container } from '@mui/material';
 import Sidebar from '../sidebar/Sidebar';
 import styles from './checkout.module.css';
 import CoursePaymentCard from '../sidebar/Sidebar';
-export default function Checkout({ courseData }) {
+export default function Checkout({ courseData, clientSecret }) {
   const stripe = useStripe();
+
   const elements = useElements();
 
   const [message, setMessage] = useState(null);
@@ -27,7 +28,7 @@ export default function Checkout({ courseData }) {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `${window.location.origin}/enrolled`,
+        return_url: `${window.location.origin}/enrolled?csid=${courseData._id}`,
       },
     });
 
@@ -42,7 +43,7 @@ export default function Checkout({ courseData }) {
 
   return (
     <Container className={styles.checkout_container}>
-      <CoursePaymentCard courseData={courseData} />
+      <CoursePaymentCard courseData={courseData} clientSecret={clientSecret} />
       <form
         id='payment-form'
         className={styles.payment_form}

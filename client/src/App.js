@@ -30,7 +30,7 @@ function App() {
       <Route path='' element={<Home />} />
       <Route path='login' element={<Login />} />
       <Route path='register' element={<Register />} />
-      <Route path='payment' element={<Payment />} />
+      <Route path='payment/:id' element={<Payment />} />
       <Route path='courses' element={<Courses />} />
       <Route path='enrolled' element={<Enrolled />} />
       <Route path='search' element={<SearchPage />} />
@@ -43,7 +43,7 @@ function App() {
           <Route path='courses-created/update/:id' element={<UpdateCourse />} />
           <Route path='courses-created' element={<CoursesCreated />} />
           <Route path='users' element={<Users />} />
-          <Route path="courses/:id" element={<SingleCourse />} />
+          <Route path='courses/:id' element={<SingleCourse />} />
           <Route path='courses/:id/lesson/:id' element={<Lesson />} />
         </Route>
       </Route>

@@ -1,29 +1,38 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 const Enrolled = () => {
   const navigate = useNavigate();
   const [enrolledMessage, setEnrolledMessage] = useState('');
+  const params2 = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop),
+  });
+
+  const token = useSelector((store) => store.auth.token);
   useEffect(() => {
+    // console.log(params2.csid);
     const getEnrolled = async () => {
+      console.log(token);
       const message = await axios.post(
         '/enrollment/confirm/',
-        { courseId: '64015f9840852f37b25ce2ee' },
+        { courseId: params2.csid },
         {
           headers: {
-            Authorization:
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZmI2NjA3NjY2ODZiZGE0OTBlYTRjYSIsImlhdCI6MTY3ODA4Nzc5NiwiZXhwIjoxNjc4MTc0MTk2fQ.vHQDtH2XY0srCOAi7ZFeotu1XWojO0S0ubarV9yeErk',
+            Authorization: 'Bearer ' + token,
           },
         }
       );
       setEnrolledMessage(message.data);
       setTimeout(() => {
-        navigate('/dashboard');
+        window.location.assign(
+          window.location.origin + '/dashboard/courses/' + params2.csid
+        );
       }, 3000);
     };
     getEnrolled();
-  }, []);
+  }, [token]);
   if (!enrolledMessage) {
     return <h1>Loading...</h1>;
   }

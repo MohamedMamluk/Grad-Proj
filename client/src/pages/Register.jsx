@@ -73,7 +73,7 @@ export default function Register() {
       //console.log(res.data);
     });
   };
-  var emaill =/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  var emaill = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
 
   return (
@@ -120,171 +120,71 @@ export default function Register() {
                 alignItems: 'center',
               }}
             >
-
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component='h1' variant='h5'>
-              Sign up
-            </Typography>
-            <Box
-              component='form'
-              onSubmit={handleSubmit}
-              sx={{ mt: 3 }}
-            >
-              <Grid container spacing={2}>
-                {/* //first name  */}
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    autoComplete='given-name'
-                    name='firstName'
-                    required
-                    fullWidth
-                    id='firstName'
-                    value={data.firstName}
-                    onChange={(e) => {
-                      setData((prev) => {
-                        return { ...prev, firstName: e.target.value };
-                      });
-                    }}
-                    // sx={
-                    //   {"&:focus":{borderColor:'10px solid #3f51b5',
-                    // labelColor:'#3f51b5'}
-                    //   }
-                    // }
-                    label='First Name'
-                    autoFocus
-                  />
-                  {(!data.firstName) && <div style={{color:"red"}}>Last Name must be provided.</div>}
-                </Grid>
-                {/* last name */}
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    required
-                    fullWidth
-                    id='lastName'
-                    label='Last Name'
-                    name='lastName'
-                    value={data.lastName}
-                    onChange={(e) => {
-                      setData((prev) => {
-                        return { ...prev, lastName: e.target.value };
-                      });
-                    }}
-                    autoComplete='family-name'
-                  />
-                  {(!data.lastName) && <div style={{color:"red"}}>Last Name must be provided.</div>}
-                </Grid>
-                {/* email */}
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    id='email'
-                    type='email'
-                    label='Email Address'
-                    name='email'
-                    value={data.email}
-                    onChange={(e) => {
-                      setData((prev) => {
-                        return { ...prev, email: e.target.value };
-                      });
-                    }}
-                    autoComplete='email'
-                  />
-                  {(!emaill.test(data.email)) && <div style={{color:"red"}}>Enter a valid email.</div>}
-                </Grid>
-                {/* password */}
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    name='password'
-                    type='password'
-                    label='Password'
-                    id='password'
-                    value={data.password}
-                    onChange={(e) => {
-                      setData((prev) => {
-                        return { ...prev, password: e.target.value };
-                      });
-                    }}
-                    autoComplete='new-password'
-                  />
-                  {(!data.password.match(passw)) && <div style={{color:"red"}}>Enter a stronger password.</div>}
-                  
-                </Grid>
-                {/* phone number */}
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    name='phoneNumber'
-                    value={data.phone}
-                    onChange={(e) => {
-                      setData((prev) => {
-                        return { ...prev, phone: e.target.value };
-                      });
-                    }}
-                    label='Phone Number'
-                    type='phoneNumber'
-                    id='phoneNumber'
-                    autoComplete='phoneNumber'
-                  />
-                  {data.phone.length<11 && <div style={{color:"red"}}>Enter a valid mobile.</div>}
-                </Grid>
-                {/* Role => student || instructor */}
-                <Grid item xs={12}>
-                  <FormControl>
-                    <FormLabel id='demo-controlled-radio-buttons-group'>
-                      Gender
-                    </FormLabel>
-                    <RadioGroup
-                      aria-labelledby='demo-controlled-radio-buttons-group'
-                      row={true}
-                      name='controlled-radio-buttons-group'
-                      value={data.role}
-                      onChange={handleChange}
-                    >
-                      <FormControlLabel
-                        value='student'
-                        control={
-                          <Radio
-                            sx={{
-                              color: '#3f51b5',
-                              '&.Mui-checked': {
-                                color: '#3f51b5',
-                              },
-                            }}
-                          />
-                        }
-                        label='Studnet'
-                      />
-                      <FormControlLabel
-                        value='instructor'
-                        control={
-                          <Radio
-                            sx={{
-                              color: '#3f51b5',
-                              '&.Mui-checked': {
-                                color: '#3f51b5',
-                              },
-                            }}
-                          />
-                        }
-                        label='Instructor'
-                      />
-                    </RadioGroup>
-                  </FormControl>
-                  {(!data.role) && <div style={{color:"red"}}>choose your role.</div>}
-                </Grid>
-                {/* level of experience accourding to instructor role */}
-                {data.role == 'instructor' && (
-
+              <Avatar>
+                <LockOutlinedIcon />
+              </Avatar>
+              <Typography component='h1' variant='h5'>
+                Sign up
+              </Typography>
+              <Box component='form' onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                <Grid container spacing={2}>
+                  {/* //first name  */}
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      autoComplete='given-name'
+                      name='firstName'
+                      required
+                      fullWidth
+                      id='firstName'
+                      value={data.firstName}
+                      onChange={(e) => {
+                        setData((prev) => {
+                          return { ...prev, firstName: e.target.value };
+                        });
+                      }}
+                      // sx={
+                      //   {"&:focus":{borderColor:'10px solid #3f51b5',
+                      // labelColor:'#3f51b5'}
+                      //   }
+                      // }
+                      label='First Name'
+                      autoFocus
+                    />
+                    {!data.firstName && (
+                      <div style={{ color: 'red' }}>
+                        Last Name must be provided.
+                      </div>
+                    )}
+                  </Grid>
+                  {/* last name */}
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      required
+                      fullWidth
+                      id='lastName'
+                      label='Last Name'
+                      name='lastName'
+                      value={data.lastName}
+                      onChange={(e) => {
+                        setData((prev) => {
+                          return { ...prev, lastName: e.target.value };
+                        });
+                      }}
+                      autoComplete='family-name'
+                    />
+                    {!data.lastName && (
+                      <div style={{ color: 'red' }}>
+                        Last Name must be provided.
+                      </div>
+                    )}
+                  </Grid>
+                  {/* email */}
                   <Grid item xs={12}>
                     <TextField
                       required
                       fullWidth
                       id='email'
+                      type='email'
                       label='Email Address'
                       name='email'
                       value={data.email}
@@ -295,6 +195,9 @@ export default function Register() {
                       }}
                       autoComplete='email'
                     />
+                    {!emaill.test(data.email) && (
+                      <div style={{ color: 'red' }}>Enter a valid email.</div>
+                    )}
                   </Grid>
                   {/* password */}
                   <Grid item xs={12}>
@@ -302,8 +205,8 @@ export default function Register() {
                       required
                       fullWidth
                       name='password'
-                      label='Password'
                       type='password'
+                      label='Password'
                       id='password'
                       value={data.password}
                       onChange={(e) => {
@@ -313,6 +216,11 @@ export default function Register() {
                       }}
                       autoComplete='new-password'
                     />
+                    {!data.password.match(passw) && (
+                      <div style={{ color: 'red' }}>
+                        Enter a stronger password.
+                      </div>
+                    )}
                   </Grid>
                   {/* phone number */}
                   <Grid item xs={12}>
@@ -331,6 +239,9 @@ export default function Register() {
                       id='phoneNumber'
                       autoComplete='phoneNumber'
                     />
+                    {data.phone.length < 11 && (
+                      <div style={{ color: 'red' }}>Enter a valid mobile.</div>
+                    )}
                   </Grid>
                   {/* Role => student || instructor */}
                   <Grid item xs={12}>
@@ -375,7 +286,11 @@ export default function Register() {
                         />
                       </RadioGroup>
                     </FormControl>
+                    {!data.role && (
+                      <div style={{ color: 'red' }}>choose your role.</div>
+                    )}
                   </Grid>
+
                   {/* level of experience accourding to instructor role */}
                   {data.role == 'instructor' && (
                     <Grid item xs={12}>

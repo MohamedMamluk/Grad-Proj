@@ -15,8 +15,10 @@ const DashboardHome = () => {
   useEffect(() => {
     const id = localStorage.getItem('id');
     const role = localStorage.getItem('role');
+    console.log(id, role);
 
     axios.get(`/${user.role || role}/${user.id || id}`).then((res) => {
+      console.log(res.data);
       dispatch(setUserData(res.data.user));
       //console.log(user);
     });
