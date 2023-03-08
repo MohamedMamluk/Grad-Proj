@@ -1,7 +1,7 @@
 const LessonFinished_Schema = require('./lessonsFinished.model');
 
-const getAllLessonsFinishedService = async (studentId, courseInfoId) => {
-  return LessonFinished_Schema.find({ studentId, courseInfoId });
+const getAllLessonsFinishedService = async (filter) => {
+  return LessonFinished_Schema.find(filter);
 };
 
 const getOneLessonFinishedByIdService = async (
@@ -13,11 +13,6 @@ const getOneLessonFinishedByIdService = async (
     studentId,
     courseInfoId,
   });
-  //   const data = {
-  //     studentid: '1111',
-  //     lessons: [{}, {}],
-  //     courseInfoId: '222222',
-  //   };
   const lesson = lessonFinished.lessons.find(
     (lesson) => lesson.lessonId == lessonID
   );
