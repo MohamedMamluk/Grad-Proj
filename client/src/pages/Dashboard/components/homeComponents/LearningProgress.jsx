@@ -56,7 +56,7 @@ const LearningProgress = (props) => {
   const [lessonsCompleted, setlessonsCompleted] = useState(0);
   const [coursesCompleted, setcoursesCompleted] = useState(0);
   useEffect(()=>{
-    axios.get(`http://localhost:7000/api/lessonsFinished/std/${user.userData._id}`)
+    axios.get(`/lessonsFinished/std/${user.userData._id}`)
     .then((res)=>{
       const lesson= lessonsCompletedTrue(res.data);
       setlessonsCompleted((lesson.redusedData/lesson.lessonaya)*100);
