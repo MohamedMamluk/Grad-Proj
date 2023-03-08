@@ -32,7 +32,7 @@ LinearProgressWithLabel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 const CourseProgress = (props) => {
-  const [progress, setProgress] = React.useState(10);
+  const [progress, setProgress] = useState(10);
   const [courses, setCourse] = useState([]);
   useEffect(() => {
     axios.get('/course/64015f9840852f37b25ce2ee').then((res) => {

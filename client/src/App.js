@@ -22,6 +22,14 @@ import AuthWrapper from './components/AuthWrapper';
 import SingleCourse from './pages/Dashboard/pages/course-page/Course';
 import Lesson from './pages/Dashboard/pages/lesson-page/Lesson';
 import SearchPage from './pages/SearchPage';
+import Profile from './pages/Dashboard/Profile';
+import Payment from './pages/Payment';
+import Enrolled from './pages/Enrolled';
+import CoursesCreated from './pages/Dashboard/courses-created-page/CoursesCreated';
+import Users from './pages/Dashboard/users-page/Users';
+import CreateCourse from './pages/Dashboard/create-course-page/CreateCourse';
+import SingleCourse from './pages/Dashboard/Course';
+import Lesson from './pages/Dashboard/Lesson';
 
 function App() {
   const navigate = useNavigate();
