@@ -34,10 +34,12 @@ const DashboardHome = () => {
       <HomeHeader user={user} />
       <Grid container spacing={4} padding={5}>
         {/* <LineChart /> */}
-        <div id='progress_container'>
-          <LearningProgress />
-          <CourseProgress />
-        </div>
+       {user.userData.courses && (
+          <div id='progress_container'>
+            <LearningProgress />
+            <CourseProgress />
+          </div>
+        )}
       <div>
         <PieChart/>
         <BarChart/>
