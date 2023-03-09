@@ -29,14 +29,6 @@ function Index() {
   return (
     <>
       <Router>
-        {/* <header>
-          <Link to='/'>Home</Link>
-          <Link to='/login'>login</Link>
-          <Link to='/register'>Register</Link>
-          <Link to='/courses'>Courses</Link>
-          <Link to='/dashboard'>Dashboard</Link>
-        </header> */}
-
         <App />
       </Router>
       <ToastContainer />

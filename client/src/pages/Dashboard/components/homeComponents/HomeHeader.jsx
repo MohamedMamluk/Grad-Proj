@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container, Typography } from '@mui/material';
+import { Box, Container } from '@mui/material';
 
 const HomeHeader = (props) => {
     return (

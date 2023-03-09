@@ -96,7 +96,6 @@ function DashboardContent() {
       navigate('/login');
     }
   }, []);
-  console.log(user);
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
