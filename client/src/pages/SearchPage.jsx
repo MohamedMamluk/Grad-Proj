@@ -1,58 +1,78 @@
 import { Container } from '@mui/system';
 import axios from 'axios';
 import React, { useEffect } from 'react';
-import { Suspense } from 'react';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from '../components/header/header';
 import CardWithImage from '../components/CardWithImage';
-const SearchPage = () => {
-  const { search } = useLocation();
+import Loader from '../components/loading/loading';
+
+const ShowData = ({ searchInput }) => {
   const [searchOutput, setSearchOutput] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const getSearch = async () => {
+      setLoading(true);
       const { data: output } = await axios.get('/course');
+      setLoading(false);
+
       setSearchOutput(
         output.filter((course) =>
-          course.name.toLowerCase().includes(search.substring(1).toLowerCase())
+          course.name
+            .toLowerCase()
+            .includes(searchInput.substring(1).toLowerCase())
         )
       );
     };
     getSearch();
-  }, [search]);
-  useEffect(() => {
-    console.log(searchOutput);
-  }, [searchOutput]);
+  }, [searchInput]);
+  if (loading) {
+    return (
+      <Container
+        maxWidth='xl'
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: '10px',
+          justifyContent: 'center',
+        }}
+      >
+        <Loader />
+      </Container>
+    );
+  }
+  return (
+    <Container
+      maxWidth='xl'
+      sx={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '10px',
+        justifyContent: 'center',
+      }}
+    >
+      {searchOutput.map((course) => (
+        <CardWithImage
+          title={course.name}
+          id={course._id}
+          description={course.description}
+          image={course.image}
+        ></CardWithImage>
+      ))}
+    </Container>
+  );
+};
+
+const SearchPage = () => {
+  const { search } = useLocation();
+
   return (
     <div>
       <Header />
       <h1 style={{ textAlign: 'center', margin: '10px' }}>
         Results for: {search.substring(1)}
       </h1>
-      <Suspense fallback={<h1>loading...</h1>}>
-        <Container
-          maxWidth='xl'
-          sx={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: '10px',
-            justifyContent: 'center',
-          }}
-        >
-          {searchOutput.length > 0 ? (
-            searchOutput.map((course) => (
-              <CardWithImage
-                title={course.name}
-                id={course._id}
-                description={course.description}
-                image={course.image}
-              ></CardWithImage>
-            ))
-          ) : (
-            <h2>Nothing was found</h2>
-          )}
-        </Container>
-      </Suspense>
+      <ShowData searchInput={search} />
     </div>
   );
 };
