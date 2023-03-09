@@ -6,6 +6,10 @@ import HomeHeader from '../../components/homeComponents/HomeHeader';
 import LearningProgress from '../../components/homeComponents/LearningProgress';
 import CourseProgress from '../../components/homeComponents/courseProgress';
 import Grid from '@mui/material/Grid';
+import PieChart from '../../../../components/charts/pieChart';
+import BarChart from '../../../../components/charts/barChart';
+import TheTOdo from '../../components/to-do-list/TheTOdo';
+// import LineChart from '../../../components/LineChart';
 
 const DashboardHome = () => {
   const user = useSelector((state) => state.auth);
@@ -25,7 +29,6 @@ const DashboardHome = () => {
     <div>
       <HomeHeader user={user} />
       <Grid container spacing={4} padding={5}>
-
         {/* <LineChart /> */}
         {user.userData.courses && (
           <div id='progress_container'>
@@ -33,8 +36,14 @@ const DashboardHome = () => {
             <CourseProgress />
           </div>
         )}
-
+        <div>
+          <PieChart />
+          <BarChart />
+        </div>
       </Grid>
+      <div>
+        <TheTOdo />
+      </div>
     </div>
   );
 };

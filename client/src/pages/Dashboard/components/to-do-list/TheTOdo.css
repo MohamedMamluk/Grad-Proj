@@ -1,0 +1,79 @@
+.testtt{
+    color:#3f51b5;
+    text-align: center;
+    background-color:#fff;
+    border: #3f51b5;
+    border-style: solid;
+    border-radius: 2%;
+}
+
+body {
+    background-color: #333333;
+    color: #fff;
+  }
+
+
+.taskBg {
+    /* background-color: #555; */
+    border-radius: 6px;
+    margin-bottom: 20px;
+    padding: 10px 140px 10px 15px;
+    text-align: left;
+    font-size: 15px;
+    position: relative;
+    
+    
+
+  }
+  
+  .taskBg div {
+    display: flex;
+    align-items: center;
+  }
+  
+  .taskNumber {
+    color: #999;
+    border: 1px solid #999;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    text-align: center;
+    font-size: 14px;
+    margin-right: 8px;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .taskBg .taskText {
+    flex: 1;
+  }
+  
+  .taskBg .done .taskText {
+    text-decoration: line-through;
+    opacity: 0.3;
+  }
+  
+  .taskBg .iconsWrap {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 15px;
+    width: auto;
+    display: inline-block;
+  }
+  
+  .taskBg .iconsWrap span {
+    display: inline-block;
+    margin: 0px 10px 0 10px;
+    cursor: pointer;
+    color: #1500ff;
+  }
+  
+  .taskBg .iconsWrap span:hover {
+    color: rgb(248, 248, 249);
+  }
+  
+  .mr-20 {
+    margin-right: 20px;
+  }
