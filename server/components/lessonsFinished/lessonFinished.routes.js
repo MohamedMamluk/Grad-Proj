@@ -14,6 +14,9 @@ const {
 router.get('/', getAllLessonsFinished);
 router.get('/:id', getOneLessonFinished);
 
+//GET BY STD ID
+router.get('/std/:studentId',getAllLessonsFinished);
+
 //POST
 router.post('/', createLessonsFinished);
 

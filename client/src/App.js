@@ -20,6 +20,7 @@ import SingleCourse from './pages/Dashboard/pages/course-page/Course';
 import Lesson from './pages/Dashboard/pages/lesson-page/Lesson';
 import SearchPage from './pages/SearchPage';
 
+
 function App() {
   return (
     <Routes>

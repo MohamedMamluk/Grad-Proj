@@ -70,7 +70,7 @@ const Course = () => {
             <SchoolIcon /> {courseInfo.level}
           </Typography>
           <br />
-          {!userData.userData.courses.includes(id) && (
+          {!userData.userData.courses?.includes(id) && (
             <Typography
               sx={{ maxHeight: 70, maxWidth: 400 }}
               variant='body2'
@@ -81,7 +81,7 @@ const Course = () => {
           )}
         </CardContent>
         <CardActions>
-          {!userData.userData.courses.includes(id) && (
+          {!userData.userData.courses?.includes(id) && (
             <Button
               size='small'
               color='primary'

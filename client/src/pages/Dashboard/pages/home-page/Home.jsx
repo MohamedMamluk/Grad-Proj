@@ -25,10 +25,15 @@ const DashboardHome = () => {
     <div>
       <HomeHeader user={user} />
       <Grid container spacing={4} padding={5}>
-        <div id='progress_container'>
-          <LearningProgress />
-          <CourseProgress />
-        </div>
+
+        {/* <LineChart /> */}
+        {user.userData.courses && (
+          <div id='progress_container'>
+            <LearningProgress />
+            <CourseProgress />
+          </div>
+        )}
+
       </Grid>
     </div>
   );
