@@ -13,7 +13,10 @@ const instructorRoutes = require('./components/instructor/instructor.route');
 const enrollmentRoutes = require('./components/enrollment/enrollment.routes');
 const uploadRoutes = require('./components/upload/upload.route');
 const AdminModel = require('./components/admin/admin.model');
+const todoRoutes = require('./components/Todo_backend/todo.route');
+
 var cors = require('cors');
+
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -44,6 +47,9 @@ app.use('/api/student', StudentRoutes);
 app.use('/api/lessonsFinished', lessonsFinishedRoutes);
 app.use('/api/instructor', instructorRoutes);
 app.use('/api/course', courseRoutes);
+
+//todo route
+app.use('/api/todo',todoRoutes);
 
 const connection = async () => {
   try {

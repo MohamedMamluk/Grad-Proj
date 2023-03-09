@@ -15,12 +15,12 @@ const SingleCourse= async ()=>{
   const [courseInfo,setCourseInfo] = useState({})
   useEffect( () =>{ 
     axios
-      .get(`http://localhost:7000/api/course/${id}`)
+      .get(`/course/${id}`)
       .then((res) => setCourse(res.data));
   }, []);
   useEffect(() => {
     axios
-      .get(`http://localhost:7000/api/courseinfo/${course.courseInfo}`)
+      .get(`/courseinfo/${course.courseInfo}`)
       .then((res) => setCourseInfo(res.data));
   }, []);
   if (course.length === 0) {

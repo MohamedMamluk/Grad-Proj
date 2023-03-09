@@ -7,6 +7,9 @@ import { Container } from '@mui/material';
 import LearningProgress from '../../components/homeComponents/LearningProgress';
 import CourseProgress from '../../components/homeComponents/courseProgress';
 import Grid from '@mui/material/Grid';
+import PieChart from '../../../../components/charts/pieChart';
+import BarChart from '../../../../components/charts/barChart';
+import TheTOdo from '../../components/to-do-list/TheTOdo';
 // import LineChart from '../../../components/LineChart';
 
 const DashboardHome = () => {
@@ -35,7 +38,14 @@ const DashboardHome = () => {
           <LearningProgress />
           <CourseProgress />
         </div>
+      <div>
+        <PieChart/>
+        <BarChart/>
+      </div>
       </Grid>
+        <div>
+          <TheTOdo/>
+        </div>
     </div>
   );
 };
