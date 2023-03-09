@@ -123,15 +123,7 @@ function DashboardContent() {
             >
               <MenuIcon />
             </IconButton>
-            {/* <Typography
-              component='h1'
-              variant='h6'
-              
-            >
-              {pageTitle.pathname == '/dashboard'
-                ? 'dashboard'
-                : pageTitle.pathname.split('/')[2]}
-            </Typography> */}
+
             <Breadcrumb />
             {user.userData?.image && (
               <IconButton color='inherit'>
