@@ -12,7 +12,6 @@ const Enrolled = () => {
 
   const token = useSelector((store) => store.auth.token);
   useEffect(() => {
-    // console.log(params2.csid);
     const getEnrolled = async () => {
       console.log(token);
       const message = await axios.post(

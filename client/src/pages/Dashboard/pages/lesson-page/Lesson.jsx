@@ -1,10 +1,12 @@
 import React from 'react';
+import LessonNav from '../../../../components/lessonNav/lessonNav';
 
 const Lesson = () => {
     return (
-        <div>
-            lesson
-        </div>
+        <>
+            <h1>efta7 ana el lesson</h1>
+            {/* <LessonNav lessonArr={courseInfo.courseLessons}/> */}
+        </>
     );
 };
 

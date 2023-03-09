@@ -11,17 +11,6 @@ import { setUser } from './features/auth/authSlice';
 const container = document.getElementById('root');
 const root = createRoot(container);
 axios.defaults.baseURL = 'https://mindson.onrender.com/api/';
-// axios.interceptors.request.use(
-//   (request) => {
-//     console.log(request);
-//     request.baseURL = 'https://mindson.onrender.com/api/';
-//     return request;
-//   },
-//   (error) => {
-//     console.log(error);
-//     return Promise.reject(error);
-//   }
-// );
 
 function Index() {
   const user = useSelector((store) => store.auth.token);
@@ -37,14 +26,6 @@ function Index() {
   return (
     <>
       <Router>
-        {/* <header>
-          <Link to='/'>Home</Link>
-          <Link to='/login'>login</Link>
-          <Link to='/register'>Register</Link>
-          <Link to='/courses'>Courses</Link>
-          <Link to='/dashboard'>Dashboard</Link>
-        </header> */}
-
         <App />
       </Router>
     </>
