@@ -11,9 +11,9 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import SchoolIcon from '@mui/icons-material/School';
 import { Container } from '@mui/system';
-import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import { useSelector } from 'react-redux';
+import LessonNav from '../../../../components/lessonNav/lessonNav';
 
 const Course = () => {
   const { id } = useParams();
@@ -23,13 +23,12 @@ const Course = () => {
   const [courseInfo, setCourseInfo] = useState({});
   useEffect(() => {
     axios.get('/course/' + id).then((res) => {
-      console.log(res.data);
       setCourse(res.data);
       axios
         .get('/courseinfo/' + res.data.courseInfo)
         .then((res) => setCourseInfo(res.data));
     });
-  }, []);
+  }, [id]);
 
   if (!courseInfo.courseLessons) {
     return <p>Loading</p>;
@@ -71,7 +70,7 @@ const Course = () => {
             <SchoolIcon /> {courseInfo.level}
           </Typography>
           <br />
-          {!userData.userData.courses.includes(id) && (
+          {!userData.userData.courses?.includes(id) && (
             <Typography
               sx={{ maxHeight: 70, maxWidth: 400 }}
               variant='body2'
@@ -82,7 +81,7 @@ const Course = () => {
           )}
         </CardContent>
         <CardActions>
-          {!userData.userData.courses.includes(id) && (
+          {!userData.userData.courses?.includes(id) && (
             <Button
               size='small'
               color='primary'
@@ -116,7 +115,6 @@ const Course = () => {
             sx={{ display: 'flex', flexWrap: 'wrap', textAlign: 'center' }}
           >
             {courseInfo.whatYouWillLearn.map((learningOutcome) => {
-              console.log(learningOutcome);
               return (
                 <Card sx={{ maxWidth: 400, maxHeight: 400, margin: 2 }}>
                   <Typography
@@ -169,8 +167,9 @@ const Course = () => {
           })}
         </Container>
       </Card>
+      <br/>
+      <LessonNav lessonArr={courseInfo.courseLessons} courseId={course._id}/>
     </>
   );
 };
-
 export default Course;

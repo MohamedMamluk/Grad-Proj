@@ -1,14 +1,11 @@
-import React, { useEffect } from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-// import DashboardCourses from './pages/Dashboard/Course';
+import React from 'react';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Courses from './pages/Courses';
 import Explore from './pages/Dashboard/pages/explore-page/Explore';
 import Layout from './pages/Dashboard/components/Layout';
 import DashboardHome from './pages/Dashboard/pages/home-page/Home';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes} from 'react-router-dom';
 import Home from './pages/Home';
 import './App.css';
 import Profile from './pages/Dashboard/pages/profile-page/Profile';
@@ -25,7 +22,6 @@ import SearchPage from './pages/SearchPage';
 
 
 function App() {
-  const navigate = useNavigate();
   return (
     <Routes>
       <Route path='' element={<Home />} />

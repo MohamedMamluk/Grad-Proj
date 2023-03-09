@@ -28,6 +28,8 @@ import {
   InputAdornment,
   InputLabel,
 } from '@mui/material';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Copyright(props) {
   return (
@@ -90,6 +92,8 @@ export default function SignIn() {
         localStorage.setItem('role', res.data.role);
       }
       const redirect = location.state?.from?.pathname || '/dashboard';
+      toast('Successfully Logged in');
+
       navigate(redirect, { replace: true });
     });
   };
@@ -279,6 +283,7 @@ export default function SignIn() {
             </Box>
           </Grid>
         </Grid>
+        <ToastContainer />
       </motion.div>
       {/* </AnimatePresence> */}
     </ThemeProvider>

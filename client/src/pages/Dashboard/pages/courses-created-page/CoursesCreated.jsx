@@ -10,6 +10,7 @@ import AddIcon from '@mui/icons-material/Add';
 import styles from './course-created.module.css';
 import LinkButton from '../../../../components/buttons/LinkButton';
 import EnhancedTable from '../../../../components/Table';
+import CouForAdmin from '../../../../components/CoursesForAdmin/CouForAdmin';
 const CoursesCreated = () => {
   return (
     <div>
@@ -28,12 +29,13 @@ const CoursesCreated = () => {
             <ListItemText primary='Add New Course' />
           </ListItemButton>
         </Link>
-        <LinkButton
+        {/* <LinkButton
           label='Update Course'
           link='/dashboard/courses-created/update/6405d0fd6b9f612f3c41e0f6'
-        />
+        /> */}
       </div>
-      <EnhancedTable />
+      {/* <EnhancedTable /> */}
+      <CouForAdmin />
     </div>
   );
 };
