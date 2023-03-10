@@ -3,12 +3,13 @@ import { Elements } from '@stripe/react-stripe-js';
 import CheckoutForm from '../components/checkout/Checkout';
 import { loadStripe } from '@stripe/stripe-js';
 import axios from 'axios';
-import { Container } from '@mui/material';
+import { Container, LinearProgress } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import Header from '../../../components/header/header';
 function Payment() {
   const [stripePromise, setStripePromise] = useState(null);
-  const [clientSecret, setClientSecret] = useState('');
+  const [clientSecret, setClientSecret] = useState(null);
   const [course, setCourse] = useState({});
   const user = useSelector((state) => state.auth);
   const { id } = useParams();
@@ -35,20 +36,26 @@ function Payment() {
         },
       })
       .then((result) => {
-        // //console.log(result.data);
+        console.log(result.data);
         var { clientSecret } = result.data;
-        setClientSecret(clientSecret);
+        setTimeout(() => setClientSecret(clientSecret), 1000);
       });
   }, [id, user.token]);
-
+  if (!stripePromise || !clientSecret) {
+    return <LinearProgress color='secondary' />;
+  }
   return (
-    <Container>
-      {clientSecret && stripePromise && (
-        <Elements stripe={stripePromise} options={{ clientSecret }}>
-          <CheckoutForm courseData={course} paymentNumber={clientSecret} />
-        </Elements>
-      )}
-    </Container>
+    <div>
+      {/* <LinearProgress color='secondary' /> */}
+      {/* <Header /> */}
+      <Container>
+        {clientSecret && stripePromise && (
+          <Elements stripe={stripePromise} options={{ clientSecret }}>
+            <CheckoutForm courseData={course} paymentNumber={clientSecret} />
+          </Elements>
+        )}
+      </Container>
+    </div>
   );
 }
 
