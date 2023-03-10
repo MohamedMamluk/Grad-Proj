@@ -1,8 +1,7 @@
 import { PaymentElement } from '@stripe/react-stripe-js';
 import { useState } from 'react';
 import { useStripe, useElements } from '@stripe/react-stripe-js';
-import { Container } from '@mui/material';
-import Sidebar from '../sidebar/Sidebar';
+import { Container, TextField } from '@mui/material';
 import styles from './checkout.module.css';
 import CoursePaymentCard from '../sidebar/Sidebar';
 export default function Checkout({ courseData, clientSecret }) {
@@ -40,28 +39,59 @@ export default function Checkout({ courseData, clientSecret }) {
 
     setIsProcessing(false);
   };
-
+  if (!courseData) {
+    return;
+  }
   return (
-    <Container className={styles.checkout_container}>
+    <div className={styles.checkout_container}>
       <CoursePaymentCard courseData={courseData} clientSecret={clientSecret} />
-      <form
-        id='payment-form'
-        className={styles.payment_form}
-        onSubmit={handleSubmit}
-      >
-        <PaymentElement id='payment-element' />
-        <button
-          className={styles.checkout__button}
-          disabled={isProcessing || !stripe || !elements}
-          id='submit'
+      <div style={{ width: '100%' }}>
+        <h3>Payment Details</h3>
+        <p>Complete your purchase by providing your payment details</p>
+        <form
+          id='payment-form'
+          className={styles.payment_form}
+          onSubmit={handleSubmit}
         >
-          <span id='button-text'>
-            {isProcessing ? 'Processing ... ' : 'Pay now'}
-          </span>
-        </button>
-        {/* Show any error or success messages */}
-        {message && <div id='payment-message'>{message}</div>}
-      </form>
-    </Container>
+          <div className={styles.userInfo}>
+            <TextField
+              id='outlined-basic'
+              label='Cardholder Name'
+              variant='outlined'
+              sx={{ width: '100%' }}
+            />
+            <TextField
+              id='outlined-basic'
+              label='Email Address'
+              variant='outlined'
+              sx={{ width: '100%' }}
+            />
+            <TextField
+              id='outlined-basic'
+              label='Phone Number'
+              variant='outlined'
+              sx={{ width: '100%' }}
+            />
+          </div>
+
+          <PaymentElement
+            id='payment-element'
+            className={styles.payment_element_container}
+          />
+          <button
+            className={styles.checkout__button}
+            disabled={isProcessing || !stripe || !elements}
+            id='submit'
+          >
+            <span id='button-text'>
+              {isProcessing ? 'Processing ... ' : 'Pay now'}
+            </span>
+          </button>
+          {/* Show any error or success messages */}
+          {message && <div id='payment-message'>{message}</div>}
+          {/* </div> */}
+        </form>
+      </div>
+    </div>
   );
 }
