@@ -1,0 +1,33 @@
+#btnDivv{
+    background-color:  #3f51b5;
+    margin: auto;
+    margin-top: 40px;
+    padding: 20px;
+    width: 25vw;
+    height: 25vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 10px 10px 5px antiquewhite;
+    
+}
+
+.btnn{
+    width: 20vw;
+    height: 10vh;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 25px;
+    font-family: monospace;
+    border-color:azure;
+    color: darkblue;
+    font-weight: bold;
+    background-color: azure;
+  
+    
+}
+.btnn:hover
+{
+    text-shadow: 2px 2px 5px darkblue;
+}

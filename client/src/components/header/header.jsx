@@ -82,9 +82,29 @@ const Header = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  const headerRef = React.useRef(null);
+  const [offset, setOffset] = React.useState(0);
 
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const onScroll = () => setOffset(window.pageYOffset);
+      // clean up code
+      window.removeEventListener('scroll', onScroll);
+      window.addEventListener('scroll', onScroll, { passive: true });
+      return () => window.removeEventListener('scroll', onScroll);
+    }
+  }, []);
+  // React.useEffect(() => console.log(offset), [offset]);
   return (
-    <AppBar position='static' style={{ backgroundColor: '#3f51b5' }}>
+    <AppBar
+      ref={headerRef}
+      position='sticky'
+      style={{
+        backgroundColor: offset > 0 ? '#3f51b5' : 'transparent',
+        color: offset > 0 ? '#fff' : '#3f51b5',
+        transition: 'all 100ms ease-in-out',
+      }}
+    >
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -117,7 +137,11 @@ const Header = () => {
               }}
             >
               {pages.map((page) => (
-                <Link to={`/${page}`}>
+                <Link
+                  to={`/${page}`}
+                  className='decoration-none'
+                  style={{ textDecoration: 'none' }}
+                >
                   <MenuItem key={page} onClick={handleCloseNavMenu}>
                     <Typography textAlign='center'>{page}</Typography>
                   </MenuItem>
@@ -127,6 +151,7 @@ const Header = () => {
           </Box>
           <img
             src='logo-04.png'
+            className='-top-1 relative'
             style={{
               display: { xs: 'none', md: 'flex' },
               mr: 1,
@@ -139,7 +164,7 @@ const Header = () => {
             sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
             style={{ gap: '10px' }}
           >
-            <Link to='/' className='navLink'>
+            <Link to='/' className={`navLink`}>
               Home
             </Link>
             <Link to='/courses' className='navLink'>
@@ -147,7 +172,11 @@ const Header = () => {
             </Link>
           </Box>
 
-          <div style={{ display: 'flex' }} id='search__wrapper'>
+          <div
+            style={{ padding: '10px' }}
+            id='search__wrapper'
+            className='hidden md:flex'
+          >
             <input
               type='text'
               value={search}
@@ -164,6 +193,8 @@ const Header = () => {
                 padding: 0,
                 borderTopRightRadius: '10px',
                 borderBottomRightRadius: '10px',
+                borderLeft: '1px solid white',
+                color: 'white',
               }}
               onClick={() => {
                 navigate('/search?' + search);
@@ -174,18 +205,22 @@ const Header = () => {
           </div>
 
           <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>
-
-            <Button sx={{textTransform:"capitalize",padding:"0px",width:"auto"}}>
-            <Link to='/login' className='navLink'>
-              login
-            </Link>
+            <Button
+              sx={{
+                textTransform: 'capitalize',
+                padding: '0px',
+                width: 'auto',
+              }}
+            >
+              <Link to='/login' className='navLink'>
+                login
+              </Link>
             </Button>
-          <Button sx={{textTransform:"capitalize",padding:"0px" }}>
-            <Link to='/register' className='navLink'>
-              /Register
-            </Link>
-          </Button>
-
+            <Button sx={{ textTransform: 'capitalize', padding: '0px' }}>
+              <Link to='/register' className='navLink'>
+                /Register
+              </Link>
+            </Button>
           </Box>
         </Toolbar>
       </Container>

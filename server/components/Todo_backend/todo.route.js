@@ -1,18 +1,24 @@
-const express  = require("express");
+const express = require('express');
 
-const { getAllToDo, getOneToDo, saveToDo, deleteToDoById, updateToDoById } = require("./todo.controller");
+const {
+  getAllToDo,
+  getOneToDo,
+  saveToDo,
+  deleteToDoById,
+  updateToDoById,
+} = require('./todo.controller');
 
 const router = express();
 
-router.get("/", getAllToDo);
-router.get('/user/:id',getAllToDo);
+router.get('/', getAllToDo);
+router.get('/user/:studentId', getAllToDo);
 
-router.get("/:id", getOneToDo);
+router.get('/:id', getOneToDo);
 
-router.post("/", saveToDo);
+router.post('/', saveToDo);
 
-router.patch("/:id", updateToDoById);
+router.patch('/:id', updateToDoById);
 
-router.delete("/:id", deleteToDoById);
+router.delete('/:id', deleteToDoById);
 
 module.exports = router;

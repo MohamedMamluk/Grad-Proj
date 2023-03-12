@@ -1,0 +1,9 @@
+#imageDiv{
+    border-width: 3px;
+    border-color: darkblue;
+    border-style: solid;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 10px 10px 2px bisque;
+    padding: 10px;
+}

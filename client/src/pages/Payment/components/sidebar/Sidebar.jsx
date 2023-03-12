@@ -56,7 +56,7 @@ const CoursePaymentCard = ({ courseData }) => {
             alt={courseData.name}
           />
         </div>
-        <div id='course_description' className={styles.course_description}>
+        <div id='course_description' className={styles?.course_description}>
           <p>{courseInfo.description}</p>
         </div>
         <div id='course_lessons' className={styles.course_lessons}>
