@@ -8,15 +8,17 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const AllCourses = () => {
-  const [courses, setCourse] = useState([]);
+  const [courses, setCourse] = useState(null);
   const userData = useSelector((store) => store.auth.userData);
   useEffect(() => {
     axios.get('/course').then((res) => {
       setCourse(res.data);
-      // //console.log(res.data);
+      console.log(res.data);
     });
   }, []);
-
+  if (!courses) {
+    return <h1>loading</h1>;
+  }
   return (
     <div id='coursesContainer' className='container'>
       {courses.map((course) => {
@@ -26,6 +28,7 @@ const AllCourses = () => {
             <div id='card-image__container'>
               <img src={course.image} id='card-image' alt='...' />
             </div>
+            {/* {course.name} */}
             <div className='card-body'>
               <p className='card-text' title={course.name}>
                 {course.name.length > 50
@@ -33,10 +36,7 @@ const AllCourses = () => {
                   : course.name}
               </p>
               <p className='card-text'>{course.cost}</p>
-              <p className='card-text'>{course.duration}</p>
-              {!userData.courses?.includes(course._id) && (
-                <Button variant='text'>Enroll</Button>
-              )}
+              <p className='card-text'>{course?.duration}</p>
               <Link to={`/dashboard/courses/${course._id}`} variant='body2'>
                 <ListItemButton style={{ width: 'max-content' }}>
                   <ListItemText primary='See More' />

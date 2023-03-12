@@ -28,17 +28,9 @@ const ShowData = ({ searchInput }) => {
   }, [searchInput]);
   if (loading) {
     return (
-      <Container
-        maxWidth='xl'
-        sx={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: '10px',
-          justifyContent: 'center',
-        }}
-      >
+      <div maxWidth='xl' className='border border-red-500 w-max'>
         <Loader />
-      </Container>
+      </div>
     );
   }
   return (

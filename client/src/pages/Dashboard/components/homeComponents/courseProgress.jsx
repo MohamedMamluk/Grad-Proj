@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import { Box, Container } from '@mui/material';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import {useSelector} from 'react-redux'
+import { useSelector } from 'react-redux';
 
 function LinearProgressWithLabel(props) {
   return (
@@ -22,42 +22,44 @@ function LinearProgressWithLabel(props) {
   );
 }
 const CourseProgress = (props) => {
-  const user = useSelector((store)=>{
+  const user = useSelector((store) => {
     return store.auth;
   });
-  let UserCourse= user.userData.courses;
-  let lastElement = UserCourse.slice(-3)[0];
-  console.log("lastelement ",lastElement)
+  let UserCourse = user.userData.courses;
+  let lastElement = UserCourse.slice(-1)[0];
+  console.log('lastelement ', lastElement);
   const [courseProgress, setCourseProgress] = useState(0);
   const [courses, setCourse] = useState([]);
   const [instructor, setInstructor] = useState([]);
-    const lessonsCompletedTrue=(data)=>{
-    let lessonaya =0;
-    const redusedData =data.reduce((pre,current)=>{
-      current.lessons.map((lesson)=>{
+  const lessonsCompletedTrue = (data) => {
+    let lessonaya = 0;
+    const redusedData = data.reduce((pre, current) => {
+      current.lessons.map((lesson) => {
         lessonaya++;
-        if(lesson.isFinished){
+        if (lesson.isFinished) {
           return pre++;
         }
-      })
+      });
       return pre;
-    },0)
-    return {redusedData,lessonaya};
-  }
+    }, 0);
+    return { redusedData, lessonaya };
+  };
 
   useEffect(() => {
     axios.get(`/course/${lastElement}`).then((courseRes) => {
       setCourse(courseRes.data);
-      console.log("courses ",courseRes.data);
- axios.get(`/lessonsFinished/std/${user.userData._id}`).then(res=>{
-  const courseFilter = res.data.find(obj=>obj.courseInfoId == courseRes.data.courseInfo);
-  const completed = lessonsCompletedTrue([courseFilter])
-      setCourseProgress((completed.redusedData/completed.lessonaya)*100);
- })
-      axios.get(`/instructor/${courseRes.data.instructor}`).then((res)=>{
-        console.log("inside instructor: ",res.data);
+      console.log('courses ', courseRes.data);
+      axios.get(`/lessonsFinished/std/${user.userData._id}`).then((res) => {
+        const courseFilter = res.data.find(
+          (obj) => obj.courseInfoId == courseRes.data.courseInfo
+        );
+        const completed = lessonsCompletedTrue([courseFilter]);
+        setCourseProgress((completed.redusedData / completed.lessonaya) * 100);
+      });
+      axios.get(`/instructor/${courseRes.data.instructor}`).then((res) => {
+        console.log('inside instructor: ', res.data);
         setInstructor(res.data);
-      })
+      });
     });
   }, []);
 
@@ -93,13 +95,18 @@ const CourseProgress = (props) => {
             </h6>
             <label style={{ margin: '0px' }}>started: 18/4/2022</label>
             <div style={{ display: 'flex' }}>
-              <img src={instructor.user?.image} style={{
+              <img
+                src={instructor.user?.image}
+                style={{
                   width: '25px',
                   height: '25px',
                   borderRadius: '50%',
                   margin: '2px',
-                }} />
-                <label style={{ margin: '5px', fontSize:'13px' }}>{`Instructor:  ${instructor.user?.firstName} ${instructor.user?.lastName}`}</label>
+                }}
+              />
+              <label
+                style={{ margin: '5px', fontSize: '13px' }}
+              >{`Instructor:  ${instructor.user?.firstName} ${instructor.user?.lastName}`}</label>
               {/* <div
                 style={{
                   width: '25px',
@@ -122,7 +129,6 @@ const CourseProgress = (props) => {
           <span style={{ fontSize: '80%' }}>
             {`Course duration: ${courses.duration}`}
           </span>
-
         </Box>
         <Box sx={{ width: '98%' }}>
           <span style={{ fontSize: '80%' }}>Completed the course</span>

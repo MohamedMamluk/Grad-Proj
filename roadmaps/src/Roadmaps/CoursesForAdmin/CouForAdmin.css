@@ -1,0 +1,29 @@
+label{
+    margin: 5px;
+    background-color: azure;
+    border-radius: 10px;
+    width: 6vw;
+    color:darkblue;
+    font-family: 'monospace';
+}
+option{
+    color: darkblue;
+    font-family: 'monospace';
+}
+#Categories{
+    color: darkblue;
+    font-family: 'monospace';
+}
+select{
+    height: 30px;
+}
+
+#btnDiv{
+    padding: 20px;
+    background-color: antiquewhite;
+    border-radius: 5px;
+    margin:auto;
+    margin-top: 10px;
+    width: 25vw;
+}
+

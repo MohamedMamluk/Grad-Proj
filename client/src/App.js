@@ -5,7 +5,7 @@ import Courses from './pages/Courses';
 import Explore from './pages/Dashboard/pages/explore-page/Explore';
 import Layout from './pages/Dashboard/components/Layout';
 import DashboardHome from './pages/Dashboard/pages/home-page/Home';
-import { Route, Routes} from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import './App.css';
 import Profile from './pages/Dashboard/pages/profile-page/Profile';
@@ -19,7 +19,7 @@ import AuthWrapper from './components/AuthWrapper';
 import SingleCourse from './pages/Dashboard/pages/course-page/Course';
 import Lesson from './pages/Dashboard/pages/lesson-page/Lesson';
 import SearchPage from './pages/SearchPage';
-
+import Roadmap from './components/Roadmaps/Roadmap';
 
 function App() {
   return (
@@ -31,6 +31,7 @@ function App() {
       <Route path='courses' element={<Courses />} />
       <Route path='enrolled' element={<Enrolled />} />
       <Route path='search' element={<SearchPage />} />
+      <Route path='roadmap' element={<Roadmap />} />
       <Route element={<AuthWrapper />}>
         <Route path='/dashboard' element={<Layout />}>
           <Route index element={<DashboardHome />} />
