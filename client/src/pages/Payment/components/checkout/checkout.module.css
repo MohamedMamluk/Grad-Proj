@@ -1,3 +1,18 @@
+.checkout_container {
+  padding: 50px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.payment_form {
+  width: 100%;
+}
+.userInfo {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 .checkout__button {
   background-color: rgba(109, 84, 222, 1);
   color: white;
@@ -7,19 +22,14 @@
   border-radius: 10px;
   word-break: keep-all;
 }
-.checkout_container {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  height: 100vh;
-  align-items: center;
-  justify-content: space-evenly;
-}
-.payment_form {
-  flex: 3;
-}
 @media screen and (min-width: 768px) {
   .checkout_container {
-    flex-direction: row-reverse;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+
+    height: 95vh;
+    gap: 30px;
+    /* align-items: center; */
   }
 }

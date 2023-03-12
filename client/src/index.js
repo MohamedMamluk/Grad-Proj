@@ -8,6 +8,8 @@ import axios from 'axios';
 import './index.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import { setUser } from './features/auth/authSlice';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const container = document.getElementById('root');
 const root = createRoot(container);
 axios.defaults.baseURL = 'https://mindson.onrender.com/api/';
@@ -21,6 +23,7 @@ function Index() {
     const role = localStorage.getItem('role');
     if (token) {
       dispatch(setUser({ token, id, role }));
+      toast.success('Logged in');
     }
   }, []);
   return (
@@ -28,6 +31,7 @@ function Index() {
       <Router>
         <App />
       </Router>
+      <ToastContainer />
     </>
   );
 }
