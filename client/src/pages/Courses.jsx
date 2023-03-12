@@ -7,7 +7,7 @@ const Courses = () => {
   return (
     <div>
       <Header></Header>
-      <CouHeader />
+      {/* <CouHeader /> */}
       <AllCourses />
     </div>
   );

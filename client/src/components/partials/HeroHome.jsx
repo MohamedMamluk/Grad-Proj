@@ -58,7 +58,7 @@ function HeroHome() {
                 Learn on <span className='text-purple-500'> MindsOn</span>
               </span>
             </h1>
-            <h5 className='text-md text-gray-500 text-[#edeafb]'>
+            <h5 className='text-md text-[#edeafb]'>
               “Success is no accident. It is hard work, perseverance, learning,
               studying, sacrifice and most of all, love of what you are doing or
               learning to do
