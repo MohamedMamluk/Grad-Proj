@@ -26,13 +26,11 @@ const BarChart = () => {
   useEffect(() => {
     axios.get(`/instructor`).then((res) => {
       setInstructors(res.data.length);
-      console.log('useEffect for instrucrors data ' + res.data.length);
     });
   }, []);
   useEffect(() => {
     axios.get(`/student`).then((res) => {
       setStudents(res.data.length);
-      console.log('useEffect for students data ' + res.data.length);
     });
   }, []);
 

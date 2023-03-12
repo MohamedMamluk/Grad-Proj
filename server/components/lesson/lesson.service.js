@@ -3,9 +3,11 @@ const Lesson_Schema = require('./lesson.model');
 const getAllLessonService = async () => {
   return Lesson_Schema.find();
 };
+
 const getLessonServiceByID = async (_id) => {
   return Lesson_Schema.findOne({ _id });
 };
+
 const addNewLessonService = async (newData) => {
   //console.log(newData)
   return Lesson_Schema.create(newData);

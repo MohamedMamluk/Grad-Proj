@@ -17,6 +17,7 @@ const lessonDTO = {
   },
   required: ['description', 'type', 'link'],
 };
+
 const patchLessonDTO = {
   type: 'object',
   properties: {

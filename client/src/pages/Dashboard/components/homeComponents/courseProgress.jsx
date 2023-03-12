@@ -27,7 +27,7 @@ const CourseProgress = (props) => {
   });
   let UserCourse = user.userData.courses;
   let lastElement = UserCourse.slice(-1)[0];
-  console.log('lastelement ', lastElement);
+  // console.log('lastelement ', lastElement);
   const [courseProgress, setCourseProgress] = useState(0);
   const [courses, setCourse] = useState([]);
   const [instructor, setInstructor] = useState([]);
@@ -57,7 +57,7 @@ const CourseProgress = (props) => {
         setCourseProgress((completed.redusedData / completed.lessonaya) * 100);
       });
       axios.get(`/instructor/${courseRes.data.instructor}`).then((res) => {
-        console.log('inside instructor: ', res.data);
+        // console.log('inside instructor: ', res.data);
         setInstructor(res.data);
       });
     });

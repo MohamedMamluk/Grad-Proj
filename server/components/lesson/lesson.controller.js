@@ -39,7 +39,6 @@ const updateLesson = async (req, res) => {
     var _id = req.params.id;
     var newData = req.body;
     var data = await updateLessonServiceByID(_id, newData);
-    //console.log(data)
     res.status(200).json({ data, msg: 'Update Successful' });
   } catch (err) {
     res.status(400).json(err);
