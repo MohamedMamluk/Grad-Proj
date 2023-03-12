@@ -9,6 +9,8 @@ import Grid from '@mui/material/Grid';
 import PieChart from '../../../../components/charts/pieChart';
 import BarChart from '../../../../components/charts/barChart';
 import TheTOdo from '../../components/to-do-list/TheTOdo';
+import Video from '../../../../components/lessonTypes/Video';
+import LineChart from '../../../../components/charts/LineChart';
 // import LineChart from '../../../components/LineChart';
 
 const DashboardHome = () => {
@@ -28,6 +30,13 @@ const DashboardHome = () => {
   return (
     <div>
       <HomeHeader user={user} />
+      {/* <Test
+        testLink={
+          'https://docs.google.com/forms/d/e/1FAIpQLSfA3e3p4wAf4ttHLwCPTZIE6Mg971GwME-OOPIQYYPiNSjlZQ/viewform?usp=sf_link'
+        }
+      /> */}
+      {/* <Video videoLink={'https://www.youtube.com/watch?v=YGhfy3om9Ok'} /> */}
+      {/* <LineChart /> */}
       <Grid container spacing={4} padding={5}>
         {/* <LineChart /> */}
         {user.userData.courses && (
