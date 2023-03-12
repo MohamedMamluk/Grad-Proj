@@ -1,5 +1,9 @@
 const { StatusCodes } = require('http-status-codes');
 const { getCourseByIDService } = require('../course/course.service');
+const {
+  updateInstructor,
+  getInstructorById,
+} = require('../instructor/instructor.service.js');
 const { handleEnrollment, createIntent } = require('./enrollment.service');
 
 // If student is already enrolled do nothing TODO
@@ -38,6 +42,12 @@ const confirmAddition = async (req, res) => {
       req.body.courseId
     );
     if (tryToEnroll) {
+      const instructorData = await getInstructorById(courseData.instructor);
+      instructorData.balance.push({
+        cost: Math.floor((+courseData.cost * 80) / 100),
+        courseId: courseData._id,
+      });
+      await updateInstructor(courseData.instructor, instructorData);
       return res.status(StatusCodes.OK).send('course Enrolled');
     } else {
       return res.status(StatusCodes.BAD_REQUEST).send('something went wrong');

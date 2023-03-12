@@ -22,7 +22,7 @@ const CoursePaymentCard = ({ courseData }) => {
     getCourseInfo();
     getInstructor();
   }, [courseData.instructor]);
-  if (!instructor) {
+  if (!instructor || !courseInfo) {
     return;
   }
   return (

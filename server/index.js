@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT||7000;
+const PORT = process.env.PORT || 7000;
 const courseRoutes = require('./components/course/course.route');
 const connect = require('./DB/connect');
 const authRoutes = require('./components/auth/auth.route');
@@ -49,14 +49,17 @@ app.use('/api/instructor', instructorRoutes);
 app.use('/api/course', courseRoutes);
 
 //todo route
-app.use('/api/todo',todoRoutes);
+app.use('/api/todo', todoRoutes);
 
 const connection = async () => {
   try {
     //console.log(process.env.MONGOURI_DEV);
+    // Development
+    // await connect(process.env.MONGOURI_DEV);
+    // Production
     await connect(process.env.MONGOURI_PROD);
     app.listen(PORT, () => {
-      console.log(PORT)
+      console.log(PORT);
     });
   } catch (error) {
     //console.log(error);
