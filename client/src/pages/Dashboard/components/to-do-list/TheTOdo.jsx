@@ -38,9 +38,7 @@ const TheTOdo = () => {
       });
   };
   useEffect(() => {
-    axios
-      .get('http://localhost:7000/api/todo/user/' + user.id)
-      .then((res) => setToDo(res.data));
+    axios.get('/todo/user/' + user.id).then((res) => setToDo(res.data));
   }, []);
 
   // Delete task
