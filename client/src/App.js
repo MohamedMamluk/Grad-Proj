@@ -17,7 +17,7 @@ import CreateCourse from './pages/Dashboard/pages/courses-created-page/create-co
 import UpdateCourse from './pages/Dashboard/pages/courses-created-page/update-course-page/UpdateCourse';
 import AuthWrapper from './components/AuthWrapper';
 import SingleCourse from './pages/Dashboard/pages/course-page/Course';
-import Lesson from './pages/Dashboard/pages/lesson-page/Lesson';
+import Lesson from './pages/Dashboard/pages/lesson-pages/Lesson';
 import SearchPage from './pages/SearchPage';
 
 

@@ -26,13 +26,12 @@ const LessonNav = (courseId,lessonIds) => {
         };
         getLesson(lessonId);
     }, []);
-    console.log(lessons);
     return (
         <TableContainer component={Paper}>
             <Table sx={{ maxWidth: 1000 }} aria-label="simple table">
                 <TableBody>
                     {lessons.map((lesson) => (
-                        <Link to={`/dashboard/courses/${courseID}/lesson/${lesson._id}`}>
+                        <Link to={`dashboard/courses/${courseID}/lesson/${lesson._id}`}>
                         <TableRow
                             key={lesson.title}
                             sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
