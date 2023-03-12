@@ -20,6 +20,7 @@ import SingleCourse from './pages/Dashboard/pages/course-page/Course';
 import Lesson from './pages/Dashboard/pages/lesson-page/Lesson';
 import SearchPage from './pages/SearchPage';
 import Roadmap from './components/Roadmaps/Roadmap';
+import Balance from './pages/Dashboard/pages/balance/Balance';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           <Route index element={<DashboardHome />} />
           <Route path='explore' element={<Explore />} />
           <Route path='profile' element={<Profile />} />
+          <Route path='balance' element={<Balance />} />
           <Route path='courses-created/new' element={<CreateCourse />} />
           <Route path='courses-created/update/:id' element={<UpdateCourse />} />
           <Route path='courses-created' element={<CoursesCreated />} />

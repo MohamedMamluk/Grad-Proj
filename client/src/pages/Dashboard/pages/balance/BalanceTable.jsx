@@ -57,28 +57,28 @@ function stableSort(array, comparator) {
 
 const headCells = [
   {
-    id: 'name',
+    id: 'CourseName',
     numeric: false,
     disablePadding: true,
-    label: 'Student Name',
+    label: 'Course Name',
   },
   {
-    id: 'email',
+    id: 'CourseCost',
     numeric: false,
     disablePadding: true,
-    label: 'Email',
+    label: 'Course Price',
   },
   {
-    id: 'phone',
+    id: 'share',
     numeric: false,
     disablePadding: true,
-    label: 'Phone',
+    label: 'Your Share',
   },
   {
-    id: 'role',
+    id: 'boughtOn',
     numeric: false,
     disablePadding: true,
-    label: 'Role',
+    label: 'Bought On',
   },
 ];
 
@@ -178,7 +178,7 @@ function EnhancedTableToolbar(props) {
           id='tableTitle'
           component='div'
         >
-          All Users
+          Purchase History
         </Typography>
       )}
 
@@ -203,7 +203,7 @@ EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
 };
 
-export default function EnhancedTable() {
+export default function BalanceTable({ courseData, balance }) {
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
   const [selected, setSelected] = React.useState([]);
@@ -211,15 +211,15 @@ export default function EnhancedTable() {
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [StudentData, setStudent] = useState([]);
-  React.useEffect(() => {
-    const getStudents = async () => {
-      const students = await axios.get('/student');
-      const instructors = await axios.get('/instructor');
-      setStudent([...students.data, ...instructors.data]);
-    };
+  //   React.useEffect(() => {
+  //     const getStudents = async () => {
+  //       const students = await axios.get('/student');
+  //       const instructors = await axios.get('/instructor');
+  //       setStudent([...students.data, ...instructors.data]);
+  //     };
 
-    getStudents();
-  }, []);
+  //     getStudents();
+  //   }, []);
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -228,7 +228,7 @@ export default function EnhancedTable() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelected = StudentData.map((n) => n.name);
+      const newSelected = StudentData.map((n) => n._id);
       setSelected(newSelected);
       return;
     }
@@ -294,20 +294,20 @@ export default function EnhancedTable() {
                 rowCount={StudentData.length}
               />
               <TableBody>
-                {stableSort(StudentData, getComparator(order, orderBy))
+                {stableSort(courseData, getComparator(order, orderBy))
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((student, index) => {
-                    const isItemSelected = isSelected(student._id);
+                  .map((course, index) => {
+                    const isItemSelected = isSelected(course.name);
                     const labelId = `enhanced-table-checkbox-${index}`;
 
                     return (
                       <TableRow
                         hover
-                        onClick={(event) => handleClick(event, student._id)}
+                        onClick={(event) => handleClick(event, course.name)}
                         role='checkbox'
                         aria-checked={isItemSelected}
                         tabIndex={-1}
-                        key={student.name}
+                        key={course.name}
                         selected={isItemSelected}
                       >
                         <TableCell padding='checkbox'>
@@ -325,7 +325,7 @@ export default function EnhancedTable() {
                           scope='row'
                           padding='none'
                         >
-                          {student.firstName} {student.lastName}
+                          {course.name}
                         </TableCell>
                         <TableCell
                           component='th'
@@ -333,7 +333,7 @@ export default function EnhancedTable() {
                           scope='row'
                           padding='none'
                         >
-                          {student.email}
+                          {course.cost}
                         </TableCell>
 
                         <TableCell
@@ -342,7 +342,7 @@ export default function EnhancedTable() {
                           scope='row'
                           padding='none'
                         >
-                          {student.phone}
+                          {balance[index].cost}
                         </TableCell>
                         <TableCell
                           component='th'
@@ -350,7 +350,9 @@ export default function EnhancedTable() {
                           scope='row'
                           padding='none'
                         >
-                          {student.role}
+                          {new Date(
+                            balance[index].createdAt
+                          ).toLocaleDateString()}
                         </TableCell>
                       </TableRow>
                     );

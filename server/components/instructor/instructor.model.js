@@ -44,6 +44,22 @@ const instructorSchema = new mongoose.Schema(
     image: {
       type: String,
     },
+    balance: {
+      type: [
+        new mongoose.Schema(
+          {
+            cost: {
+              type: Number,
+            },
+            courseId: {
+              type: mongoose.Types.ObjectId,
+            },
+          },
+          { timestamps: true }
+        ),
+      ],
+      default: [],
+    },
   },
   { timestamps: true }
 );

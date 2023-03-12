@@ -12,7 +12,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const container = document.getElementById('root');
 const root = createRoot(container);
+// Production
 axios.defaults.baseURL = 'https://mindson.onrender.com/api/';
+// Development
+// axios.defaults.baseURL = 'http://localhost:7000/api/';
 
 function Index() {
   const user = useSelector((store) => store.auth.token);

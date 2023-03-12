@@ -9,6 +9,7 @@ import ExploreIcon from '@mui/icons-material/Explore';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import GroupIcon from '@mui/icons-material/Group';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -57,20 +58,23 @@ export const MainListItems = () => {
           </ListItemButton>
         </Link>
       )}
-      <Link
-        to='/dashboard/explore'
-        style={{ textDecoration: 'none', color: 'GrayText' }}
-      >
-        <ListItemButton>
-          <ListItemIcon>
-            <ExploreIcon
-              style={{ fill: '#6d54de', textAlign: 'center' }}
-              fontSize='large'
-            />
-          </ListItemIcon>
-          <ListItemText primary='Explore' />
-        </ListItemButton>
-      </Link>
+      {auth.role == 'instructor' && (
+        <Link
+          to='/dashboard/balance'
+          style={{ textDecoration: 'none', color: 'GrayText' }}
+        >
+          <ListItemButton>
+            <ListItemIcon>
+              <AttachMoneyIcon
+                style={{ fill: '#6d54de', textAlign: 'center' }}
+                fontSize='large'
+              />
+            </ListItemIcon>
+            <ListItemText primary='Balance' />
+          </ListItemButton>
+        </Link>
+      )}
+
       <Link
         to='/dashboard/profile'
         style={{ textDecoration: 'none', color: 'GrayText' }}
