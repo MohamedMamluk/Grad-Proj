@@ -32,6 +32,17 @@ export const MainListItems = () => {
           <ListItemText primary='Main' />
         </ListItemButton>
       </Link>
+      <Link
+        to='/dashboard/explore'
+        style={{ textDecoration: 'none', color: 'GrayText' }}
+      >
+        <ListItemButton>
+          <ListItemIcon>
+            <ExploreIcon style={{ fill: '#6d54de' }} fontSize='large' />
+          </ListItemIcon>
+          <ListItemText primary='Explore' />
+        </ListItemButton>
+      </Link>
       {(auth.role == 'admin' || auth.role == 'instructor') && (
         <Link
           to='/dashboard/courses-created'
@@ -58,7 +69,7 @@ export const MainListItems = () => {
           </ListItemButton>
         </Link>
       )}
-      {auth.role == 'instructor' && (
+      {(auth.role == 'instructor' || auth.role == 'admin') && (
         <Link
           to='/dashboard/balance'
           style={{ textDecoration: 'none', color: 'GrayText' }}
