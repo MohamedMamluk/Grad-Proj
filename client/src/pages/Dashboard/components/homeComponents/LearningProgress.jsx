@@ -44,7 +44,7 @@ const LearningProgress = (props) => {
       current.lessons.map((lesson)=>{
         if(!lesson.isFinished){
           courseComplete=false;
-          console.log("inside loop",courseComplete);
+          // console.log("inside loop",courseComplete);
         }
 
       })

@@ -20,6 +20,7 @@ import SingleCourse from './pages/Dashboard/pages/course-page/Course';
 import Lesson from './pages/Dashboard/pages/lesson-pages/Lesson';
 import SearchPage from './pages/SearchPage';
 import Roadmap from './components/Roadmaps/Roadmap';
+import LessonHome from './pages/Dashboard/pages/lesson-pages/LessonHome';
 
 function App() {
   return (
@@ -41,7 +42,8 @@ function App() {
           <Route path='courses-created/update/:id' element={<UpdateCourse />} />
           <Route path='courses-created' element={<CoursesCreated />} />
           <Route path='users' element={<Users />} />
-          <Route path='courses/:id' element={<SingleCourse />} />
+          <Route exact path='courses/:id' element={<SingleCourse />} />
+          <Route path='courses/:id/lesson' element={<LessonHome />} />
           <Route path='courses/:id/lesson/:id' element={<Lesson />} />
         </Route>
       </Route>

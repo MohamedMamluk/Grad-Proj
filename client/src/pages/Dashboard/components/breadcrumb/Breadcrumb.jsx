@@ -2,7 +2,7 @@ import * as React from 'react';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
+import { Link as RouterLink, useLocation, useParams } from 'react-router-dom';
 function LinkRouter(props) {
   return (
     <Link
@@ -21,6 +21,7 @@ function LinkRouter(props) {
 export default function Breadcrumb() {
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
+  // console.log(pathnames)
 
   return (
     <Breadcrumbs

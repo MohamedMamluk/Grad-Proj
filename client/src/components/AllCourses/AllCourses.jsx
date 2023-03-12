@@ -13,7 +13,6 @@ const AllCourses = () => {
   useEffect(() => {
     axios.get('/course').then((res) => {
       setCourse(res.data);
-      console.log(res.data);
     });
   }, []);
   if (!courses) {
@@ -22,13 +21,11 @@ const AllCourses = () => {
   return (
     <div id='coursesContainer' className='container'>
       {courses.map((course) => {
-        // console.log(course)
         return (
           <div key={course._id} className='card p-3 m-2 '>
             <div id='card-image__container'>
               <img src={course.image} id='card-image' alt='...' />
             </div>
-            {/* {course.name} */}
             <div className='card-body'>
               <p className='card-text' title={course.name}>
                 {course.name.length > 50
