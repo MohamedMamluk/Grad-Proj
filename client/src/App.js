@@ -25,6 +25,8 @@ import Balance from './pages/Dashboard/pages/balance/Balance';
 import ConfirmEmail from './pages/ConfirmEmail';
 import ResetPassword from './pages/ResetPassword';
 
+
+
 function App() {
   return (
     <Routes>
