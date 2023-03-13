@@ -19,7 +19,6 @@ import {
   InputAdornment,
   InputLabel,
 } from '@mui/material';
-import FloatingBalloons from './FloatingBallons/floatingBalloons';
 
 function Copyright(props) {
   return (
@@ -66,7 +65,7 @@ const ResetPassword = () => {
         setStatus('success');
         setTimeout(() => {
           navigate('/');
-        }, 10000);
+        }, 3000);
       })
       .catch((err) => console.log(err));
   };
@@ -282,7 +281,6 @@ const ResetPassword = () => {
         <div>
           <h1>CHANGED YA 3M</h1>
           <p>Please wait while we redirect you</p>
-          <FloatingBalloons/>
         </div>
       )}
     </div>
