@@ -271,6 +271,14 @@ export default function SignIn() {
                 >
                   Sign In
                 </Button>
+                <Link 
+                    to='/reset'
+                    variant='body2'
+                    // onClick={() => nagigateToOtp()}
+                    className="text-gray-800"
+                  >
+                    Forgot password?
+                </Link>
                 <Grid container>
                   <Grid item>
                     <Link to='/register' variant='body2'>
