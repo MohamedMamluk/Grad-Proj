@@ -2,6 +2,8 @@ import React,{ useState, useEffect} from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from 'axios';
+import Video from "../../../../components/lessonTypes/Video";
+import LessonNav from "../../../../components/lessonNav/lessonNav";
 
 
 const Lesson = () => {
@@ -21,7 +23,8 @@ const Lesson = () => {
     // }, [id]);
     return (
         <>
-          <h1>efta7 ana el lesson</h1>
+          <Video videoLink={'https://www.youtube.com/watch?v=5E6zLn-whtE'}/>
+          <LessonNav />
         </>
     );
 };

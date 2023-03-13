@@ -1,6 +1,6 @@
 const { StatusCodes } = require('http-status-codes');
 
-const checkUserExists = (...models) => {
+const resetPasswordExist = (...models) => {
   return async (req, res, next) => {
     // Get the user data from the request body
     const { email } = req.body;
@@ -12,15 +12,15 @@ const checkUserExists = (...models) => {
       //If user is found just exit from the loop
       if (user) {
         userExists = true;
-        req.body.user = user;
+        req.user = user;
         break;
       }
     }
 
     // If a user exists, return an error
-    if (userExists) {
+    if (!userExists) {
       return res.status(StatusCodes.BAD_REQUEST).json({
-        message: 'User already exists.',
+        message: "User doesn't exist",
       });
     }
 
@@ -29,4 +29,4 @@ const checkUserExists = (...models) => {
   };
 };
 
-module.exports = checkUserExists;
+module.exports = resetPasswordExist;

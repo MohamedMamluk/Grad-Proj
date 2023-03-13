@@ -1,5 +1,5 @@
 const instructorService = require('./instructor.service');
-
+const bcrypt = require('bcrypt');
 module.exports = {
   getAllInstructors: async (req, res) => {
     try {
@@ -34,6 +34,10 @@ module.exports = {
 
   updateInstructor: async (req, res) => {
     try {
+      if (req.body.password) {
+        const salt = await bcrypt.genSalt(10);
+        req.body.password = await bcrypt.hash(req.body.password, salt);
+      }
       var _id = req.params.id;
       var InstructorInfo = req.body;
       const updatedInstructor = await instructorService.updateInstructor(
