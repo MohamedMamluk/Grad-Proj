@@ -13,6 +13,8 @@ import { useDispatch } from 'react-redux';
 import { Button, Grid, TextField } from '@mui/material';
 import axios from 'axios';
 import { setUserData } from '../../../features/auth/authSlice';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const InstructorProfile = ({ userData }) => {
   const dispatch = useDispatch();
@@ -38,6 +40,7 @@ const InstructorProfile = ({ userData }) => {
         });
       });
   };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

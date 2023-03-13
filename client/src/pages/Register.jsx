@@ -24,7 +24,8 @@ import FormLabel from '@mui/material/FormLabel';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function Copyright(props) {
   return (
     <Typography
@@ -69,15 +70,22 @@ export default function Register() {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios.post('/auth/register', data).then(() => {
+      toast.success('Successfully Registered');
       navigate('/login');
+      
       //console.log(res.data);
-    });
+    }).catch(()=>
+    toast.error("Error in Register"))
+       
+    
   };
   var emaill = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
 
   return (
+
     <ThemeProvider theme={theme}>
+      <ToastContainer></ToastContainer>
       <motion.div
         key={'MM'}
         animate={{
