@@ -33,7 +33,7 @@ export const MainListItems = () => {
         </ListItemButton>
       </Link>
       <Link
-        to='/dashboard/explore'
+        to='/dashboard/courses'
         style={{ textDecoration: 'none', color: 'GrayText' }}
       >
         <ListItemButton>

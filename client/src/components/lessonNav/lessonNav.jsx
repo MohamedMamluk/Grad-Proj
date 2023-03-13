@@ -14,11 +14,13 @@ import Paper from '@mui/material/Paper';
 const LessonNav = (courseId, lessonIds) => {
   const courseID = courseId.courseId;
   const lessonId = courseId.lessonArr;
+  console.log(courseID, lessonId)
   const [lessons, setLessons] = useState([]);
   useEffect(() => {
     const getLesson = async (lesson) => {
       const lessonData = await lessonId.forEach((id) => {
         const _id = id._id;
+        console.log(_id)
         axios.get('/lesson/' + _id).then((res) => {
           setLessons((previous) => [...previous, res.data]);
         });

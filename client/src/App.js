@@ -37,7 +37,7 @@ function App() {
       <Route element={<AuthWrapper />}>
         <Route path='/dashboard' element={<Layout />}>
           <Route index element={<DashboardHome />} />
-          <Route path='explore' element={<Explore />} />
+          <Route path='courses' element={<Explore />} />
           <Route path='profile' element={<Profile />} />
           <Route path='balance' element={<Balance />} />
           <Route path='courses-created/new' element={<CreateCourse />} />

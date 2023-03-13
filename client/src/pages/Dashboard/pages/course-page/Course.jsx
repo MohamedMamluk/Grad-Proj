@@ -14,6 +14,7 @@ import { Container } from '@mui/system';
 import Rating from '@mui/material/Rating';
 import { useSelector } from 'react-redux';
 import LessonNav from '../../../../components/lessonNav/lessonNav';
+import Loader from '../../../../components/loading/loading';
 
 const Course = () => {
   const { id } = useParams();
@@ -31,11 +32,14 @@ const Course = () => {
   }, [id]);
 
   if (!courseInfo.courseLessons) {
-    return <p>Loading</p>;
+    return (<>
+    <Loader/>
+    </>
+    );
   }
   return (
     <>
-      <Card sx={{ maxWidth: 1000, maxHeight: 1000 }}>
+      <Card sx={{ maxWidth: 1000, maxHeight: 1000 }} key = {{id}}>
         <CardMedia
           sx={{ maxHeight: 500 }}
           image={course.image}

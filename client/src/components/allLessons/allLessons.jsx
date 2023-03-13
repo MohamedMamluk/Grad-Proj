@@ -20,39 +20,45 @@ const AllLessons = (lessonIdArr) => {
             //     });
             // });
             const lessonData = await axios.all(
-                lessonIds.map(async (lesson)=>{
+                lessonIds.map(async (lesson) => {
                     const l = await axios.get('/lesson/' + lesson._id);
                     return l.data
                 })
-                )
+            )
             setLessons(lessonData)
         };
         getLesson();
     }, [lessonIdArr]);
-if (lessons.length == 0){
-    return (<h1>Loading</h1>)
-}
+    if (lessons.length == 0) {
+        return (<h1>Loading</h1>)
+    }
     return (
-        <div style={{ display: 'flex', flexWrap:'wrap'}} id='coursesContainer' className='container'>
-            {lessons.map((lesson) => {return(
-                <Card key={lesson._id} sx={{ width:"100%", margin:5}}>
-                    <CardContent>
-                        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                            {lesson.type}
-                        </Typography>
-                        <Typography variant="h5" component="div">
-                        {lesson.title}
-                        </Typography>
-                        <Typography variant="body2" sx={{padding:2}}>
-                            <br />
-                            {lesson.description}
-                        </Typography> 
-                    </CardContent>
-                    <CardActions>
-                        <Button size="small">Start Lesson</Button>
-                    </CardActions>
-                </Card>
-            )})}
+        <div style={{ display: 'flex', flexWrap: 'wrap' }} id='coursesContainer' className='container'>
+            {lessons.map((lesson) => {
+                return (
+                    <Card key={lesson._id} sx={{ width: "100%", margin: 5 }}>
+                        <CardContent>
+                            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                                {lesson.type}
+                            </Typography>
+                            <Typography variant="h5" component="div">
+                                {lesson.title}
+                            </Typography>
+                            <Typography variant="body2">
+                                <br />
+                                {lesson.description}
+                            </Typography>
+                        </CardContent>
+                        <CardActions>
+                            <Button size="small" onClick={() => {
+                                
+                            }}
+                            >
+                                Start Lesson</Button>
+                        </CardActions>
+                    </Card>
+                )
+            })}
         </div>
     );
 };
