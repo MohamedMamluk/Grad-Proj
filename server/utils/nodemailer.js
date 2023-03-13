@@ -308,8 +308,6 @@ const sendConfirmationEmail = async (name, email, confirmationCode) => {
     .catch((err) => console.log(err));
 };
 const sendResetPassword = async (email, OTP) => {
-  console.log('Check');
-  console.log(OTP);
   transport
     .sendMail({
       from: 'MindsOn',
