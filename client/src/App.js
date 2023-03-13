@@ -22,6 +22,8 @@ import SearchPage from './pages/SearchPage';
 import Roadmap from './components/Roadmaps/Roadmap';
 import LessonHome from './pages/Dashboard/pages/lesson-pages/LessonHome';
 import Balance from './pages/Dashboard/pages/balance/Balance';
+import ConfirmEmail from './pages/ConfirmEmail';
+import ResetPassword from './pages/ResetPassword';
 
 function App() {
   return (
@@ -34,6 +36,8 @@ function App() {
       <Route path='enrolled' element={<Enrolled />} />
       <Route path='search' element={<SearchPage />} />
       <Route path='roadmap' element={<Roadmap />} />
+      <Route path='confirm/:code' element={<ConfirmEmail />} />
+      <Route path='reset' element={<ResetPassword />} />
       <Route element={<AuthWrapper />}>
         <Route path='/dashboard' element={<Layout />}>
           <Route index element={<DashboardHome />} />

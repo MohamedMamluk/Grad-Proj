@@ -18,6 +18,11 @@ const adminSchema = new mongoose.Schema(
     image: {
       type: String,
     },
+    status: {
+      type: String,
+      enum: ['Pending', 'Active'],
+      default: 'Active',
+    },
   },
   { timestamps: true }
 );
@@ -25,15 +30,13 @@ const adminSchema = new mongoose.Schema(
 adminSchema.pre('save', async function () {
   try {
     const salt = await bcrypt.genSalt(10);
-    const hashed = await bcrypt.hash(this.password, salt);
+    const hashed = bcrypt.hashSync(this.password, salt);
     this.password = hashed;
   } catch (error) {
-    //console.log(error);
+    console.log(error);
   }
 });
-adminSchema.methods.comparePassword = async function (
-  USER_PASSWORD_FROM_FRONT
-) {
+adminSchema.methods.comparePassword = function (USER_PASSWORD_FROM_FRONT) {
   const isValid = bcrypt.compareSync(USER_PASSWORD_FROM_FRONT, this.password);
   return isValid;
 };
