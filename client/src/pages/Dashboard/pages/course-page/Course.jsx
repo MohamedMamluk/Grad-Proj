@@ -32,14 +32,13 @@ const Course = () => {
   }, [id]);
 
   if (!courseInfo.courseLessons) {
-    return (<>
-    <Loader/>
-    </>
-    );
+    return(<div style={{position: 'absolute', left: '10%', top: '50%'}}>
+    <Loader></Loader>
+    </div>);
   }
   return (
     <>
-      <Card sx={{ maxWidth: 1000, maxHeight: 1000 }} key = {{id}}>
+      <Card sx={{ maxWidth: 1000, maxHeight: 1000 }} >
         <CardMedia
           sx={{ maxHeight: 500 }}
           image={course.image}
