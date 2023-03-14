@@ -38,7 +38,9 @@ const DashboardHome = () => {
       {/* <Video videoLink={'https://www.youtube.com/watch?v=YGhfy3om9Ok'} /> */}
       {/* <LineChart /> */}
       <Grid container spacing={4} padding={5}>
-        {user.role == 'instructor' && <LineChart />}
+        {user.role == 'instructor' && user.userData.balance.length > 0 && (
+          <LineChart />
+        )}
 
         {user.role == 'student' && (
           <div id='progress_container'>
