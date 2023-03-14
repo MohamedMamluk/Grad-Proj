@@ -52,13 +52,16 @@ function HeroHome() {
         <div className='relative pt-32 pb-10 md:pt-40 md:pb-16'>
           {/* Section header */}
           <div className='max-w-3xl mx-auto text-center pb-12 md:pb-16'>
-            <h1 className='h1 mb-4 flex flex-col' data-aos='fade-up'>
+            <h1
+              className='h1 mb-4 flex flex-col text-gray-700'
+              data-aos='fade-up'
+            >
               <span>Anytime, Anywhere</span>
               <span>
                 Learn on <span className='text-purple-500'> MindsOn</span>
               </span>
             </h1>
-            <h5 className='text-md text-[#edeafb]'>
+            <h5 className='text-md text-gray-400'>
               “Success is no accident. It is hard work, perseverance, learning,
               studying, sacrifice and most of all, love of what you are doing or
               learning to do

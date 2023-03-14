@@ -69,7 +69,7 @@ export const MainListItems = () => {
           </ListItemButton>
         </Link>
       )}
-      {(auth.role == 'instructor' || auth.role == 'admin') && (
+      {auth.role == 'instructor' && (
         <Link
           to='/dashboard/balance'
           style={{ textDecoration: 'none', color: 'GrayText' }}

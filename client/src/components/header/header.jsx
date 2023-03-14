@@ -150,7 +150,7 @@ const Header = () => {
             </Menu>
           </Box>
           <img
-            src='logo-04.png'
+            src={offset > 0 ? 'logo-04.png' : 'logo-03.png'}
             className='-top-1 relative'
             style={{
               display: { xs: 'none', md: 'flex' },
@@ -164,10 +164,16 @@ const Header = () => {
             sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
             style={{ gap: '10px' }}
           >
-            <Link to='/' className={`navLink`}>
+            <Link
+              to='/'
+              className={`navLink ${offset > 0 ? 'text-white' : 'text-black'}`}
+            >
               Home
             </Link>
-            <Link to='/courses' className='navLink'>
+            <Link
+              to='/courses'
+              className={`navLink ${offset > 0 ? 'text-white' : 'text-black'}`}
+            >
               Courses
             </Link>
           </Box>
@@ -175,7 +181,9 @@ const Header = () => {
           <div
             style={{ padding: '10px' }}
             id='search__wrapper'
-            className='hidden md:flex'
+            className={`!border hidden md:flex ${
+              offset > 0 ? 'border-white' : 'border-black'
+            }`}
           >
             <input
               type='text'
@@ -186,6 +194,7 @@ const Header = () => {
                 borderTopLeftRadius: '10px',
                 borderBottomLeftRadius: '10px',
               }}
+              className={` ${offset > 0 ? 'text-white' : 'text-black'}`}
               onChange={(e) => setSearch(e.target.value)}
             />
             <Button
@@ -200,7 +209,9 @@ const Header = () => {
                 navigate('/search?' + search);
               }}
             >
-              <SearchIcon />
+              <SearchIcon
+                className={`${offset > 0 ? 'text-white' : 'text-black'}`}
+              />
             </Button>
           </div>
 
@@ -212,12 +223,22 @@ const Header = () => {
                 width: 'auto',
               }}
             >
-              <Link to='/login' className='navLink'>
+              <Link
+                to='/login'
+                className={`navLink ${
+                  offset > 0 ? 'text-white' : 'text-black'
+                }`}
+              >
                 login
               </Link>
             </Button>
             <Button sx={{ textTransform: 'capitalize', padding: '0px' }}>
-              <Link to='/register' className='navLink'>
+              <Link
+                to='/register'
+                className={`navLink ${
+                  offset > 0 ? 'text-white' : 'text-black'
+                }`}
+              >
                 /Register
               </Link>
             </Button>

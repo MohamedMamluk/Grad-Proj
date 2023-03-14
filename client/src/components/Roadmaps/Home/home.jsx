@@ -31,11 +31,11 @@ const Roadmaps = () => {
         <div className=''></div>
       </section>
 
-      <div className='row'>
+      <div className='row '>
         <h1>Road maps </h1>
         <div className='container' id='RoadMapDiv'>
           <button
-            className='w-90     mx-2 my-2'
+            className='w-90 text-white !border-2 border-black bg-purple-500     mx-2 my-2'
             id='btnRoad'
             onClick={JavaGame}
           >
@@ -43,7 +43,7 @@ const Roadmaps = () => {
             Java Game Programming{' '}
           </button>
           <button
-            className='w-90   mx-2 my-2'
+            className='w-90 text-white !border-2 border-black bg-purple-500   mx-2 my-2'
             id='btnRoad'
             onClick={FrontRoadMap}
           >
@@ -51,21 +51,21 @@ const Roadmaps = () => {
             Server Management
           </button>
           <button
-            className='w-90   mx-2 my-2'
+            className='w-90 text-white !border-2 border-black bg-purple-500   mx-2 my-2'
             id='btnRoad'
             onClick={BackendRoadMap}
           >
             Back-end Development{' '}
           </button>
           <button
-            className='w-90   mx-2 my-2'
+            className='w-90 text-white !border-2 border-black bg-purple-500   mx-2 my-2'
             id='btnRoad'
             onClick={AndroidRoadMap}
           >
             Android Development
           </button>
           <button
-            className='w-90    mx-2 my-2'
+            className='w-90 text-white !border-2 border-black bg-purple-500    mx-2 my-2'
             id='btnRoad'
             onClick={IosRoadMap}
           >
@@ -73,7 +73,7 @@ const Roadmaps = () => {
             Ios Development{' '}
           </button>
           <button
-            className='w-90    mx-2 my-2'
+            className='w-90  text-white !border-2 border-black bg-purple-500   mx-2 my-2'
             id='btnRoad'
             onClick={DevopsRoadMap}
           >

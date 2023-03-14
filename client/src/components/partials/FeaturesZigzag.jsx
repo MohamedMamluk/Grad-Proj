@@ -13,7 +13,9 @@ function FeaturesZigzag() {
             <div className='inline-flex text-sm font-semibold py-1 px-3 m-2 text-green-600 bg-green-200 rounded-full mb-4'>
               Reach goals that matter
             </div>
-            <h1 className='h2 mb-4'>One website, unlimited courses</h1>
+            <h1 className='h2 mb-4 text-black'>
+              One website, unlimited courses
+            </h1>
             <p className='text-xl text-gray-400'>
               MindsOn has courses for almost everything
             </p>
@@ -45,7 +47,9 @@ function FeaturesZigzag() {
                   <div className='font-architects-daughter text-xl text-purple-600 mb-2'>
                     For students
                   </div>
-                  <h3 className='h3 mb-3'>Keep track of your progress</h3>
+                  <h3 className='h3 mb-3 text-black'>
+                    Keep track of your progress
+                  </h3>
                   <p className='text-xl text-gray-400 mb-4'>
                     Get detailed information about all your progress in all
                     course, and the progress in the latest course that you
@@ -79,7 +83,9 @@ function FeaturesZigzag() {
                   <div className='font-architects-daughter text-xl text-purple-600 mb-2'>
                     For Instructors
                   </div>
-                  <h3 className='h3 mb-3'>Track your earnings and views</h3>
+                  <h3 className='h3 mb-3 text-black'>
+                    Track your earnings and views
+                  </h3>
                   <p className='text-xl text-gray-400 mb-4'>
                     Knowing how your content is performing is important to us as
                     it is important to you, get detailed information with graphs
