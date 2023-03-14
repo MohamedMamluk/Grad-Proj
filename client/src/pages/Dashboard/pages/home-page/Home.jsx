@@ -33,7 +33,9 @@ const DashboardHome = () => {
     <div>
       <HomeHeader user={user} />
       <Grid container spacing={4} padding={5}>
-        {user.role == 'instructor' && <LineChart />}
+        {user.role == 'instructor' && user.userData.balance.length > 0 && (
+          <LineChart />
+        )}
 
         {user.role == 'student' && (
 
@@ -43,7 +45,7 @@ const DashboardHome = () => {
           </div>
         )}
         {user.role == 'admin' && (
-          <div>
+          <div className='flex w-full my-12'>
             <PieChart />
             <BarChart />
           </div>
