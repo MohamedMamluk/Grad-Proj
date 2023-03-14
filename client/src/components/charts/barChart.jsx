@@ -55,8 +55,8 @@ const BarChart = () => {
   };
   const options = {};
   return (
-    <div>
-      <h1>Bar char</h1>
+    <div className='w-1/2'>
+      {/* <h1>Bar char</h1> */}
       <div>
         <Bar data={data} options={options}></Bar>
       </div>

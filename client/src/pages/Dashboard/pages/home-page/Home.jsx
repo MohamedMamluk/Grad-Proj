@@ -49,7 +49,7 @@ const DashboardHome = () => {
           </div>
         )}
         {user.role == 'admin' && (
-          <div>
+          <div className='flex w-full my-12'>
             <PieChart />
             <BarChart />
           </div>
