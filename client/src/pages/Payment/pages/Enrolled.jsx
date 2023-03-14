@@ -32,12 +32,10 @@ const Enrolled = () => {
     };
     getEnrolled();
   }, [token]);
-  if (!enrolledMessage) {
-    return <h1>Loading...</h1>;
-  }
+
   return (
     <div>
-      <h1>{enrolledMessage} 🎉🎉</h1>
+      <h1>Enrolled 🎉🎉</h1>
       <p>Please wait while we redirect you...</p>
     </div>
   );
