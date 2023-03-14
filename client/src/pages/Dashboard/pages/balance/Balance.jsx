@@ -49,6 +49,7 @@ const Balance = () => {
           </div>
         ))}
       </div> */}
+
       <BalanceTable balance={user.userData.balance} courseData={courses} />
     </div>
   );

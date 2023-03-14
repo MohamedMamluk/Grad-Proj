@@ -6,7 +6,7 @@ function FeaturesBlocks() {
       <div className='max-w-6xl mx-auto px-4 sm:px-6'>
         <div className='py-12 md:py-20'>
           {/* Section header */}
-          <div className='max-w-3xl mx-auto text-center pb-12 md:pb-20'>
+          <div className='max-w-3xl mx-auto text-center pb-12 md:pb-20 text-black'>
             <h2 className='h2 mb-4'>Why pick MindsOn?</h2>
           </div>
 
@@ -47,7 +47,7 @@ function FeaturesBlocks() {
                   strokeWidth='2'
                 />
               </svg>
-              <h4 className='h4 mb-2'>Educational Standards</h4>
+              <h4 className='h4 mb-2 text-black'>Educational Standards</h4>
               <p className='text-lg text-gray-400 text-center'>
                 MindsOn has the latest educational standards, easily accessible
                 and interesting.
@@ -87,7 +87,7 @@ function FeaturesBlocks() {
                   strokeLinecap='square'
                 />
               </svg>
-              <h4 className='h4 mb-2'>Study System</h4>
+              <h4 className='h4 mb-2 text-black'>Study System</h4>
               <p className='text-lg text-gray-400 text-center'>
                 Our material is very flexible. You can study at any time of the
                 year.
@@ -128,7 +128,7 @@ function FeaturesBlocks() {
                   />
                 </g>
               </svg>
-              <h4 className='h4 mb-2'>Classes & Scheduling</h4>
+              <h4 className='h4 mb-2 text-black'>Classes & Scheduling</h4>
               <p className='text-lg text-gray-400 text-center'>
                 You can choose the optimal time for yourself, morning or
                 afternoon. It doesn't matter

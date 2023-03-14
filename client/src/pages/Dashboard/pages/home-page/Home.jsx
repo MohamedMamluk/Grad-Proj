@@ -33,16 +33,21 @@ const DashboardHome = () => {
     <div>
       <HomeHeader user={user} />
       <Grid container spacing={4} padding={5}>
-        {user.userData.courses && (
+        {user.role == 'instructor' && <LineChart />}
+
+        {user.role == 'student' && (
+
           <div id='progress_container'>
             <LearningProgress />
             <CourseProgress />
           </div>
         )}
-        <div>
-          <PieChart />
-          <BarChart />
-        </div>
+        {user.role == 'admin' && (
+          <div>
+            <PieChart />
+            <BarChart />
+          </div>
+        )}
       </Grid>
       <div>
         <TheTOdo />

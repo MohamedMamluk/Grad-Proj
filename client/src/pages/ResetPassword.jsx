@@ -22,10 +22,14 @@ import {
 
 function Copyright(props) {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+    <Typography
+      variant='body2'
+      color='text.secondary'
+      align='center'
+      {...props}
+    >
       {'Copyright © '}
-        MindsOn {' '}
-      {new Date().getFullYear()}
+      MindsOn {new Date().getFullYear()}
       {'.'}
     </Typography>
   );
@@ -82,10 +86,9 @@ const ResetPassword = () => {
   };
 
   return (
-    <div>
+    <div className=''>
       {status == 'email' && (
         <div>
-          
           {/* <div>
             <input
               type='email'
@@ -96,40 +99,43 @@ const ResetPassword = () => {
             <button onClick={sendEmail}>Send</button>
           </div> */}
           <ThemeProvider theme={theme}>
-        <Container component="main" maxWidth="xs">
-        <CssBaseline />
-          <Box sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}>
-          <h1>Enter your email...</h1>
-          <TextField
-              margin="normal"
-              required
-              fullWidth
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-              />
-              <Button
-              type="submit"
-              fullWidth
-              onClick={sendEmail}
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign In
-            </Button>
+            <Container component='main' maxWidth='xs'>
+              <CssBaseline />
+              <Box
+                sx={{
+                  marginTop: 8,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                }}
+              >
+                <h1>Enter your email...</h1>
+                <TextField
+                  margin='normal'
+                  required
+                  fullWidth
+                  value={email}
+                  sx={{ color: 'white !important' }}
+                  onChange={(e) => setEmail(e.target.value)}
+                  id='email'
+                  label='Email Address'
+                  name='email'
+                  autoComplete='email'
+                  autoFocus
+                />
+                <Button
+                  type='submit'
+                  fullWidth
+                  onClick={sendEmail}
+                  variant='contained'
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Sign In
+                </Button>
               </Box>
               <Copyright sx={{ mt: 8, mb: 4 }} />
-      </Container>
-    </ThemeProvider>
+            </Container>
+          </ThemeProvider>
         </div>
       )}
       {status == 'otp' && (
@@ -146,40 +152,45 @@ const ResetPassword = () => {
             <button onClick={verifyOTP}>Send</button>
           </div> */}
           <ThemeProvider theme={theme}>
-        <Container component="main" maxWidth="xs">
-        <CssBaseline />
-          <Box sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}>
-          <h5>Enter your verification code that we send you, please check your email...</h5>
-          <TextField
-              margin="normal"
-              required
-              fullWidth
-              value={OTPinput}
-              onChange={(e) => setOTP(e.target.value)}
-              id="OTP"
-              label="verification code"
-              name="OTP"
-              autoComplete="OTP"
-              autoFocus
-              />
-              <Button
-              type="submit"
-              fullWidth
-              onClick={verifyOTP}
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Send Code.
-            </Button>
+            <Container component='main' maxWidth='xs'>
+              <CssBaseline />
+              <Box
+                sx={{
+                  marginTop: 8,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                }}
+              >
+                <h5>
+                  Enter your verification code that we send you, please check
+                  your email...
+                </h5>
+                <TextField
+                  margin='normal'
+                  required
+                  fullWidth
+                  value={OTPinput}
+                  onChange={(e) => setOTP(e.target.value)}
+                  id='OTP'
+                  label='verification code'
+                  name='OTP'
+                  autoComplete='OTP'
+                  autoFocus
+                />
+                <Button
+                  type='submit'
+                  fullWidth
+                  onClick={verifyOTP}
+                  variant='contained'
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Send Code.
+                </Button>
               </Box>
               <Copyright sx={{ mt: 8, mb: 4 }} />
-      </Container>
-    </ThemeProvider>
+            </Container>
+          </ThemeProvider>
           {/* <OTPresetPassword /> */}
         </div>
       )}
@@ -196,16 +207,18 @@ const ResetPassword = () => {
             <button onClick={changePassword}>Send</button>
           </div> */}
           <ThemeProvider theme={theme}>
-        <Container component="main" maxWidth="xs">
-        <CssBaseline />
-          <Box sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}>
-          <h5>Enter your new Password</h5>
-          <FormControl
+            <Container component='main' maxWidth='xs'>
+              <CssBaseline />
+              <Box
+                sx={{
+                  marginTop: 8,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                }}
+              >
+                <h5>Enter your new Password</h5>
+                <FormControl
                   sx={{ m: 1, width: '100%' }}
                   variant='outlined'
                   value={password}
@@ -259,22 +272,22 @@ const ResetPassword = () => {
                     }
                   />
                 </FormControl>
-              {password!==confirmPassword&&<div style={{color:'red'}}>
-                not matching password....
-                </div>}
-              <Button
-              type="submit"
-              fullWidth
-              onClick={changePassword}
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Change Password...
-            </Button>
+                {password !== confirmPassword && (
+                  <div style={{ color: 'red' }}>not matching password....</div>
+                )}
+                <Button
+                  type='submit'
+                  fullWidth
+                  onClick={changePassword}
+                  variant='contained'
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Change Password...
+                </Button>
               </Box>
               <Copyright sx={{ mt: 8, mb: 4 }} />
-      </Container>
-    </ThemeProvider>
+            </Container>
+          </ThemeProvider>
         </div>
       )}
       {status == 'success' && (

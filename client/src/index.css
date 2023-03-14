@@ -4,10 +4,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap');
 body {
   font-family: 'Manrope', sans-serif;
-  --tw-bg-opacity: 1 !important;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity)) !important;
-  --tw-text-opacity: 1 !important;
-  color: rgb(217 227 234 / var(--tw-text-opacity)) !important;
+  /* --tw-bg-opacity: 1 !important;
+  background-color: rgb(17 24 39 / var(--tw-bg-opacity)) !important; */
+  /* --tw-text-opacity: 1 !important;
+  color: rgb(217 227 234 / var(--tw-text-opacity)) !important; */
 }
 /* * {
   border: 1px solid red;
