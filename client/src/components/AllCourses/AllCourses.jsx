@@ -6,6 +6,7 @@ import { ListItemButton, ListItemText } from '@mui/material';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Loader from '../loading/loading';
 
 const AllCourses = () => {
   const [courses, setCourse] = useState(null);
@@ -16,7 +17,9 @@ const AllCourses = () => {
     });
   }, []);
   if (!courses) {
-    return <h1>loading</h1>;
+    return (<div style={{position: 'absolute', left: '10%', top: '70%',}}>
+    <Loader></Loader>
+    </div>);
   }
   return (
     <div id='coursesContainer' className='container'>
