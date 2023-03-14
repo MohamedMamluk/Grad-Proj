@@ -19,8 +19,8 @@ const LessonNav = ({courseId, lessonArr}) => {
   useEffect(() => {
     const getLesson = async (lesson) => {
       const lessonData = await lessonArr.forEach((id) => {
-        const _id = id._id;
-        // console.log(_id)
+        const _id = id.lessonId;
+        console.log(_id)
         axios.get('/lesson/' + _id).then((res) => {
           setLessons((previous) => [...previous, res.data]);
         });
