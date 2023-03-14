@@ -227,7 +227,7 @@ export default function SignIn() {
                   label='Password'
                   type='password'
                   id='password'
-                                      type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? 'text' : 'password'}
                     endAdornment={
                       <InputAdornment position='end'>
                         <IconButton
