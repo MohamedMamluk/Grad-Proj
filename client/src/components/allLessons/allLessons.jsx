@@ -13,16 +13,18 @@ const AllLessons = (lessonIdArr) => {
     const [lessons, setLessons] = useState([]);
     useEffect(() => {
         const getLesson = async (lesson) => {
+            console.log(lesson)
             const lessonData = await axios.all(
                 lessonIds.map(async (lesson) => {
-                    const l = await axios.get("/lesson/" + lesson._id);
+                    const l = await axios.get("/lesson/" + lesson.lessonId);
                     return l.data;
                 })
             );
             setLessons(lessonData);
         };
-        getLesson();
+        getLesson(lessonIds);
     }, [lessonIdArr]);
+    console.log(lessons);
     if (lessons.length == 0) {
         return (<div style={{position: 'absolute', left: '10%', top: '70%',}}>
         <Loader/>
