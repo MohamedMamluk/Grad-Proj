@@ -11,7 +11,7 @@ import BarChart from '../../../../components/charts/barChart';
 import TheTOdo from '../../components/to-do-list/TheTOdo';
 import Video from '../../../../components/lessonTypes/Video';
 import LineChart from '../../../../components/charts/LineChart';
-// import LineChart from '../../../components/LineChart';
+import Loader from '../../../../components/loading/loading';
 
 const DashboardHome = () => {
   const user = useSelector((state) => state.auth);
@@ -25,24 +25,20 @@ const DashboardHome = () => {
     });
   }, []);
   if (!user.userData) {
-    return <h1>loading...</h1>;
+    return (<div style={{position: 'absolute', left: '10%', top: '50%'}}>
+    <Loader/>
+    </div>);
   }
   return (
     <div>
       <HomeHeader user={user} />
-      {/* <Test
-        testLink={
-          'https://docs.google.com/forms/d/e/1FAIpQLSfA3e3p4wAf4ttHLwCPTZIE6Mg971GwME-OOPIQYYPiNSjlZQ/viewform?usp=sf_link'
-        }
-      /> */}
-      {/* <Video videoLink={'https://www.youtube.com/watch?v=YGhfy3om9Ok'} /> */}
-      {/* <LineChart /> */}
       <Grid container spacing={4} padding={5}>
         {user.role == 'instructor' && user.userData.balance.length > 0 && (
           <LineChart />
         )}
 
         {user.role == 'student' && (
+
           <div id='progress_container'>
             <LearningProgress />
             <CourseProgress />
