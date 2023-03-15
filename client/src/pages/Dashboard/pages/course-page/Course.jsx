@@ -32,6 +32,7 @@ const Course = () => {
   }, [id]);
 
   if (!courseInfo.courseLessons) {
+
     return(<div style={{position: 'absolute', left: '10%', top: '50%'}}>
     <Loader></Loader>
     </div>);
@@ -39,6 +40,7 @@ const Course = () => {
   return (
     <>
       <Card sx={{ maxWidth: 1000, maxHeight: 1000 }} >
+
         <CardMedia
           sx={{ maxHeight: 500 }}
           image={course.image}
@@ -73,38 +75,37 @@ const Course = () => {
             <SchoolIcon /> {courseInfo.level}
           </Typography>
           <br />
-          {!userData.userData.courses?.includes(id) && (
-            <Typography
-              sx={{ maxHeight: 70, maxWidth: 400 }}
-              variant='body2'
-              color='text.secondary'
-            >
-              Price: $ {course.cost}
-            </Typography>
-          )}
+          <Typography
+            sx={{ maxHeight: 70, maxWidth: 400 }}
+            variant='body2'
+            color='text.secondary'
+          >
+            Price: $ {course.cost}
+          </Typography>
         </CardContent>
         <CardActions>
-          {!userData.userData.courses?.includes(id) && (
-            <Button
-              size='small'
-              color='primary'
-              onClick={() => {
-                if (course.cost === 'free') {
-                  console.log('THIS IS FREE');
-                  axios.get('/enrollment/intent/' + id, {
-                    headers: {
-                      Authorization: 'Bearer ' + userData.token,
-                    },
-                  });
-                } else {
-                  console.log('THIS COURSE IS PAID');
-                  navigate('/payment/' + id);
-                }
-              }}
-            >
-              Enroll
-            </Button>
-          )}
+          {userData.role == 'student' &&
+            !userData.userData.courses?.includes(id) && (
+              <Button
+                size='small'
+                color='primary'
+                onClick={() => {
+                  if (course.cost === 'free') {
+                    console.log('THIS IS FREE');
+                    axios.get('/enrollment/intent/' + id, {
+                      headers: {
+                        Authorization: 'Bearer ' + userData.token,
+                      },
+                    });
+                  } else {
+                    console.log('THIS COURSE IS PAID');
+                    navigate('/payment/' + id);
+                  }
+                }}
+              >
+                Enroll
+              </Button>
+            )}
         </CardActions>
       </Card>
       <br />
@@ -170,8 +171,8 @@ const Course = () => {
           })}
         </Container>
       </Card>
-      <br/>
-      <LessonNav lessonArr={courseInfo.courseLessons} courseId={course._id}/>
+      <br />
+      <LessonNav lessonArr={courseInfo.courseLessons} courseId={course._id} />
     </>
   );
 };
