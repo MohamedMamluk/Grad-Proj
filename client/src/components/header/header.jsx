@@ -16,10 +16,12 @@ import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-const pages = ['Home', 'Login', 'Register', 'Courses'];
+const pages = ['Home', 'Courses'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const Header = () => {
+  const user = useSelector((store) => store.auth);
   let navigate = useNavigate();
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -147,6 +149,38 @@ const Header = () => {
                   </MenuItem>
                 </Link>
               ))}
+              {user.token ? (
+                <Link
+                  to={`/dashboard`}
+                  className='decoration-none'
+                  style={{ textDecoration: 'none' }}
+                >
+                  <MenuItem onClick={handleCloseNavMenu}>
+                    <Typography textAlign='center'>Dashboard</Typography>
+                  </MenuItem>
+                </Link>
+              ) : (
+                <>
+                  <Link
+                    to={`/login`}
+                    className='decoration-none'
+                    style={{ textDecoration: 'none' }}
+                  >
+                    <MenuItem onClick={handleCloseNavMenu}>
+                      <Typography textAlign='center'>Login</Typography>
+                    </MenuItem>
+                  </Link>
+                  <Link
+                    to={`/register`}
+                    className='decoration-none'
+                    style={{ textDecoration: 'none' }}
+                  >
+                    <MenuItem onClick={handleCloseNavMenu}>
+                      <Typography textAlign='center'>Register</Typography>
+                    </MenuItem>
+                  </Link>
+                </>
+              )}
             </Menu>
           </Box>
           <img
@@ -214,35 +248,55 @@ const Header = () => {
               />
             </Button>
           </div>
-
-          <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>
-            <Button
-              sx={{
-                textTransform: 'capitalize',
-                padding: '0px',
-                width: 'auto',
-              }}
-            >
-              <Link
-                to='/login'
-                className={`navLink ${
-                  offset > 0 ? 'text-white' : 'text-black'
-                }`}
+          {user.token ? (
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, mx: 2 }}>
+              <Button
+                sx={{
+                  textTransform: 'capitalize',
+                  padding: '0px',
+                  width: 'auto',
+                }}
               >
-                login
-              </Link>
-            </Button>
-            <Button sx={{ textTransform: 'capitalize', padding: '0px' }}>
-              <Link
-                to='/register'
-                className={`navLink ${
-                  offset > 0 ? 'text-white' : 'text-black'
-                }`}
+                <Link
+                  to='/dashboard'
+                  className={`navLink ${
+                    offset > 0 ? 'text-white' : 'text-black'
+                  }`}
+                >
+                  Dashboard
+                </Link>
+              </Button>
+            </Box>
+          ) : (
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>
+              <Button
+                sx={{
+                  textTransform: 'capitalize',
+                  padding: '0px',
+                  width: 'auto',
+                }}
               >
-                /Register
-              </Link>
-            </Button>
-          </Box>
+                <Link
+                  to='/login'
+                  className={`navLink ${
+                    offset > 0 ? 'text-white' : 'text-black'
+                  }`}
+                >
+                  login
+                </Link>
+              </Button>
+              <Button sx={{ textTransform: 'capitalize', padding: '0px' }}>
+                <Link
+                  to='/register'
+                  className={`navLink ${
+                    offset > 0 ? 'text-white' : 'text-black'
+                  }`}
+                >
+                  Register
+                </Link>
+              </Button>
+            </Box>
+          )}
         </Toolbar>
       </Container>
     </AppBar>
