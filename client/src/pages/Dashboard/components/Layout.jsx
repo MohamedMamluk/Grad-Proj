@@ -86,16 +86,11 @@ const mdTheme = createTheme();
 
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);
-  const navigate = useNavigate();
   const toggleDrawer = () => {
     setOpen(!open);
   };
   const user = useSelector((store) => store.auth);
-  useEffect(() => {
-    if (!user.id) {
-      navigate('/login');
-    }
-  }, []);
+
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex', color: 'black' }}>
