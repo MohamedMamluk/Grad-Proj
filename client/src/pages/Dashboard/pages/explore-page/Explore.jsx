@@ -5,7 +5,7 @@ import CouHeader from '../../../../components/CoursesHeader/CouHeader';
 const DashboardCourses = () => {
   return (
     <div>
-      <CouHeader />
+      {/* <CouHeader /> */}
 
       <AllCourses />
     </div>

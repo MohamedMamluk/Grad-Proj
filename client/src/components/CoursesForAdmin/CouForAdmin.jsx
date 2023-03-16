@@ -81,9 +81,17 @@ const CouForAdmin = () => {
         <div className='row d-flex justify-content-center'>
           {filteredCoursesflag.map((course) => (
             <div key={course._id} className='card p-3 m-2 col-md-5 col-xl-3'>
-              <img src={course.image} className='card-img-top' alt='...' />
+              <img
+                src={course.image}
+                className='card-img-top w-full h-48 object-cover'
+                alt='...'
+              />
               <div className='card-body'>
-                <p className='card-text'>{course.name}</p>
+                <p className='card-text'>
+                  {course.name.length > 35
+                    ? course.name.substring(0, 35) + '...'
+                    : course.name}
+                </p>
                 <p className='card-text'>{course.cost}</p>
                 <p className='card-text'>{course.Duration}</p>
                 <Button
