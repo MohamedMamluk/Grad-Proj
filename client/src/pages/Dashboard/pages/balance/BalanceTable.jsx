@@ -114,6 +114,7 @@ function EnhancedTableHead(props) {
             key={headCell.id}
             align={headCell.numeric ? 'right' : 'left'}
             padding={headCell.disablePadding ? 'none' : 'normal'}
+            sx={{ fontWeight: 'bold', fontSize: '1.1rem' }}
             sortDirection={orderBy === headCell.id ? order : false}
           >
             {headCell.label}
@@ -228,7 +229,7 @@ export default function BalanceTable({ courseData, balance }) {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelected = StudentData.map((n) => n._id);
+      const newSelected = StudentData.map((n) => n.name);
       setSelected(newSelected);
       return;
     }
@@ -297,15 +298,19 @@ export default function BalanceTable({ courseData, balance }) {
                 {stableSort(courseData, getComparator(order, orderBy))
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((course, index) => {
-                    const isItemSelected = isSelected(course.name);
+                    const isItemSelected = isSelected(index);
                     const labelId = `enhanced-table-checkbox-${index}`;
 
                     return (
                       <TableRow
                         hover
-                        onClick={(event) => handleClick(event, course.name)}
+                        onClick={(event) => handleClick(event, index)}
                         role='checkbox'
                         aria-checked={isItemSelected}
+                        sx={{
+                          backgroundColor: index % 2 ? 'lightgray' : 'white',
+                          transition: 'all 300ms ease-in-out',
+                        }}
                         tabIndex={-1}
                         key={course.name}
                         selected={isItemSelected}
