@@ -3,11 +3,25 @@ import Modal from '../utils/Modal';
 import LinkButton from '../buttons/LinkButton';
 import HeroImage from '../images/hero-image-01.jpg';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 function HeroHome() {
   const [videoModalOpen, setVideoModalOpen] = useState(false);
   const videoRef = useRef(null);
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.4,
+      },
+    },
+  };
 
+  const item = {
+    hidden: { opacity: 0 },
+    show: { opacity: 1 },
+  };
   return (
     <section>
       <div className='max-w-6xl mx-auto px-4 sm:px-6 relative'>
@@ -51,47 +65,65 @@ function HeroHome() {
         {/* Hero content */}
         <div className='relative pt-32 pb-10 md:pt-40 md:pb-16'>
           {/* Section header */}
-          <div className='max-w-3xl mx-auto text-center pb-12 md:pb-16'>
-            <h1
+          <motion.div
+            variants={container}
+            initial='hidden'
+            animate='show'
+            className='max-w-3xl mx-auto text-center pb-12 md:pb-16'
+          >
+            <motion.h1
+              variants={item}
               className='h1 mb-4 flex flex-col text-gray-700'
-              data-aos='fade-up'
             >
-              <span>Anytime, Anywhere</span>
-              <span>
+              <motion.span>Anytime, Anywhere</motion.span>
+              <motion.span>
                 Learn on <span className='text-purple-500'> MindsOn</span>
-              </span>
-            </h1>
-            <h5 className='text-md text-gray-400'>
+              </motion.span>
+            </motion.h1>
+            <motion.h5 className='text-md text-gray-400' variants={item}>
               “Success is no accident. It is hard work, perseverance, learning,
               studying, sacrifice and most of all, love of what you are doing or
               learning to do
               {/* <img src='light.png' alt='light image' className='lightImg' /> */}
               .”
-            </h5>
-            <div className='max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center'>
+            </motion.h5>
+            <motion.div className='max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center'>
               {/* <LinkButton label={'Start free trial'} link={'/login'} /> */}
-              <div data-aos='fade-up' data-aos-delay='400'>
+              <motion.div
+                initial={{ opacity: 0 }}
+                transition={{ delay: 0.8, duration: 1 }}
+                animate={{ opacity: 1 }}
+                data-aos='fade-up'
+                data-aos-delay='400'
+              >
                 <Link
                   className='btn text-white !bg-purple-600 hover:!bg-purple-700 w-full mb-4 sm:w-auto sm:mb-0'
                   to='/login'
                 >
                   Join Now
                 </Link>
-              </div>
-              <div data-aos='fade-up' data-aos-delay='600'>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0 }}
+                transition={{ delay: 1, duration: 1 }}
+                animate={{ opacity: 1 }}
+              >
                 <a
                   className='btn text-white !bg-gray-700 hover:!bg-gray-800 w-full sm:w-auto sm:ml-4'
                   href='#roadmaps'
                 >
                   Check our roadmaps
                 </a>
-              </div>
-            </div>
-          </div>
+              </motion.div>
+            </motion.div>
+          </motion.div>
 
           {/* Hero image */}
           <div>
-            <div
+            <motion.div
+              initial={{ opacity: 0 }}
+              transition={{ delay: 1.2, duration: 0.8 }}
+              animate={{ opacity: 1 }}
               className='relative flex justify-center items-center'
               data-aos='fade-up'
               data-aos-delay='200'
@@ -138,7 +170,7 @@ function HeroHome() {
                   />
                 </svg>
               </a>
-            </div>
+            </motion.div>
 
             {/* Modal */}
             <Modal
