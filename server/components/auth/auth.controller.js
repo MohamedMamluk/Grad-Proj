@@ -1,5 +1,6 @@
 const { StatusCodes } = require('http-status-codes');
 const { registerService, loginService } = require('./auth.service');
+const { sendConfirmationEmail } = require('../../utils/nodemailer');
 const register = async (req, res) => {
   //console.log(req.body);
   const userData = req.body;
@@ -33,10 +34,12 @@ const login = async (req, res) => {
     }
     console.log(user.confirmationCode);
     if (user.confirmationCode) {
-      if (user.status != 'Active')
+      if (user.status != 'Active'){
+        await sendConfirmationEmail(user.firstName,user.email,user.confirmationCode)
         return res.status(401).send({
           message: 'Pending Account. Please Verify Your Email!',
         });
+      }
     }
 
     const token = user.genJWT();
