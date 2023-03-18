@@ -13,7 +13,7 @@ function HeroHome() {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.4,
+        staggerChildren: 0.1,
       },
     },
   };
@@ -91,7 +91,7 @@ function HeroHome() {
               {/* <LinkButton label={'Start free trial'} link={'/login'} /> */}
               <motion.div
                 initial={{ opacity: 0 }}
-                transition={{ delay: 0.8, duration: 1 }}
+                transition={{ delay: 0.5 }}
                 animate={{ opacity: 1 }}
                 data-aos='fade-up'
                 data-aos-delay='400'
@@ -105,7 +105,7 @@ function HeroHome() {
               </motion.div>
               <motion.div
                 initial={{ opacity: 0 }}
-                transition={{ delay: 1, duration: 1 }}
+                transition={{ delay: 0.7 }}
                 animate={{ opacity: 1 }}
               >
                 <a
