@@ -1,7 +1,37 @@
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
+import { useAnimation, motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+
 import './home.css';
 import { useNavigate } from 'react-router-dom';
 const Roadmaps = () => {
+  const blockVariants = useMemo(
+    () => ({
+      show: { y: 10, opacity: 1, transition: { duration: 1 } },
+      hidden: { y: 0, opacity: 0, transition: { duration: 1 } },
+    }),
+    []
+  );
+  const controls = useAnimation();
+  const [ref, inView] = useInView();
+  useEffect(() => {
+    if (inView) {
+      controls.start('show');
+    }
+  }, [controls, inView]);
+  const container = useMemo(
+    () => ({
+      hidden: { opacity: 0 },
+      show: {
+        opacity: 1,
+        transition: {
+          staggerChildren: 0.3,
+        },
+      },
+    }),
+    []
+  );
+
   const navigate = useNavigate();
   function FrontRoadMap() {
     navigate('/roadmap?server');
@@ -32,55 +62,68 @@ const Roadmaps = () => {
       </section>
 
       <div className='row '>
-        <h1>Road maps </h1>
-        <div className='container' id='RoadMapDiv'>
-          <button
+        <h1>Roadmaps </h1>
+        <motion.div
+          ref={ref}
+          animate={controls}
+          variants={container}
+          initial='hidden'
+          className='container'
+          id='RoadMapDiv'
+        >
+          <motion.button
+            variants={blockVariants}
             className='w-90 text-white !border-2 border-black bg-purple-500     mx-2 my-2'
             id='btnRoad'
             onClick={JavaGame}
           >
             {' '}
             Java Game Programming{' '}
-          </button>
-          <button
+          </motion.button>
+          <motion.button
+            variants={blockVariants}
             className='w-90 text-white !border-2 border-black bg-purple-500   mx-2 my-2'
             id='btnRoad'
             onClick={FrontRoadMap}
           >
             {/* Front-end Development */}
             Server Management
-          </button>
-          <button
+          </motion.button>
+          <motion.button
+            variants={blockVariants}
             className='w-90 text-white !border-2 border-black bg-purple-500   mx-2 my-2'
             id='btnRoad'
             onClick={BackendRoadMap}
           >
             Back-end Development{' '}
-          </button>
-          <button
+          </motion.button>
+          <motion.button
+            variants={blockVariants}
             className='w-90 text-white !border-2 border-black bg-purple-500   mx-2 my-2'
             id='btnRoad'
             onClick={AndroidRoadMap}
           >
             Android Development
-          </button>
-          <button
+          </motion.button>
+          <motion.button
+            variants={blockVariants}
             className='w-90 text-white !border-2 border-black bg-purple-500    mx-2 my-2'
             id='btnRoad'
             onClick={IosRoadMap}
           >
             {' '}
             Ios Development{' '}
-          </button>
-          <button
+          </motion.button>
+          <motion.button
+            variants={blockVariants}
             className='w-90  text-white !border-2 border-black bg-purple-500   mx-2 my-2'
             id='btnRoad'
             onClick={DevopsRoadMap}
           >
             {' '}
             DevOps{' '}
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
       </div>
     </div>
   );
