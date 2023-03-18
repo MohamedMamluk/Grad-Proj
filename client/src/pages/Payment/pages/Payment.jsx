@@ -7,6 +7,7 @@ import { Container, LinearProgress } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Header from '../../../components/header/header';
+
 function Payment() {
   const [stripePromise, setStripePromise] = useState(null);
   const [clientSecret, setClientSecret] = useState(null);
