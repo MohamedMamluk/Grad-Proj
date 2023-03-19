@@ -26,6 +26,7 @@ export default function AddingNewCourseForm({
   const handleChange = (event) => {
     setNewCourse((prev) => {
       return { ...prev, paid: event.target.value };
+      
     });
   };
   const [uploading, setUploading] = useState(false);
@@ -43,6 +44,7 @@ export default function AddingNewCourseForm({
         // //console.log(res.data);
         setUploaded(res.data.public_id);
         setNewCourse((prev) => ({ ...prev, img: res.data.secure_url }));
+        
       });
   };
   return (

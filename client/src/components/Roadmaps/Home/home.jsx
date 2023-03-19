@@ -1,8 +1,10 @@
 import React from 'react';
 import './home.css';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 const Roadmaps = () => {
   const navigate = useNavigate();
+  let [t,i18n] = useTranslation();
   function FrontRoadMap() {
     navigate('/roadmap?server');
   }
@@ -32,7 +34,7 @@ const Roadmaps = () => {
       </section>
 
       <div className='row'>
-        <h1>Road maps </h1>
+        <h1>{t("Road maps")} </h1>
         <div className='container' id='RoadMapDiv'>
           <button
             className='w-90     mx-2 my-2'

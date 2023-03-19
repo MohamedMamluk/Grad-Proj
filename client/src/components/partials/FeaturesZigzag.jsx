@@ -2,8 +2,9 @@ import React from 'react';
 
 import FeatImage01 from '../images/features-03-image-01.png';
 import FeatImage02 from '../images/features-03-image-02.png';
-
+import { useTranslation } from 'react-i18next';
 function FeaturesZigzag() {
+  let [t,i18n] = useTranslation();
   return (
     <section>
       <div className='max-w-6xl mx-auto px-4 sm:px-6'>
@@ -11,11 +12,13 @@ function FeaturesZigzag() {
           {/* Section header */}
           <div className='max-w-3xl mx-auto text-center pb-12 md:pb-16'>
             <div className='inline-flex text-sm font-semibold py-1 px-3 m-2 text-green-600 bg-green-200 rounded-full mb-4'>
-              Reach goals that matter
+              
+              {t("Reach goals that matter")}
             </div>
-            <h1 className='h2 mb-4'>One website, unlimited courses</h1>
+            <h1 className='h2 mb-4'>{t("One website, unlimited courses")}</h1>
             <p className='text-xl text-gray-400'>
-              MindsOn has courses for almost everything
+             
+              {t("Our Website has courses for almost everything")}
             </p>
           </div>
 
@@ -43,13 +46,12 @@ function FeaturesZigzag() {
               >
                 <div className='md:pr-4 lg:pr-12 xl:pr-16'>
                   <div className='font-architects-daughter text-xl text-purple-600 mb-2'>
-                    For students
+                   
+                    {t("For students")}
                   </div>
-                  <h3 className='h3 mb-3'>Keep track of your progress</h3>
+                  <h3 className='h3 mb-3'>{t("Keep track of your progress")}</h3>
                   <p className='text-xl text-gray-400 mb-4'>
-                    Get detailed information about all your progress in all
-                    course, and the progress in the latest course that you
-                    applied for.
+                    {t("Get detailed information about all your progress in all course and the progress in the latest course that you applied for")}
                   </p>
                 </div>
               </div>
@@ -77,13 +79,11 @@ function FeaturesZigzag() {
               >
                 <div className='md:pl-4 lg:pl-12 xl:pl-16'>
                   <div className='font-architects-daughter text-xl text-purple-600 mb-2'>
-                    For Instructors
+                    {t("For Instructors")}
                   </div>
-                  <h3 className='h3 mb-3'>Track your earnings and views</h3>
+                  <h3 className='h3 mb-3'>{t("Track your earnings and views")}</h3>
                   <p className='text-xl text-gray-400 mb-4'>
-                    Knowing how your content is performing is important to us as
-                    it is important to you, get detailed information with graphs
-                    about how your content is doing.
+                    {t("Knowing how your content is performing is important to us as it is important to you, get detailed information with graphs about how your content is doing")}
                   </p>
                 </div>
               </div>

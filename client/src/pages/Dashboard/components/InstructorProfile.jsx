@@ -13,8 +13,9 @@ import { useDispatch } from 'react-redux';
 import { Button, Grid, TextField } from '@mui/material';
 import axios from 'axios';
 import { setUserData } from '../../../features/auth/authSlice';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
+import { toast, ToastContainer } from 'react-toastify';
+
 
 const InstructorProfile = ({ userData }) => {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const InstructorProfile = ({ userData }) => {
   const [uploaded, setUploaded] = useState('');
 
   const [showUpdateProfile, setShowUpdateProfile] = useState(false);
-  const [updateData, setUpdateData] = useState(userData);
+  const [updateData, setUpdateData] = useState({ ...userData });
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     const formData = new FormData();
@@ -43,19 +44,34 @@ const InstructorProfile = ({ userData }) => {
   
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const excludeProps = ['updatedAt'];
+    const object2 = Object.keys(userData)
+      .filter((key) => !excludeProps.includes(key))
+      .reduce((obj, key) => {
+        obj[key] = userData[key];
+        return obj;
+      }, {});
+    console.log(object2);
     try {
-      const { data } = await axios.patch(
-        '/instructor/' + userData._id,
-        updateData
-      );
+      const { data } = await axios.patch('/instructor/' + userData._id, {
+        email: updateData.email,
+        firstName: updateData.firstName,
+        image: updateData.image,
+        lastName: updateData.lastName,
+        levelOfExperience: updateData.levelOfExperience,
+        phone: updateData.phone,
+      });
+
       dispatch(setUserData(data));
       setShowUpdateProfile(false);
+      toast.success('Successfully updated');
     } catch (error) {
-      console.log(error);
+      toast.error('Error in updating');
     }
   };
   return (
     <div>
+      <ToastContainer />
       <div>
         <div>
           <Card sx={{ minWidth: 275 }}>

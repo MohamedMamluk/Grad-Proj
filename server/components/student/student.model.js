@@ -6,6 +6,15 @@ const valid = require('validator');
 
 const studentSchema = new mongoose.Schema(
   {
+    status: {
+      type: String,
+      enum: ['Pending', 'Active'],
+      default: 'Pending',
+    },
+    confirmationCode: {
+      type: String,
+      unique: true,
+    },
     firstName: {
       type: String,
       required: [true, 'please provide your first name'],
@@ -50,6 +59,10 @@ const studentSchema = new mongoose.Schema(
       type: [String],
       default: [],
     },
+    resetCode: {
+      type: String,
+      default: '0000',
+    },
     favorites: {
       type: [mongoose.Schema.Types.ObjectId],
       default: [],
@@ -65,15 +78,15 @@ const studentSchema = new mongoose.Schema(
 studentSchema.pre('save', async function () {
   try {
     const salt = await bcrypt.genSalt(10);
-    const hashed = await bcrypt.hash(this.password, salt);
+    const hashed = bcrypt.hashSync(this.password, salt);
     this.password = hashed;
   } catch (error) {
     //console.log(error);
   }
 });
-studentSchema.methods.comparePassword = async function (
-  USER_PASSWORD_FROM_FRONT
-) {
+studentSchema.methods.comparePassword = function (USER_PASSWORD_FROM_FRONT) {
+  console.log(USER_PASSWORD_FROM_FRONT);
+  console.log('password in db', this.password);
   const isValid = bcrypt.compareSync(USER_PASSWORD_FROM_FRONT, this.password);
   return isValid;
 };

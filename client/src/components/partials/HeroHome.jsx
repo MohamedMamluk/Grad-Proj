@@ -3,11 +3,11 @@ import Modal from '../utils/Modal';
 import LinkButton from '../buttons/LinkButton';
 import HeroImage from '../images/hero-image-01.jpg';
 import { Link } from 'react-router-dom';
-
+import { useTranslation } from 'react-i18next';
 function HeroHome() {
   const [videoModalOpen, setVideoModalOpen] = useState(false);
   const videoRef = useRef(null);
-
+  let [t,i18n] = useTranslation();
   return (
     <section>
       <div className='max-w-6xl mx-auto px-4 sm:px-6 relative'>
@@ -53,17 +53,17 @@ function HeroHome() {
           {/* Section header */}
           <div className='max-w-3xl mx-auto text-center pb-12 md:pb-16'>
             <h1 className='h1 mb-4 flex flex-col' data-aos='fade-up'>
-              <span>Anytime, Anywhere</span>
+              <span>{t("Anytime , Anywhere")}</span>
               <span>
-                Learn on <span className='text-purple-500'> MindsOn</span>
+                {t("Learn On")}<br>
+                </br><span className='text-purple-500'> MindsOn</span>
               </span>
             </h1>
             <h5 className='text-md text-[#edeafb]'>
-              “Success is no accident. It is hard work, perseverance, learning,
-              studying, sacrifice and most of all, love of what you are doing or
-              learning to do
+              
+              {t("Success is no accident. It is hard work, perseverance, learning, studying, sacrifice and most of all, love of what you are doing or learning to do")}
               {/* <img src='light.png' alt='light image' className='lightImg' /> */}
-              .”
+              
             </h5>
             <div className='max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center'>
               {/* <LinkButton label={'Start free trial'} link={'/login'} /> */}
@@ -72,7 +72,8 @@ function HeroHome() {
                   className='btn text-white !bg-purple-600 hover:!bg-purple-700 w-full mb-4 sm:w-auto sm:mb-0'
                   to='/login'
                 >
-                  Join Now
+                  
+                  {t("Join Now")}
                 </Link>
               </div>
               <div data-aos='fade-up' data-aos-delay='600'>
@@ -80,7 +81,8 @@ function HeroHome() {
                   className='btn text-white !bg-gray-700 hover:!bg-gray-800 w-full sm:w-auto sm:ml-4'
                   href='#roadmaps'
                 >
-                  Check our roadmaps
+                  
+                  {t("Check Our Roadmaps")}
                 </a>
               </div>
             </div>

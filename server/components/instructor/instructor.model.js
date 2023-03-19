@@ -60,6 +60,19 @@ const instructorSchema = new mongoose.Schema(
       ],
       default: [],
     },
+    status: {
+      type: String,
+      enum: ['Pending', 'Active'],
+      default: 'Pending',
+    },
+    resetCode: {
+      type: String,
+      default: '0000',
+    },
+    confirmationCode: {
+      type: String,
+      unique: true,
+    },
   },
   { timestamps: true }
 );
