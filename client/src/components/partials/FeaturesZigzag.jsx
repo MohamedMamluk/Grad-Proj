@@ -50,10 +50,10 @@ function FeaturesZigzag() {
               {t("Reach goals that matter")}
             </div>
 
-            <h1 className='h2 mb-4'>{t("One website, unlimited courses")}</h1>
+            {/* <h1 className='h2 mb-4'>{t("One website, unlimited courses")}</h1> */}
 
             <h1 className='h2 mb-4 text-black'>
-              One website, unlimited courses
+              {t("One website, unlimited courses")}
             </h1>
 
             <p className='text-xl text-gray-400'>
@@ -99,10 +99,10 @@ function FeaturesZigzag() {
                     {t("For students")}
                   </div>
 
-                  <h3 className='h3 mb-3'>{t("Keep track of your progress")}</h3>
+                  {/* <h3 className='h3 mb-3'></h3> */}
 
                   <h3 className='h3 mb-3 text-black'>
-                    Keep track of your progress
+                  {t("Keep track of your progress")}
                   </h3>
 
                   <p className='text-xl text-gray-400 mb-4'>
@@ -140,10 +140,10 @@ function FeaturesZigzag() {
                     {t("For Instructors")}
                   </div>
 
-                  <h3 className='h3 mb-3'>{t("Track your earnings and views")}</h3>
+                  {/* <h3 className='h3 mb-3'></h3> */}
 
                   <h3 className='h3 mb-3 text-black'>
-                    Track your earnings and views
+                  {t("Track your earnings and views")}
                   </h3>
 
                   <p className='text-xl text-gray-400 mb-4'>

@@ -16,11 +16,11 @@ import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link, useNavigate } from 'react-router-dom';
-
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 const pages = ['Home', 'Login', 'Register', 'Courses'];
 
-import { useSelector } from 'react-redux';
+
 
 
 
@@ -222,8 +222,8 @@ const Header = () => {
             </Link>
             <Link to='/courses' className='navLink'>
             {t("Courses")}
-
-            <Link
+            </Link>
+            {/* <Link
               to='/'
               className={`navLink ${offset > 0 ? 'text-white' : 'text-black'}`}
             >
@@ -235,7 +235,7 @@ const Header = () => {
             >
               Courses
 
-            </Link>
+            </Link> */}
           </Box>
 
           <div

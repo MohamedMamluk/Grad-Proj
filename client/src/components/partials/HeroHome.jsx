@@ -3,16 +3,17 @@ import Modal from '../utils/Modal';
 import LinkButton from '../buttons/LinkButton';
 import HeroImage from '../images/hero-image-01.jpg';
 import { Link } from 'react-router-dom';
-
-import { useTranslation } from 'react-i18next';
-function HeroHome() {
-  const [videoModalOpen, setVideoModalOpen] = useState(false);
-  const videoRef = useRef(null);
-  let [t,i18n] = useTranslation();
-
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+// function HeroHome() {
+//   const [videoModalOpen, setVideoModalOpen] = useState(false);
+//   const videoRef = useRef(null);
+
+
+
 
 function HeroHome() {
+    let [t,i18n] = useTranslation();
   const [videoModalOpen, setVideoModalOpen] = useState(false);
   const videoRef = useRef(null);
   const container = {
@@ -71,24 +72,24 @@ function HeroHome() {
         </div>
 
         {/* Hero content */}
-        <div className='relative pt-32 pb-10 md:pt-40 md:pb-16'>
+        {/* <div className='relative pt-32 pb-10 md:pt-40 md:pb-16'> */}
           {/* Section header */}
-
-          <div className='max-w-3xl mx-auto text-center pb-12 md:pb-16'>
-            <h1 className='h1 mb-4 flex flex-col' data-aos='fade-up'>
+{/* 
+          <div className='max-w-3xl mx-auto text-center pb-12 md:pb-16'> */}
+            {/* <h1 className='h1 mb-4 flex flex-col' data-aos='fade-up'>
               <span>{t("Anytime , Anywhere")}</span>
               <span>
                 {t("Learn On")}<br>
                 </br><span className='text-purple-500'> MindsOn</span>
               </span>
-            </h1>
-            <h5 className='text-md text-[#edeafb]'>
+            </h1> */}
+            {/* <h5 className='text-md text-[#edeafb]'> */}
               
-              {t("Success is no accident. It is hard work, perseverance, learning, studying, sacrifice and most of all, love of what you are doing or learning to do")}
+              {/* {t("Success is no accident. It is hard work, perseverance, learning, studying, sacrifice and most of all, love of what you are doing or learning to do")} */}
               {/* <img src='light.png' alt='light image' className='lightImg' /> */}
               
-            </h5>
-            <div className='max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center'>
+            {/* </h5>
+            <div className='max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center'> */}
 
           <motion.div
             variants={container}
@@ -100,17 +101,17 @@ function HeroHome() {
               variants={item}
               className='h1 mb-4 flex flex-col text-gray-700'
             >
-              <motion.span>Anytime, Anywhere</motion.span>
+              <motion.span>{t("Anytime , Anywhere")}</motion.span>
               <motion.span>
-                Learn on <span className='text-purple-500'> MindsOn</span>
+                {t("Learn On")}
+                <br>
+                </br><span className='text-purple-500'> MindsOn</span>
               </motion.span>
             </motion.h1>
             <motion.h5 className='text-md text-gray-400' variants={item}>
-              “Success is no accident. It is hard work, perseverance, learning,
-              studying, sacrifice and most of all, love of what you are doing or
-              learning to do
+              {t("Success is no accident. It is hard work, perseverance, learning, studying, sacrifice and most of all, love of what you are doing or learning to do")}
               {/* <img src='light.png' alt='light image' className='lightImg' /> */}
-              .”
+              
             </motion.h5>
             <motion.div className='max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center'>
 
@@ -225,8 +226,11 @@ function HeroHome() {
             </Modal>
           </div>
         </div>
+      {/* </div>
       </div>
+      </div> */}
     </section>
   );
 }
+
 export default HeroHome;

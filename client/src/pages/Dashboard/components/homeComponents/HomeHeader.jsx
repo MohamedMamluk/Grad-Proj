@@ -1,7 +1,8 @@
 import React from 'react';
 import { Box, Container } from '@mui/material';
-
+import { useTranslation } from 'react-i18next';
 const HomeHeader = (props) => {
+  let [t, i18n] = useTranslation();
     return (
         <Container
       className='hello-section'
@@ -14,17 +15,17 @@ const HomeHeader = (props) => {
     >
       <Box className='left-box'>
         <h2 className='home-welcome'>
-          Greetings, {props.user.userData.firstName || props.user.userData.email}
+          {t("Greetings,")} {props.user.userData.firstName || props.user.userData.email}
         </h2>
         <Box>
           <h6 className='home-introduction'>
-            Welcome to MindsOn! Study with us.
+            {t("Welcome to Our Website! Study with us")}
           </h6>
           <h6 className='home-introduction'>
-            At any time and in any place, discover the unknown.
+            {t("At any time and in any place, discover the unknown")}
           </h6>{' '}
           <h6 className='home-introduction'>
-            On the main page there are elements on time management
+            {t("On the main page there are elements on time management")}
           </h6>
         </Box>
       </Box>

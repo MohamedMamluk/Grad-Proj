@@ -14,8 +14,9 @@ import GroupIcon from '@mui/icons-material/Group';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout, getAuth } from '../../../features/auth/authSlice';
-
+import { useTranslation } from 'react-i18next';
 export const MainListItems = () => {
+  let [t, i18n] = useTranslation();
   const dispatch = useDispatch();
   const auth = useSelector(getAuth);
   //console.log(auth);
@@ -29,7 +30,7 @@ export const MainListItems = () => {
           <ListItemIcon>
             <DashboardIcon style={{ fill: '#6d54de' }} fontSize='large' />
           </ListItemIcon>
-          <ListItemText primary='Main' />
+          <ListItemText primary={t("Main")}/>
         </ListItemButton>
       </Link>
       <Link
@@ -40,7 +41,7 @@ export const MainListItems = () => {
           <ListItemIcon>
             <ExploreIcon style={{ fill: '#6d54de' }} fontSize='large' />
           </ListItemIcon>
-          <ListItemText primary='Courses' />
+          <ListItemText primary={t("Courses")} />
         </ListItemButton>
       </Link>
       {(auth.role == 'admin' || auth.role == 'instructor') && (
@@ -52,7 +53,7 @@ export const MainListItems = () => {
             <ListItemIcon>
               <LocalLibraryIcon style={{ fill: '#6d54de' }} fontSize='large' />
             </ListItemIcon>
-            <ListItemText primary='Courses Created' />
+            <ListItemText primary={t("Created Courses")} />
           </ListItemButton>
         </Link>
       )}
@@ -65,7 +66,7 @@ export const MainListItems = () => {
             <ListItemIcon>
               <GroupIcon style={{ fill: '#6d54de' }} fontSize='large' />
             </ListItemIcon>
-            <ListItemText primary='All Users' />
+            <ListItemText primary={t("All Users")}/>
           </ListItemButton>
         </Link>
       )}
@@ -81,7 +82,7 @@ export const MainListItems = () => {
                 fontSize='large'
               />
             </ListItemIcon>
-            <ListItemText primary='Balance' />
+            <ListItemText primary={t("Balance")}/>
           </ListItemButton>
         </Link>
       )}
@@ -94,7 +95,7 @@ export const MainListItems = () => {
           <ListItemIcon>
             <AccountCircleIcon style={{ fill: '#6d54de' }} fontSize='large' />
           </ListItemIcon>
-          <ListItemText primary='Profile' />
+          <ListItemText primary={t("Profile")}/>
         </ListItemButton>
       </Link>
       <Link
@@ -106,7 +107,7 @@ export const MainListItems = () => {
           <ListItemIcon>
             <LogoutIcon style={{ fill: '#6d54de' }} fontSize='large' />
           </ListItemIcon>
-          <ListItemText primary='Sign Out' />
+          <ListItemText primary={t("Sign Out")}/>
         </ListItemButton>
       </Link>
       {/* <ListItemButton>

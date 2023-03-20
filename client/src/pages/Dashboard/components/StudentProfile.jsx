@@ -19,10 +19,11 @@ import axios from 'axios';
 import { Button, Grid, TextField } from '@mui/material';
 import { toast, ToastContainer } from 'react-toastify';
 import { setUserData } from '../../../features/auth/authSlice';
-
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 const StudentProfile = ({ userData }) => {
+  let [t, i18n] = useTranslation();
   const [uploading, setUploading] = useState(false);
   const [uploaded, setUploaded] = useState('');
   const dispatch = useDispatch();
@@ -135,7 +136,7 @@ const StudentProfile = ({ userData }) => {
                 color='text.secondary'
                 align='center'
               >
-                <Chip label={userData.role} />
+                <Chip label={t(`${userData.role}`)} />
               </Typography>
               <Typography
                 sx={{ mb: 1.5 }}
@@ -149,7 +150,7 @@ const StudentProfile = ({ userData }) => {
                 />
               </Typography>
               <Typography variant='body2' align='center'>
-                {'We hope you enjoy your courses'}
+                {t("We hope you enjoy your courses")}
               </Typography>
               <Stack
                 direction='row'
@@ -157,7 +158,7 @@ const StudentProfile = ({ userData }) => {
                 align='center'
               >
                 <Chip
-                  label='Courses Enrolled:'
+                  label={t("Courses Enrolled")}
                   color='primary'
                   variant='outlined'
                   align='center'
@@ -178,7 +179,7 @@ const StudentProfile = ({ userData }) => {
             onClick={() => setShowUpdateProfile(!showUpdateProfile)}
             sx={{ width: 'max-content', wordBreak: 'keep-all' }}
           >
-            Update Profile
+            {t("Update Profile")}
           </Button>
         </Stack>
         <Grid
@@ -190,7 +191,7 @@ const StudentProfile = ({ userData }) => {
         >
           <Grid item xs={12}>
             <Typography variant='h6' gutterBottom textAlign='center'>
-              Update User Picture
+              {t("Update Your Profile Picture")}
             </Typography>
             <Grid display='flex' justifyContent='center' alignItems='center'>
               <Stack direction='row' alignItems='center' spacing={2}>
@@ -204,8 +205,17 @@ const StudentProfile = ({ userData }) => {
                     color: uploading || uploaded.length > 0 ? 'red' : 'white',
                   }}
                 >
-                  {uploading && 'Uploading...'}
-                  {uploaded.length > 0 ? 'Uploaded ✔' : 'Upload'}
+                  {/* {uploading  && t("Uploading...")} */}
+                  {/* {uploaded.length > 0 ? "Uploaded ✔": "Upload"} */}
+                  {/* {uploaded.length > 0 ? {t("Uploaded ✔")}: {t("Upload")}} */}
+                  
+                    {uploaded.length > 0 && t("Uploaded ✔")}
+                    
+                    {uploaded.length <= 0 && t("Upload")}
+                    
+ 
+                    
+                  
                   <input
                     hidden
                     accept='image/*'
@@ -228,7 +238,7 @@ const StudentProfile = ({ userData }) => {
                 return { ...prev, firstName: e.target.value };
               });
             }}
-            label='First Name'
+            label={t("First Name")}
             name='firstName'
             autoFocus
           />
@@ -243,7 +253,7 @@ const StudentProfile = ({ userData }) => {
                 return { ...prev, lastName: e.target.value };
               });
             }}
-            label='Last Name'
+            label={t("Last Name")}
             name='lastName'
             autoFocus
           />
@@ -259,7 +269,7 @@ const StudentProfile = ({ userData }) => {
                 return { ...prev, email: e.target.value };
               });
             }}
-            label='Email Address'
+            label={t("Email Address")}
             name='email'
             autoComplete='email'
             autoFocus
@@ -275,7 +285,7 @@ const StudentProfile = ({ userData }) => {
                 return { ...prev, phone: e.target.value };
               });
             }}
-            label='Phone'
+            label={t("Phone Number")}
             name='phone'
             autoComplete='phone'
             autoFocus

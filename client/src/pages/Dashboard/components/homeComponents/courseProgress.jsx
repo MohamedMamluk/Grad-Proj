@@ -6,7 +6,7 @@ import { Box, Container } from '@mui/material';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-
+import { useTranslation } from 'react-i18next';
 function LinearProgressWithLabel(props) {
   return (
     <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -22,6 +22,7 @@ function LinearProgressWithLabel(props) {
   );
 }
 const CourseProgress = (props) => {
+  let [t, i18n] = useTranslation();
   const user = useSelector((store) => {
     return store.auth;
   });
@@ -86,14 +87,18 @@ const CourseProgress = (props) => {
               style={{ width: '100px', height: '100px', borderRadius: '20px' }}
             />
           </div>
+          <br>
+          </br>
           <div>
             <h6
               className='home-welcome'
-              style={{ fontSize: '14px', margin: '0px' }}
+              style={{ fontSize: '14px', margin: '0px' ,marginTop:"2px"}}
             >
-              Course: {courses.name}
+              {t("Course")}: {courses.name}
             </h6>
-            <label style={{ margin: '0px' }}>started: 18/4/2022</label>
+            <br>
+            </br>
+            {/* <label style={{ margin: '0px' }}>{t("started")}: 18/4/2022</label> */}
             <div style={{ display: 'flex' }}>
               <img
                 src={instructor.user?.image}
@@ -106,7 +111,7 @@ const CourseProgress = (props) => {
               />
               <label
                 style={{ margin: '5px', fontSize: '13px' }}
-              >{`Instructor:  ${instructor.user?.firstName} ${instructor.user?.lastName}`}</label>
+              >{t("Instructor")}:  {instructor.user?.firstName} {instructor.user?.lastName}</label>
               {/* <div
                 style={{
                   width: '25px',
@@ -127,11 +132,13 @@ const CourseProgress = (props) => {
         </Box> */}
         <Box sx={{ width: '98%' }}>
           <span style={{ fontSize: '80%' }}>
-            {`Course duration: ${courses.duration}`}
+            {t("Course duration")} : {t(`${courses.duration}`)}
+            
+            {/* {`Course duration: ${courses.duration}`} */}
           </span>
         </Box>
         <Box sx={{ width: '98%' }}>
-          <span style={{ fontSize: '80%' }}>Completed the course</span>
+          <span style={{ fontSize: '80%' }}>{t("Progress On Final Course That you Enrolled in")}</span>
           <LinearProgressWithLabel value={courseProgress} />
         </Box>
       </Box>

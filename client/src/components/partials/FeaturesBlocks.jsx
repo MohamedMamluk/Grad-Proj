@@ -1,12 +1,13 @@
 
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import  { useEffect, useMemo } from 'react';
+import { useAnimation, motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 function FeaturesBlocks() {
   let [t,i18n] = useTranslation();
 
-import React, { useEffect, useMemo } from 'react';
-import { useAnimation, motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+
 
 function FeaturesBlocks() {
   const blockVariants = useMemo(() => ({
@@ -32,7 +33,7 @@ function FeaturesBlocks() {
 
   return (
     <section>
-      <div className='max-w-6xl mx-auto px-4 sm:px-6'>
+      <div className ='max-w-6xl mx-auto px-4 sm:px-6'>
         <div className='py-12 md:py-20'>
           {/* Section header */}
 
@@ -132,9 +133,9 @@ function FeaturesBlocks() {
                 />
               </svg>
 
-              <h4 className='h4 mb-2'>{t("Study System")}</h4>
+              {/* <h4 className='h4 mb-2'></h4> */}
 
-              <h4 className='h4 mb-2 text-black'>Study System</h4>
+              <h4 className='h4 mb-2 text-black'>{t("Study System")}</h4>
 
               <p className='text-lg text-gray-400 text-center'>
                {t("Our System is so flexible. You can Take the Course at any time of the year also there is no limitation for a specific time to finish it")}
@@ -177,9 +178,9 @@ function FeaturesBlocks() {
                 </g>
               </svg>
 
-              <h4 className='h4 mb-2'>{t("Classes & Scheduling")}</h4>
+              {/* <h4 className='h4 mb-2'></h4> */}
 
-              <h4 className='h4 mb-2 text-black'>Classes & Scheduling</h4>
+              <h4 className='h4 mb-2 text-black'>{t("Classes & Scheduling")}</h4>
 
               <p className='text-lg text-gray-400 text-center'>
                 {t("You can choose the optimal time for yourself, morning or evening. It doesn't matter")}
@@ -188,6 +189,8 @@ function FeaturesBlocks() {
           </motion.div>
         </div>
       </div>
+      </div>
+
     </section>
   );
 }

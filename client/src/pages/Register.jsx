@@ -26,6 +26,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useTranslation } from 'react-i18next';
 function Copyright(props) {
   return (
     <Typography
@@ -44,6 +45,7 @@ function Copyright(props) {
 const theme = createTheme({});
 
 export default function Register() {
+  let [t, i18n] = useTranslation();
   const dispatch = useDispatch();
   const authSelector = useSelector((state) => state.auth.token);
   const navigate = useNavigate();
@@ -132,7 +134,7 @@ export default function Register() {
                 <LockOutlinedIcon />
               </Avatar>
               <Typography component='h1' variant='h5'>
-                Sign up
+                {t("Sign up")}
               </Typography>
               <Box component='form' onSubmit={handleSubmit} sx={{ mt: 3 }}>
                 <Grid container spacing={2}>
@@ -155,12 +157,12 @@ export default function Register() {
                       // labelColor:'#3f51b5'}
                       //   }
                       // }
-                      label='First Name'
+                      label={t("First Name")}
                       autoFocus
                     />
                     {!data.firstName && (
                       <div style={{ color: 'red' }}>
-                        Last Name must be provided.
+                        {t("First Name must be provided")}
                       </div>
                     )}
                   </Grid>
@@ -170,7 +172,7 @@ export default function Register() {
                       required
                       fullWidth
                       id='lastName'
-                      label='Last Name'
+                      label={t("Last Name")}
                       name='lastName'
                       value={data.lastName}
                       onChange={(e) => {
@@ -182,7 +184,7 @@ export default function Register() {
                     />
                     {!data.lastName && (
                       <div style={{ color: 'red' }}>
-                        Last Name must be provided.
+                        {t("Last Name must be provided")}
                       </div>
                     )}
                   </Grid>
@@ -193,7 +195,7 @@ export default function Register() {
                       fullWidth
                       id='email'
                       type='email'
-                      label='Email Address'
+                      label={t("Email Address")}
                       name='email'
                       value={data.email}
                       onChange={(e) => {
@@ -204,7 +206,7 @@ export default function Register() {
                       autoComplete='email'
                     />
                     {!emaill.test(data.email) && (
-                      <div style={{ color: 'red' }}>Enter a valid email.</div>
+                      <div style={{ color: 'red' }}>{t("Enter a valid email")}</div>
                     )}
                   </Grid>
                   {/* password */}
@@ -214,7 +216,7 @@ export default function Register() {
                       fullWidth
                       name='password'
                       type='password'
-                      label='Password'
+                      label={t("Password")}
                       id='password'
                       value={data.password}
                       onChange={(e) => {
@@ -226,7 +228,7 @@ export default function Register() {
                     />
                     {!data.password.match(passw) && (
                       <div style={{ color: 'red' }}>
-                        Enter a stronger password.
+                        {t("Enter a stronger password")}
                       </div>
                     )}
                   </Grid>
@@ -242,21 +244,21 @@ export default function Register() {
                           return { ...prev, phone: e.target.value };
                         });
                       }}
-                      label='Phone Number'
+                      label={t("Phone Number")}
                       type='phoneNumber'
                       id='phoneNumber'
                       autoComplete='phoneNumber'
                     />
                     {data.phone.length < 11 && (
-                      <div style={{ color: 'red' }}>Enter a valid mobile.</div>
+                      <div style={{ color: 'red' }}>{t("Enter a valid phone number")}</div>
                     )}
                   </Grid>
                   {/* Role => student || instructor */}
                   <Grid item xs={12}>
                     <FormControl>
-                      <FormLabel id='demo-controlled-radio-buttons-group'>
+                      {/* <FormLabel id='demo-controlled-radio-buttons-group'>
                         Gender
-                      </FormLabel>
+                      </FormLabel> */}
                       <RadioGroup
                         aria-labelledby='demo-controlled-radio-buttons-group'
                         row={true}
@@ -276,7 +278,7 @@ export default function Register() {
                               }}
                             />
                           }
-                          label='Studnet'
+                          label={t("Student")}
                         />
                         <FormControlLabel
                           value='instructor'
@@ -290,12 +292,12 @@ export default function Register() {
                               }}
                             />
                           }
-                          label='Instructor'
+                          label={t("Instructor")}
                         />
                       </RadioGroup>
                     </FormControl>
                     {!data.role && (
-                      <div style={{ color: 'red' }}>choose your role.</div>
+                      <div style={{ color: 'red' }}>{t("choose your role")}</div>
                     )}
                   </Grid>
 
@@ -306,7 +308,7 @@ export default function Register() {
                         required
                         fullWidth
                         name='levelOfExperience'
-                        label='Level Of Experience'
+                        label={t("Level Of Experience")}
                         type='levelOfExperience'
                         value={data.levelOfExperience}
                         onChange={(e) => {
@@ -334,13 +336,13 @@ export default function Register() {
                     mb: 2,
                   }}
                 >
-                  Sign Up
+                  {t("Sign up")}
                 </Button>
                 {/* already have an account? ==> sign in */}
                 <Grid container justifyContent='flex-end'>
                   <Grid item>
                     <Link to='/login' variant='body2'>
-                      Already have an account? Sign in
+                      {t("Already have an account? Sign in")}
                     </Link>
                   </Grid>
                 </Grid>
