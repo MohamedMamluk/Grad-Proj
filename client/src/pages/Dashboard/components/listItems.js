@@ -11,6 +11,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import GroupIcon from '@mui/icons-material/Group';
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout, getAuth } from '../../../features/auth/authSlice';
@@ -97,6 +98,14 @@ export const MainListItems = () => {
           <ListItemText primary='Profile' />
         </ListItemButton>
       </Link>
+      <Link to='/contact' style={{ textDecoration: 'none', color: 'GrayText' }}>
+        <ListItemButton>
+          <ListItemIcon>
+            <AlternateEmailIcon style={{ fill: '#6d54de' }} fontSize='large' />
+          </ListItemIcon>
+          <ListItemText primary='Contact Us' />
+        </ListItemButton>
+      </Link>
       <Link
         to='/'
         onClick={() => dispatch(logout())}
@@ -109,12 +118,6 @@ export const MainListItems = () => {
           <ListItemText primary='Sign Out' />
         </ListItemButton>
       </Link>
-      {/* <ListItemButton>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary='Integrations' />
-    </ListItemButton> */}
     </React.Fragment>
   );
 };
