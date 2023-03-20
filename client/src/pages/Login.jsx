@@ -85,9 +85,17 @@ export default function SignIn() {
       axios
         .get(`/${res.data.role || role}/${res.data.id || id}`)
         .then((res) => {
-          console.log(res.data);
+          console.log('IN THEN');
+          if(res.status == 401){
+            navigate('/confirm-mail')
+          }
           dispatch(setUserData(res.data.user));
           //console.log(user);
+        }).catch(error=>{
+          console.log('IN CATCH')
+           if(res.status == 401){
+            navigate('/confirm-mail')
+          }
         });
       if (data.rememberMe) {
         localStorage.setItem('token', res.data.token);
@@ -98,7 +106,12 @@ export default function SignIn() {
       toast('Successfully Logged in');
 
       navigate(redirect, { replace: true });
-    });
+    }).catch(error=>{
+      console.log(error.response.status)
+           if(error.response.status == 401){
+            navigate('/confirm-mail')
+          }
+        });;
   };
   return (
     <ThemeProvider theme={theme}>

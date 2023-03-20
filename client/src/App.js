@@ -25,6 +25,7 @@ import Balance from './pages/Dashboard/pages/balance/Balance';
 import ConfirmEmail from './pages/ConfirmEmail';
 import ResetPassword from './pages/ResetPassword';
 import NotFound from './pages/not-found/NotFound.tsx';
+import ConfirmEmailPage from './pages/ConfirmEmailPage/ConfirmEmailPage';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
       <Route path='search' element={<SearchPage />} />
       <Route path='roadmap' element={<Roadmap />} />
       <Route path='confirm/:code' element={<ConfirmEmail />} />
+      <Route path='confirm-mail' element={<ConfirmEmailPage/>}/>
       <Route path='reset' element={<ResetPassword />} />
       <Route element={<AuthWrapper />}>
         <Route path='/dashboard' element={<Layout />}>
