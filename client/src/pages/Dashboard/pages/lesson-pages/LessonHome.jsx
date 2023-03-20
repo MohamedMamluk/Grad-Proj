@@ -6,6 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import AllLessons from '../../../../components/allLessons/allLessons';
+import Loader from '../../../../components/loading/loading';
 
 const LessonHome = () => {
     const courseID = useParams();
@@ -22,7 +23,11 @@ const LessonHome = () => {
             })
         });
     }, []);
-      console.log(lessons);
+      if(lessons.length == 0){
+        return(<div style={{position: 'absolute', left: '10%', top: '50%'}}>
+    <Loader/>
+    </div>)
+      };
     return (
         <>
             <Card sx={{ maxWidth: 1000 , textAlign: "center" }}>

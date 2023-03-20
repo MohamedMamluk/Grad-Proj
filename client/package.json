@@ -26,7 +26,11 @@
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
+<<<<<<< HEAD
     "react-i18next": "^12.2.0",
+=======
+    "react-intersection-observer": "^9.4.3",
+>>>>>>> 0f513fd44ca016921a9be54653bfb2d4658111dd
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",

@@ -24,7 +24,12 @@ import LessonHome from './pages/Dashboard/pages/lesson-pages/LessonHome';
 import Balance from './pages/Dashboard/pages/balance/Balance';
 import ConfirmEmail from './pages/ConfirmEmail';
 import ResetPassword from './pages/ResetPassword';
+
 import "./i18n"
+
+import NotFound from './pages/not-found/NotFound.tsx';
+
+
 function App() {
   return (
     <Routes>
@@ -53,7 +58,7 @@ function App() {
           <Route path='courses/:id/lesson/:id' element={<Lesson />} />
         </Route>
       </Route>
-      <Route path='*' element={<h1>Route not found</h1>} />
+      <Route path='*' element={<NotFound />} />
     </Routes>
   );
 }

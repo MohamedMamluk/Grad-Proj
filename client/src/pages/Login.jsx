@@ -68,7 +68,10 @@ export default function SignIn() {
   });
   React.useEffect(() => {
     if (authSelector != null) {
-      navigate('/dashboard');
+      const redirect = location.state?.from?.pathname || '/dashboard';
+      navigate(redirect, { replace: true });
+
+      // navigate('/dashboard');
     }
   }, []);
 
@@ -227,7 +230,7 @@ export default function SignIn() {
                   label='Password'
                   type='password'
                   id='password'
-                                      type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? 'text' : 'password'}
                     endAdornment={
                       <InputAdornment position='end'>
                         <IconButton
@@ -271,6 +274,14 @@ export default function SignIn() {
                 >
                   Sign In
                 </Button>
+                <Link
+                  to='/reset'
+                  variant='body2'
+                  // onClick={() => nagigateToOtp()}
+                  className='text-gray-800'
+                >
+                  Forgot password?
+                </Link>
                 <Grid container>
                   <Grid item>
                     <Link to='/register' variant='body2'>

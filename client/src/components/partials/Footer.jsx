@@ -18,7 +18,7 @@ function Footer() {
                   aria-label='Cruip'
                 >
                   <img
-                    src='logo-04.png'
+                    src='logo-03.png'
                     className='w-full h-full object-cover'
                     alt=''
                   />

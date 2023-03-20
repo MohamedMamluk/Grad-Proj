@@ -40,7 +40,7 @@ export const MainListItems = () => {
           <ListItemIcon>
             <ExploreIcon style={{ fill: '#6d54de' }} fontSize='large' />
           </ListItemIcon>
-          <ListItemText primary='Explore' />
+          <ListItemText primary='Courses' />
         </ListItemButton>
       </Link>
       {(auth.role == 'admin' || auth.role == 'instructor') && (
@@ -69,7 +69,7 @@ export const MainListItems = () => {
           </ListItemButton>
         </Link>
       )}
-      {(auth.role == 'instructor' || auth.role == 'admin') && (
+      {auth.role == 'instructor' && (
         <Link
           to='/dashboard/balance'
           style={{ textDecoration: 'none', color: 'GrayText' }}

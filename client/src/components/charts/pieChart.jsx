@@ -37,8 +37,8 @@ const PieChart = () => {
   const options = {};
 
   return (
-    <div>
-      <h1>Pie Chart</h1>
+    <div className='w-1/2'>
+      {/* <h1>Pie Chart</h1> */}
       <div
         style={{
           padding: '20px',

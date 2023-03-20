@@ -16,10 +16,17 @@ import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link, useNavigate } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
 const pages = ['Home', 'Login', 'Register', 'Courses'];
+
+import { useSelector } from 'react-redux';
+
+
+
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const Header = () => {
+  const user = useSelector((store) => store.auth);
   let navigate = useNavigate();
   let [t,i18n] = useTranslation();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -159,10 +166,42 @@ const Header = () => {
                   </MenuItem>
                 </Link>
               ))}
+              {user.token ? (
+                <Link
+                  to={`/dashboard`}
+                  className='decoration-none'
+                  style={{ textDecoration: 'none' }}
+                >
+                  <MenuItem onClick={handleCloseNavMenu}>
+                    <Typography textAlign='center'>Dashboard</Typography>
+                  </MenuItem>
+                </Link>
+              ) : (
+                <>
+                  <Link
+                    to={`/login`}
+                    className='decoration-none'
+                    style={{ textDecoration: 'none' }}
+                  >
+                    <MenuItem onClick={handleCloseNavMenu}>
+                      <Typography textAlign='center'>Login</Typography>
+                    </MenuItem>
+                  </Link>
+                  <Link
+                    to={`/register`}
+                    className='decoration-none'
+                    style={{ textDecoration: 'none' }}
+                  >
+                    <MenuItem onClick={handleCloseNavMenu}>
+                      <Typography textAlign='center'>Register</Typography>
+                    </MenuItem>
+                  </Link>
+                </>
+              )}
             </Menu>
           </Box>
           <img
-            src='logo-04.png'
+            src={offset > 0 ? 'logo-04.png' : 'logo-03.png'}
             className='-top-1 relative'
             style={{
               display: { xs: 'none', md: 'flex' },
@@ -176,19 +215,35 @@ const Header = () => {
             sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
             style={{ gap: '10px' }}
           >
+
             <Link to='/' className={`navLink`}>
             {t("Home")}
               
             </Link>
             <Link to='/courses' className='navLink'>
             {t("Courses")}
+
+            <Link
+              to='/'
+              className={`navLink ${offset > 0 ? 'text-white' : 'text-black'}`}
+            >
+              Home
+            </Link>
+            <Link
+              to='/courses'
+              className={`navLink ${offset > 0 ? 'text-white' : 'text-black'}`}
+            >
+              Courses
+
             </Link>
           </Box>
 
           <div
             style={{ padding: '10px' }}
             id='search__wrapper'
-            className='hidden md:flex'
+            className={`!border hidden md:flex ${
+              offset > 0 ? 'border-white' : 'border-black'
+            }`}
           >
             <input
               type='text'
@@ -199,6 +254,7 @@ const Header = () => {
                 borderTopLeftRadius: '10px',
                 borderBottomLeftRadius: '10px',
               }}
+              className={` ${offset > 0 ? 'text-white' : 'text-black'}`}
               onChange={(e) => setSearch(e.target.value)}
             />
             <Button
@@ -213,9 +269,12 @@ const Header = () => {
                 navigate('/search?' + search);
               }}
             >
-              <SearchIcon />
+              <SearchIcon
+                className={`${offset > 0 ? 'text-white' : 'text-black'}`}
+              />
             </Button>
           </div>
+
 
           <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} style={{ gap: '10px' }}>
             <Button
@@ -241,6 +300,57 @@ const Header = () => {
           <option value='English'> EN</option>
           <option value='Arabic'> AR</option>
           </select>
+
+          {user.token ? (
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, mx: 2 }}>
+              <Button
+                sx={{
+                  textTransform: 'capitalize',
+                  padding: '0px',
+                  width: 'auto',
+                }}
+              >
+                <Link
+                  to='/dashboard'
+                  className={`navLink ${
+                    offset > 0 ? 'text-white' : 'text-black'
+                  }`}
+                >
+                  Dashboard
+                </Link>
+              </Button>
+            </Box>
+          ) : (
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>
+              <Button
+                sx={{
+                  textTransform: 'capitalize',
+                  padding: '0px',
+                  width: 'auto',
+                }}
+              >
+                <Link
+                  to='/login'
+                  className={`navLink ${
+                    offset > 0 ? 'text-white' : 'text-black'
+                  }`}
+                >
+                  login
+                </Link>
+              </Button>
+              <Button sx={{ textTransform: 'capitalize', padding: '0px' }}>
+                <Link
+                  to='/register'
+                  className={`navLink ${
+                    offset > 0 ? 'text-white' : 'text-black'
+                  }`}
+                >
+                  Register
+                </Link>
+              </Button>
+            </Box>
+          )}
+
         </Toolbar>
       </Container>
     </AppBar>

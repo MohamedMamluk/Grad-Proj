@@ -1,13 +1,18 @@
-import { Button } from '@mui/material';
+import { Button, ListItemButton, ListItemText } from '@mui/material';
 import { Container } from '@mui/system';
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Loader from '../loading/loading';
 import './CouForAdmin.css';
 const CouForAdmin = () => {
+  const USD = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  });
+
   const [flag, setflag] = useState('ALL');
   const user = useSelector((store) => store.auth);
   const navigate = useNavigate();
@@ -67,7 +72,7 @@ const CouForAdmin = () => {
   }
   return (
     <div>
-      <div className='filterContainer' id='btnDiv'>
+      <div className='filterContainer mb-5' id='btnDiv'>
         <label for='Cost'> Filter:</label>
         <select name='Cost' value={flag} id='Categories' onChange={filtered}>
           <option value='ALL'>All Courses </option>
@@ -77,58 +82,56 @@ const CouForAdmin = () => {
         </select>
       </div>
 
-      <div className=' '>
-        <div className='row d-flex justify-content-center'>
+      <div className='bg-gray-100 container'>
+        {filteredCoursesflag.length == 0 && (
+          <h1 className='text-center'>No courses found</h1>
+        )}
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
           {filteredCoursesflag.map((course) => (
-            <div key={course._id} className='card p-3 m-2 col-md-5 col-xl-3'>
-              <img src={course.image} className='card-img-top' alt='...' />
-              <div className='card-body'>
-                <p className='card-text'>{course.name}</p>
-                <p className='card-text'>{course.cost}</p>
-                <p className='card-text'>{course.Duration}</p>
-                <Button
-                  type='button'
-                  variant='contained'
-                  sx={{
-                    backgroundColor: 'green',
-                    '&:hover': {
-                      backgroundColor: 'green',
-                    },
-                  }}
-                  className='w-100  my-2'
-                  onClick={() => navigate(`/dashboard/courses/${course._id}`)}
-                >
-                  See More
-                </Button>
-                <Button
-                  type='button'
-                  variant='contained'
-                  sx={{
-                    backgroundColor: 'orange',
-                    '&:hover': {
-                      backgroundColor: 'orange',
-                    },
-                  }}
-                  className='w-100  my-2'
-                  onClick={() =>
-                    navigate(`/dashboard/courses-created/update/${course._id}`)
-                  }
-                >
-                  Update
-                </Button>
-                <Button
-                  type='button'
-                  variant='contained'
-                  sx={{
-                    backgroundColor: 'red',
-                    '&:hover': {
-                      backgroundColor: 'red',
-                    },
-                  }}
-                  className='my-2 w-100'
-                >
-                  Delete
-                </Button>
+            <div className='bg-white rounded-lg h-auto shadow-md shadow-purple-300 overflow-hidden hover:scale-105 transition-all duration-500 hover:shadow-xl hover:shadow-purple-300'>
+              <img
+                src={course.image}
+                alt={course.name}
+                className='w-full h-48 object-cover'
+              />
+
+              <div className='p-4 h-max'>
+                <h2 className='text-lg font-semibold' title={course.name}>
+                  {course.name.length > 35
+                    ? course.name.substring(0, 35) + '...'
+                    : course.name}
+                </h2>
+                <div className='mt-4 flex flex-wrap gap-2 items-center justify-between '>
+                  <Link
+                    to={`/dashboard/courses/${course._id}`}
+                    style={{ textDecoration: 'none' }}
+                    variant='body2'
+                    className='bg-blue-500 hover:bg-blue-600 text-white flex-1 w-auto rounded-md'
+                  >
+                    <ListItemButton style={{ textAlign: 'center' }}>
+                      <ListItemText primary='View' />
+                    </ListItemButton>
+                  </Link>
+                  <Link
+                    to={`/dashboard/courses-created/update/${course._id}`}
+                    style={{ textDecoration: 'none' }}
+                    variant='body2'
+                    className='bg-green-500 hover:bg-green-600 text-white flex-1  w-auto rounded-md'
+                  >
+                    <ListItemButton style={{ textAlign: 'center' }}>
+                      <ListItemText primary='Update' />
+                    </ListItemButton>
+                  </Link>
+                  <Link
+                    style={{ textDecoration: 'none' }}
+                    variant='body2'
+                    className='bg-red-500 hover:bg-red-600 text-white flex-1  w-auto rounded-md'
+                  >
+                    <ListItemButton style={{ textAlign: 'center' }}>
+                      <ListItemText primary='Delete' />
+                    </ListItemButton>
+                  </Link>
+                </div>
               </div>
             </div>
           ))}

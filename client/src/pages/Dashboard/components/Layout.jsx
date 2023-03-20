@@ -85,17 +85,12 @@ const Drawer = styled(MuiDrawer, {
 const mdTheme = createTheme();
 
 function DashboardContent() {
-  const [open, setOpen] = React.useState(true);
-  const navigate = useNavigate();
+  const [open, setOpen] = React.useState(false);
   const toggleDrawer = () => {
     setOpen(!open);
   };
   const user = useSelector((store) => store.auth);
-  useEffect(() => {
-    if (!user.id) {
-      navigate('/login');
-    }
-  }, []);
+
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex', color: 'black' }}>
@@ -189,7 +184,7 @@ function DashboardContent() {
           }}
         >
           <Toolbar />
-          <Container maxWidth='lg' sx={{ mt: 4, mb: 4 }}>
+          <Container maxWidth='xl' sx={{ mt: 4, mb: 4 }}>
             <Outlet />
             <Copyright sx={{ pt: 4 }} />
           </Container>

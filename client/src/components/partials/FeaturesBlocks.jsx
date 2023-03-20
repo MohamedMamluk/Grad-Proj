@@ -1,23 +1,62 @@
+
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 function FeaturesBlocks() {
   let [t,i18n] = useTranslation();
+
+import React, { useEffect, useMemo } from 'react';
+import { useAnimation, motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+
+function FeaturesBlocks() {
+  const blockVariants = useMemo(() => ({
+    show: { opacity: 1, transition: { duration: 1 } },
+    hidden: { opacity: 0, transition: { duration: 1 } },
+  }));
+  const controls = useAnimation();
+  const [ref, inView] = useInView();
+  useEffect(() => {
+    if (inView) {
+      controls.start('show');
+    }
+  }, [controls, inView]);
+  const container = useMemo(() => ({
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  }));
+
   return (
     <section>
       <div className='max-w-6xl mx-auto px-4 sm:px-6'>
         <div className='py-12 md:py-20'>
           {/* Section header */}
+
           <div className='max-w-3xl mx-auto text-center pb-12 md:pb-20'>
             <h2 className='h2 mb-4'>{t("Why Our Website ?")}</h2>
+
+          <div className='max-w-3xl mx-auto text-center pb-12 md:pb-20 text-black'>
+            <h2 className='h2 mb-4'>Why pick MindsOn?</h2>
+
           </div>
 
           {/* Items */}
-          <div
+          <motion.div
+            ref={ref}
+            animate={controls}
+            variants={container}
+            initial='hidden'
+            // animate='show'
             className='max-w-sm mx-auto grid gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-16 items-start md:max-w-2xl lg:max-w-none'
             data-aos-id-blocks
           >
             {/* 1st item */}
-            <div
+            <motion.div
+              variants={blockVariants}
               className='relative flex flex-col items-center'
               data-aos='fade-up'
               data-aos-anchor='[data-aos-id-blocks]'
@@ -48,14 +87,19 @@ function FeaturesBlocks() {
                   strokeWidth='2'
                 />
               </svg>
+
               <h4 className='h4 mb-2'>{t("Educational Standards")}</h4>
+
+              <h4 className='h4 mb-2 text-black'>Educational Standards</h4>
+
               <p className='text-lg text-gray-400 text-center'>
                 {t("Our Website has the latest educational standards, easily accessible and interesting")}
               </p>
-            </div>
+            </motion.div>
 
             {/* 2nd item */}
-            <div
+            <motion.div
+              variants={blockVariants}
               className='relative flex flex-col items-center'
               data-aos='fade-up'
               data-aos-delay='100'
@@ -87,14 +131,19 @@ function FeaturesBlocks() {
                   strokeLinecap='square'
                 />
               </svg>
+
               <h4 className='h4 mb-2'>{t("Study System")}</h4>
+
+              <h4 className='h4 mb-2 text-black'>Study System</h4>
+
               <p className='text-lg text-gray-400 text-center'>
                {t("Our System is so flexible. You can Take the Course at any time of the year also there is no limitation for a specific time to finish it")}
               </p>
-            </div>
+            </motion.div>
 
             {/* 3rd item */}
-            <div
+            <motion.div
+              variants={blockVariants}
               className='relative flex flex-col items-center'
               data-aos='fade-up'
               data-aos-delay='400'
@@ -127,16 +176,20 @@ function FeaturesBlocks() {
                   />
                 </g>
               </svg>
+
               <h4 className='h4 mb-2'>{t("Classes & Scheduling")}</h4>
+
+              <h4 className='h4 mb-2 text-black'>Classes & Scheduling</h4>
+
               <p className='text-lg text-gray-400 text-center'>
                 {t("You can choose the optimal time for yourself, morning or evening. It doesn't matter")}
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>
   );
 }
-
+}
 export default FeaturesBlocks;

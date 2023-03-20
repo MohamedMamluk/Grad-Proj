@@ -4,6 +4,7 @@ import PageIllustration from '../partials/PageIllustration';
 import HeroHome from '../partials/HeroHome';
 import FeaturesBlocks from '../partials/FeaturesBlocks';
 import FeaturesZigZag from '../partials/FeaturesZigzag';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import Footer from '../partials/Footer';
 import Roadmaps from '../Roadmaps/Home/home';
@@ -21,12 +22,26 @@ const Home = () => {
       {/*  Page content */}
       <main className='grow'>
         {/*  Page illustration */}
-        <div
+        <motion.div
+          key={'logo'}
           className='relative max-w-6xl mx-auto h-0 pointer-events-none'
           aria-hidden='true'
+          initial={{
+            right: -100,
+            opacity: 0,
+          }}
+          exit={{ opacity: 0 }}
+          transition={{
+            duration: 1,
+            ease: 'easeInOut',
+          }}
+          animate={{
+            right: 0,
+            opacity: 1,
+          }}
         >
           <PageIllustration />
-        </div>
+        </motion.div>
 
         {/*  Page sections */}
         <HeroHome />
