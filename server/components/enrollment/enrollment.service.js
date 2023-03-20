@@ -21,7 +21,7 @@ const handleEnrollment = async (studentID, courseInfoID, courseID) => {
     await updateStudentByIdService(studentID, student);
     await updateCourseInfoByIDService(courseInfoID, courseInfo);
     const lessons = courseInfo.courseLessons.map((lesson) => ({
-      lessonId: lesson._id,
+      lessonId: lesson.lessonId,
     }));
     const newLessonsFinished = await addNewLessonsFinishedService(
       lessons,

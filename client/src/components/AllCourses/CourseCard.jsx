@@ -1,6 +1,8 @@
 import { ListItemButton, ListItemText } from '@mui/material';
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { useAnimation, motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 function CourseCard({ course }) {
   const { name, description, cost, image } = course;
@@ -8,9 +10,16 @@ function CourseCard({ course }) {
     style: 'currency',
     currency: 'USD',
   });
+  const blockVariants = useMemo(() => ({
+    show: { opacity: 1, transition: { duration: 1 } },
+    hidden: { opacity: 0, transition: { duration: 1 } },
+  }));
 
   return (
-    <div className='bg-white rounded-lg h-auto shadow-md shadow-purple-300 overflow-hidden hover:scale-105 transition-all duration-500 hover:shadow-xl hover:shadow-purple-300'>
+    <motion.div
+      variants={blockVariants}
+      className='bg-white rounded-lg h-auto shadow-md shadow-purple-300 overflow-hidden hover:scale-105 transition-all duration-500 hover:shadow-xl hover:shadow-purple-300'
+    >
       <img src={image} alt={name} className='w-full h-48 object-cover' />
       <div className='p-4 h-max'>
         <h2 className='text-lg font-semibold' title={name}>
@@ -36,7 +45,7 @@ function CourseCard({ course }) {
           </Link>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

@@ -44,7 +44,14 @@ app.use('/api/upload', uploadRoutes);
 //courseInfo  route
 app.use('/api/courseinfo', courseInfoRoute);
 app.use('/api/student', StudentRoutes);
-app.use('/api/lessonsFinished', lessonsFinishedRoutes);
+app.use(
+  '/api/lessonsFinished',
+  (req, res, next) => {
+    console.log('In Lessons finished middleware');
+    next();
+  },
+  lessonsFinishedRoutes
+);
 app.use('/api/instructor', instructorRoutes);
 app.use('/api/course', courseRoutes);
 
