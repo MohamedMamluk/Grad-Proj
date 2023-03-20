@@ -24,7 +24,6 @@ const AllLessons = (lessonIdArr) => {
         };
         getLesson(lessonIds);
     }, [lessonIdArr]);
-    console.log(lessons);
     if (lessons.length == 0) {
         return (<div style={{position: 'absolute', left: '10%', top: '70%',}}>
         <Loader/>

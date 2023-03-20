@@ -14,6 +14,7 @@ const enrollmentRoutes = require('./components/enrollment/enrollment.routes');
 const uploadRoutes = require('./components/upload/upload.route');
 const AdminModel = require('./components/admin/admin.model');
 const todoRoutes = require('./components/Todo_backend/todo.route');
+const contactUsRoutes = require('./components/contactUs/contactUs.routes')
 
 var cors = require('cors');
 
@@ -50,6 +51,9 @@ app.use('/api/course', courseRoutes);
 
 //todo route
 app.use('/api/todo', todoRoutes);
+
+//contactUs route
+app.use('/api/contactUs',contactUsRoutes)
 
 const connection = async () => {
   try {
