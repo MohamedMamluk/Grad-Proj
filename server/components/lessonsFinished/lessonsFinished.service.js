@@ -37,21 +37,23 @@ const setLessonFinished = async (studentID, lessonID) => {
     let lesson = lessonFinished.lessons.find(
       (lesson) => lesson.lessonId == lessonID
     );
-    const index = lessonFinished.lessons.indexOf(lesson);
+    if (lesson) {
+      const index = lessonFinished.lessons.indexOf(lesson);
 
-    lesson.isFinished = true;
-    let newLessons = lessonFinished.lessons.splice(index, 1, lesson);
-    const newLessonsFinished = await LessonFinished_Schema.findByIdAndUpdate(
-      lessonFinished._id,
-      {
-        ...lessonFinished,
-        lessons: newLessons,
-      },
-      {
-        new: true,
-      }
-    );
-    console.log(newLessonsFinished);
+      lesson.isFinished = true;
+      let newLessons = lessonFinished.lessons.splice(index, 1, lesson);
+      const newLessonsFinished = await LessonFinished_Schema.findByIdAndUpdate(
+        lessonFinished._id,
+        {
+          ...lessonFinished,
+          lessons: newLessons,
+        },
+        {
+          new: true,
+        }
+      );
+      console.log(newLessonsFinished);
+    }
   });
 };
 const deleteLessonFinishedByIdService = async () => {
