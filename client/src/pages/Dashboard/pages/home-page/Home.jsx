@@ -18,7 +18,6 @@ import { useInView } from 'react-intersection-observer';
 const DashboardHome = () => {
   const user = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const {ref , inView} = useInView();
   
   useEffect(() => {
     const id = localStorage.getItem('id');
@@ -36,17 +35,21 @@ const DashboardHome = () => {
 
   return (
     <div>
-      <motion.div id='progress_container'
+      <motion.div id='home_header_container'
           initial={{x:'-100vw'}}
           animate={{x:0}}
           transition={{type:'spring',duration:1,bounce:0.3}}>
             <HomeHeader user={user} />
             </motion.div>
-      <Grid ref={ref} container spacing={4} padding={5}>
+      <Grid container spacing={4} padding={5}>
         {user.role == 'instructor' && user.userData.balance.length > 0 && (
-          <LineChart />
+          <motion.div id='line_balance_container' style={{width:"50vw"}}
+          initial={{x:'-100vw'}}
+          animate={{x:0}}
+          transition={{type:'spring',duration:2,bounce:0.3}}>
+            <LineChart />
+          </motion.div>
         )}
-
         {user.role == 'student' && (
           <motion.div id='progress_container'
           initial={{x:'-100vw'}}

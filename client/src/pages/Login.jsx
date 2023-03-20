@@ -77,22 +77,22 @@ export default function SignIn() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('/auth/login', data).then((res) => {
-      //console.log(res.data);
+    axios.post('/auth/login', data)
+    .then((res) => {
       dispatch(setUser(res.data));
       const id = localStorage.getItem('id');
       const role = localStorage.getItem('role');
       axios
         .get(`/${res.data.role || role}/${res.data.id || id}`)
         .then((res) => {
-          console.log('IN THEN');
+          // console.log('IN THEN');
           if(res.status == 401){
             navigate('/confirm-mail')
           }
           dispatch(setUserData(res.data.user));
           //console.log(user);
         }).catch(error=>{
-          console.log('IN CATCH')
+          // console.log('IN CATCH')
            if(res.status == 401){
             navigate('/confirm-mail')
           }
@@ -107,7 +107,9 @@ export default function SignIn() {
 
       navigate(redirect, { replace: true });
     }).catch(error=>{
-      console.log(error.response.status)
+      // console.log(error.response.status)
+      // console.log("error kbeeera ", error);
+      toast.error('Wrong Email or Password',{position: "bottom-left"});
            if(error.response.status == 401){
             navigate('/confirm-mail')
           }
