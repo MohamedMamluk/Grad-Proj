@@ -62,9 +62,9 @@ const connection = async () => {
   try {
     //console.log(process.env.MONGOURI_DEV);
     // Development
-    await connect(process.env.MONGOURI_DEV);
+    // await connect(process.env.MONGOURI_DEV);
     // Production
-    // await connect(process.env.MONGOURI_PROD);
+    await connect(process.env.MONGOURI_PROD);
     app.listen(PORT, () => {
       console.log(PORT);
     });
