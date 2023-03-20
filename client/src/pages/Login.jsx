@@ -79,17 +79,25 @@ export default function SignIn() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('/auth/login', data).then((res) => {
-      //console.log(res.data);
+    axios.post('/auth/login', data)
+    .then((res) => {
       dispatch(setUser(res.data));
       const id = localStorage.getItem('id');
       const role = localStorage.getItem('role');
       axios
         .get(`/${res.data.role || role}/${res.data.id || id}`)
         .then((res) => {
-          console.log(res.data);
+          // console.log('IN THEN');
+          if(res.status == 401){
+            navigate('/confirm-mail')
+          }
           dispatch(setUserData(res.data.user));
           //console.log(user);
+        }).catch(error=>{
+          // console.log('IN CATCH')
+           if(res.status == 401){
+            navigate('/confirm-mail')
+          }
         });
       if (data.rememberMe) {
         localStorage.setItem('token', res.data.token);
@@ -100,7 +108,14 @@ export default function SignIn() {
       toast('Successfully Logged in');
 
       navigate(redirect, { replace: true });
-    });
+    }).catch(error=>{
+      // console.log(error.response.status)
+      // console.log("error kbeeera ", error);
+      toast.error('Wrong Email or Password',{position: "bottom-left"});
+           if(error.response.status == 401){
+            navigate('/confirm-mail')
+          }
+        });;
   };
   return (
     <ThemeProvider theme={theme}>

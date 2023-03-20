@@ -18,6 +18,7 @@ import UpdateCourse from './pages/Dashboard/pages/courses-created-page/update-co
 import AuthWrapper from './components/AuthWrapper';
 import SingleCourse from './pages/Dashboard/pages/course-page/Course';
 import Lesson from './pages/Dashboard/pages/lesson-pages/Lesson';
+import ContactUs from './pages/Contact';
 import SearchPage from './pages/SearchPage';
 import Roadmap from './components/Roadmaps/Roadmap';
 import LessonHome from './pages/Dashboard/pages/lesson-pages/LessonHome';
@@ -28,6 +29,7 @@ import ResetPassword from './pages/ResetPassword';
 import "./i18n"
 
 import NotFound from './pages/not-found/NotFound.tsx';
+import ConfirmEmailPage from './pages/ConfirmEmailPage/ConfirmEmailPage';
 
 
 function App() {
@@ -41,7 +43,9 @@ function App() {
       <Route path='enrolled' element={<Enrolled />} />
       <Route path='search' element={<SearchPage />} />
       <Route path='roadmap' element={<Roadmap />} />
+      <Route path='contact' element={<ContactUs />} />
       <Route path='confirm/:code' element={<ConfirmEmail />} />
+      <Route path='confirm-mail' element={<ConfirmEmailPage />} />
       <Route path='reset' element={<ResetPassword />} />
       <Route element={<AuthWrapper />}>
         <Route path='/dashboard' element={<Layout />}>

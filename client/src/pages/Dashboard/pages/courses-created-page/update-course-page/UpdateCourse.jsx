@@ -8,7 +8,9 @@ import FullSizeButton from '../../../../../components/buttons/FullSizeButton';
 import axios from 'axios';
 import { Box } from '@mui/material';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const lessonDataObject = { type: '', title: '', link: '', description: '' };
 
@@ -20,6 +22,7 @@ const UpdateCourse = () => {
     level: '',
     whatYouWillLearn: [{ title: '', description: '' }],
   });
+  const navigate = useNavigate();
   const [newCourse, setNewCourse] = useState({
     courseTitle: '',
     courseDuration: '',
@@ -91,7 +94,11 @@ const UpdateCourse = () => {
       is_paid: newCourse.paid == 'free' ? false : true,
       duration: newCourse.courseDuration,
     };
-    axios.patch(`/course/${id}`, newCourseData);
+    axios.patch(`/course/${id}`, newCourseData)
+    .then((res)=>{
+      toast('Successfully Updated Course');
+          navigate('/dashboard/courses/'+id);
+    });;
   };
   const handleCourseInfoPatch = () => {
     axios.patch(
@@ -107,7 +114,10 @@ const UpdateCourse = () => {
           Authorization: `Bearer ${auth.token}`,
         },
       }
-    );
+    ).then((res)=>{
+      toast('Successfully Updated course info');
+          navigate('/dashboard/courses/'+id);
+    });
   };
   const handleLessonsPatch = () => {
     lessonData.map((lesson) => {
@@ -127,15 +137,29 @@ const UpdateCourse = () => {
               },
             }
           );
+        }).then((res)=>{
+          console.log("waslna el 5artoooom");
+          toast('Successfully Created');
+          navigate('/courses');
+        }).catch((err)=>{
+          toast.error('ERROR.')
         });
       } else {
         axios.patch(`/lesson/${lesson.id}`, lesson, {
           headers: {
             Authorization: `Bearer ${auth.token}`,
           },
+        }).then((res)=>{
+          console.log("waslna el 5artoooom 222");
+          toast('Successfully Updated');
+          navigate('/courses');
+        }).catch((err)=>{
+          toast.error('ERROR.')
         });
       }
     });
+    
+    
   };
   return (
     <div>

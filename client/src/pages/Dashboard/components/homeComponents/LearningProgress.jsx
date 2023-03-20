@@ -66,7 +66,7 @@ const LearningProgress = (props) => {
       const course= coursesCompletedTrue(res.data);
       setcoursesCompleted((course/res.data.length)*100);
     })
-  },[])
+  },[lessonsCompleted])
   return (
     <Container
       className='hello-section hello-section-progress'
