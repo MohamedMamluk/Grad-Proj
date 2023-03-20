@@ -29,7 +29,31 @@ const addNewLessonsFinishedService = async (
 const updateLessonFinishedByIdService = async (_id, newData) => {
   return LessonFinished_Schema.findByIdAndUpdate();
 };
+const setLessonFinished = async (studentID, lessonID) => {
+  const lessonsForStudent = await LessonFinished_Schema.find({
+    studentId: studentID,
+  });
+  lessonsForStudent.map(async (lessonFinished) => {
+    let lesson = lessonFinished.lessons.find(
+      (lesson) => lesson.lessonId == lessonID
+    );
+    const index = lessonFinished.lessons.indexOf(lesson);
 
+    lesson.isFinished = true;
+    let newLessons = lessonFinished.lessons.splice(index, 1, lesson);
+    const newLessonsFinished = await LessonFinished_Schema.findByIdAndUpdate(
+      lessonFinished._id,
+      {
+        ...lessonFinished,
+        lessons: newLessons,
+      },
+      {
+        new: true,
+      }
+    );
+    console.log(newLessonsFinished);
+  });
+};
 const deleteLessonFinishedByIdService = async () => {
   return LessonFinished_Schema.findByIdAndDelete();
 };
@@ -40,4 +64,5 @@ module.exports = {
   addNewLessonsFinishedService,
   updateLessonFinishedByIdService,
   deleteLessonFinishedByIdService,
+  setLessonFinished,
 };
