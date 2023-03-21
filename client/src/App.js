@@ -27,6 +27,7 @@ import ConfirmEmail from './pages/ConfirmEmail';
 import ResetPassword from './pages/ResetPassword';
 import NotFound from './pages/not-found/NotFound.tsx';
 import ConfirmEmailPage from './pages/ConfirmEmailPage/ConfirmEmailPage';
+import EnrolledCourses from './pages/Dashboard/pages/enrolled-courses/EnrolledCourses';
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
           <Route path='courses' element={<Explore />} />
           <Route path='profile' element={<Profile />} />
           <Route path='balance' element={<Balance />} />
+          <Route path='enrolled-courses' element={<EnrolledCourses />} />
           <Route path='courses-created/new' element={<CreateCourse />} />
           <Route path='courses-created/update/:id' element={<UpdateCourse />} />
           <Route path='courses-created' element={<CoursesCreated />} />
