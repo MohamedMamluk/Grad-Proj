@@ -87,7 +87,16 @@ const Course = () => {
             </div>
           </div>
           <button
-            class='button offer-button'
+            className={`button offer-button ${
+              userData.userData.courses.find((course) => course == id)
+                ? 'bg-gray-500'
+                : ''
+            }`}
+            disabled={
+              userData.userData.courses.find((course) => course == id)
+                ? true
+                : false
+            }
             onClick={() => {
               if (course.cost === 'free') {
                 console.log('THIS IS FREE');
@@ -102,7 +111,9 @@ const Course = () => {
               }
             }}
           >
-            Enroll Now
+            {userData.userData.courses.find((course) => course == id)
+              ? 'enrolled'
+              : 'Enroll Now'}
           </button>
         </div>
         <div class='secCard card box' style={{ delay: '.4s' }}>
@@ -153,7 +164,15 @@ const Course = () => {
             </div>
           </div>
         </div>
-        <LessonNav lessonArr={courseInfo.courseLessons} courseId={course._id} />
+        <LessonNav
+          enrolled={
+            userData.userData.courses.find((course) => course == id)
+              ? true
+              : false
+          }
+          lessonArr={courseInfo.courseLessons}
+          courseId={course._id}
+        />
 
         <div class='account card account-wrapper' style={{ delay: '.8s' }}>
           <CastForEducationOutlinedIcon />
