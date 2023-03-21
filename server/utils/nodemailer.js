@@ -118,7 +118,7 @@ const templete = (confirmationCode) => `<!DOCTYPE html>
         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
           <tr>
             <td align="center" valign="top" style="padding: 36px 24px;">
-              <a href="https://grad-proj-eight.vercel.app/" target="_blank" style="display: inline-block;">
+              <a href="https://minds-on.vercel.app/" target="_blank" style="display: inline-block;">
                 <img src="https://i.ibb.co/zRGqSWT/logo-09.png" style="width:200px" alt="logo-09" border="0">
               </a>
             </td>
@@ -170,7 +170,7 @@ const templete = (confirmationCode) => `<!DOCTYPE html>
           <!-- start copy -->
           <tr>
             <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-              <p style="margin: 0;">Tap the button below to confirm your email address. If you didn't create an account with <a href="https://grad-proj-eight.vercel.app/">MindsOn</a>, you can safely delete this email.</p>
+              <p style="margin: 0;">Tap the button below to confirm your email address. If you didn't create an account with <a href="https://minds-on.vercel.app/">MindsOn</a>, you can safely delete this email.</p>
             </td>
           </tr>
           <!-- end copy -->
@@ -184,7 +184,7 @@ const templete = (confirmationCode) => `<!DOCTYPE html>
                     <table border="0" cellpadding="0" cellspacing="0">
                       <tr>
                         <td align="center" bgcolor="#1a82e2" style="border-radius: 6px;">
-                          <a href=https://grad-proj-eight.vercel.app/confirm/${confirmationCode} target="_blank" style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">Click here</a>
+                          <a href=https://minds-on.vercel.app/confirm/${confirmationCode} target="_blank" style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">Click here</a>
                         </td>
                       </tr>
                     </table>
@@ -199,7 +199,7 @@ const templete = (confirmationCode) => `<!DOCTYPE html>
           <tr>
             <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
               <p style="margin: 0;">If that doesn't work, copy and paste the following link in your browser:</p>
-              <p style="margin: 0;"><a href=https://grad-proj-eight.vercel.app/confirm/${confirmationCode} target="_blank">https://grad-proj-eight.vercel.app/confirm/${confirmationCode}</a></p>
+              <p style="margin: 0;"><a href=https://minds-on.vercel.app/confirm/${confirmationCode} target="_blank">https://minds-on.vercel.app/confirm/${confirmationCode}</a></p>
             </td>
           </tr>
           <!-- end copy -->
