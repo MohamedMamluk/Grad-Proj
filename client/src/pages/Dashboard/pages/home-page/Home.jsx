@@ -12,10 +12,13 @@ import TheTOdo from '../../components/to-do-list/TheTOdo';
 import Video from '../../../../components/lessonTypes/Video';
 import LineChart from '../../../../components/charts/LineChart';
 import Loader from '../../../../components/loading/loading';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 const DashboardHome = () => {
   const user = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  
   useEffect(() => {
     const id = localStorage.getItem('id');
     const role = localStorage.getItem('role');
@@ -29,20 +32,32 @@ const DashboardHome = () => {
     <Loader/>
     </div>);
   }
+
   return (
     <div>
-      <HomeHeader user={user} />
+      <motion.div id='home_header_container'
+          initial={{x:'-100vw'}}
+          animate={{x:0}}
+          transition={{type:'spring',duration:1,bounce:0.3}}>
+            <HomeHeader user={user} />
+            </motion.div>
       <Grid container spacing={4} padding={5}>
         {user.role == 'instructor' && user.userData.balance.length > 0 && (
-          <LineChart />
+          <motion.div id='line_balance_container' style={{width:"50vw"}}
+          initial={{x:'-100vw'}}
+          animate={{x:0}}
+          transition={{type:'spring',duration:2,bounce:0.3}}>
+            <LineChart />
+          </motion.div>
         )}
-
         {user.role == 'student' && (
-
-          <div id='progress_container'>
+          <motion.div id='progress_container'
+          initial={{x:'-100vw'}}
+          animate={{x:0}}
+          transition={{type:'spring',duration:2,bounce:0.3}}>
             <LearningProgress />
             <CourseProgress />
-          </div>
+          </motion.div>
         )}
         {user.role == 'admin' && (
           <div className='flex w-full my-12'>
@@ -51,9 +66,12 @@ const DashboardHome = () => {
           </div>
         )}
       </Grid>
-      <div>
+      <motion.div id='progress_container'
+          initial={{x:'-100vw'}}
+          animate={{x:0}}
+          transition={{type:'spring',duration:3,bounce:0.3}}>
         <TheTOdo />
-      </div>
+            </motion.div>
     </div>
   );
 };
