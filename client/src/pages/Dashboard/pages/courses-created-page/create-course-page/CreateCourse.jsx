@@ -22,7 +22,7 @@ const CreateCourse = () => {
     courseTitle: '',
     courseDuration: '',
     paid: '',
-    isPaied: '',
+    isPaied: '0',
     img: '', //to be handeled
   });
   const [lessonData, setLessonData] = useState([lessonDataObject]);
