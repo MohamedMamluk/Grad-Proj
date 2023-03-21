@@ -22,7 +22,8 @@ const login = async (req, res) => {
         .status(StatusCodes.NOT_FOUND)
         .json({ message: 'WRONG EMAIL OR PASSWORD' });
     }
-    const isValid = user.comparePassword(req.body.password);
+    const isValid = await user.comparePassword(req.body.password);
+    console.log(isValid);
     if (!isValid) {
       return res
         .status(StatusCodes.NOT_FOUND)

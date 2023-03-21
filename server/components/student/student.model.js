@@ -78,16 +78,18 @@ const studentSchema = new mongoose.Schema(
 studentSchema.pre('save', async function () {
   try {
     const salt = await bcrypt.genSalt(10);
-    const hashed = bcrypt.hashSync(this.password, salt);
+    const hashed = await bcrypt.hash(this.password, salt);
     this.password = hashed;
   } catch (error) {
     //console.log(error);
   }
 });
-studentSchema.methods.comparePassword = function (USER_PASSWORD_FROM_FRONT) {
+studentSchema.methods.comparePassword = async function (
+  USER_PASSWORD_FROM_FRONT
+) {
   console.log(USER_PASSWORD_FROM_FRONT);
   console.log('password in db', this.password);
-  const isValid = bcrypt.compareSync(USER_PASSWORD_FROM_FRONT, this.password);
+  const isValid = await bcrypt.compare(USER_PASSWORD_FROM_FRONT, this.password);
   return isValid;
 };
 studentSchema.methods.genJWT = function () {
