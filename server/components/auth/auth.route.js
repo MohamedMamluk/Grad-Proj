@@ -46,7 +46,7 @@ router.post(
         req.user.resetCode = OTP;
         console.log(req.user);
         const newStudent = await StudentModel.findByIdAndUpdate(
-          req.body.user._id,
+          req.user._id,
           req.user,
           { new: true }
         );
