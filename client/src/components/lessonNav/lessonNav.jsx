@@ -10,6 +10,8 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import "../../../src/pages/Dashboard/pages/course-page/Course.css";
+import ControlPointOutlinedIcon from '@mui/icons-material/ControlPointOutlined';
 
 const LessonNav = ({courseId, lessonArr}) => {
   const courseID = courseId;
@@ -30,11 +32,27 @@ const LessonNav = ({courseId, lessonArr}) => {
   }, []);
 
   
-  return (
-    <TableContainer component={Paper}>
-      <Table sx={{ maxWidth: 1000 }} aria-label='simple table'>
-        <TableBody>
-          {lessons?.map((lesson) => (
+  return (<>
+    <div class="cards-wrapper box" style={{delay: ".6s"}}>
+           <div class="cards-header">
+            <div class="lessons-header">
+             
+             <div class="title">Course Content</div>
+             
+            </div>
+           </div>
+           <div class="cards card">
+            <div class="cards-head-lesson">
+             <div class="cards-info">
+              <div class="lessons-header">
+               <span>Lessons</span> 
+             <ControlPointOutlinedIcon/>
+              </div>
+             </div>
+            </div>
+            <div class="items lessons">
+            {lessons?.map((lesson) => (
+                        <div class="item">- 
                         <Link key={lesson?._id} to={`/dashboard/courses/${courseID}/lesson/${lesson?._id}`}>
                         <TableRow
                             sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -43,15 +61,15 @@ const LessonNav = ({courseId, lessonArr}) => {
                                 {lesson?.title}
                             </TableCell>
                             <TableCell align="right">{lesson?.type}</TableCell>
-                            <TableCell align="right">
-                                <AddIcon />
-                            </TableCell>
+                            
                         </TableRow>
                         </Link>
-                    ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+                        </div>
+                    ))}</div>
+            
+           </div>
+          </div>
+          </>
   );
 };
 
