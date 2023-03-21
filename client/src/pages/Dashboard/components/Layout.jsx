@@ -17,10 +17,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { MainListItems } from './listItems';
 import { ListItemIcon } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import Breadcrumb from './breadcrumb/Breadcrumb';
-
+import axios from 'axios';
+import { setUserData } from '../../../features/auth/authSlice';
 function Copyright(props) {
   return (
     <Typography
@@ -86,9 +87,19 @@ const mdTheme = createTheme();
 
 function DashboardContent() {
   const [open, setOpen] = React.useState(false);
+  const dispatch = useDispatch();
   const toggleDrawer = () => {
     setOpen(!open);
   };
+  useEffect(() => {
+    const id = localStorage.getItem('id');
+    const role = localStorage.getItem('role');
+    console.log('Fetched user data');
+    axios.get(`/${user.role || role}/${user.id || id}`).then((res) => {
+      dispatch(setUserData(res.data.user));
+    });
+  }, []);
+
   const user = useSelector((store) => store.auth);
 
   return (
