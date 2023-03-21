@@ -1,13 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
 :root {
   --delay: 0s;
 }
 * {
   outline: none;
   box-sizing: border-box;
-}
-.hidden {
-  display: none !important;
 }
 html {
   box-sizing: border-box;
@@ -17,7 +14,7 @@ img {
   max-width: 100%;
 }
 body {
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   background-color: #252954;
   color: #9b9ca7;
 }
@@ -42,7 +39,7 @@ body {
 .card {
   background: rgba(109, 84, 222, 0.65) !important;
   border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) ;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   /* backdrop-filter: blur(5.6px); */
   -webkit-backdrop-filter: blur(5.6px);
   border: 1px solid rgba(109, 84, 222, 0.86);
@@ -51,7 +48,7 @@ body {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  max-height: fit-content;
+  /* max-height: fit-content; */
   width: 100%;
 }
 .card .title {
@@ -96,7 +93,7 @@ body {
 .activity-link.active {
   color: #ffffff;
   font-weight: 500;
-  border-bottom: #5b42cca8  2px solid;
+  border-bottom: #5b42cca8 2px solid;
 }
 
 .destination {
@@ -105,12 +102,8 @@ body {
   margin-top: 10px;
 }
 .destination-card {
-  background:linear-gradient(135deg, #4e3d9b 0%,#6d54de 100%);
+  background: linear-gradient(135deg, #4e3d9b 0%, #6d54de 100%);
   /* border: #44044d solid 1px; */
-  
-
-
-
 
   padding: 0px 20px;
   width: 100%;
@@ -119,8 +112,7 @@ body {
 .destination-card + .destination-card {
   margin-left: 20px;
   background: #1a1d3a;
-  background:linear-gradient(135deg, #4e3d9b 0%,#6d54de 100%);
-
+  background: linear-gradient(135deg, #4e3d9b 0%, #6d54de 100%);
 }
 
 .destination-points {
@@ -159,7 +151,7 @@ body {
   /* justify-content: space-evenly; */
   align-items: center;
 }
-.secCard-chart h5{
+.secCard-chart h5 {
   margin-left: 15px;
 }
 .secCard-profile {
@@ -298,7 +290,6 @@ body {
   padding: 10px 5px;
   text-align: center;
 }
-  
 
 .account {
   width: 100%;
@@ -309,18 +300,16 @@ body {
   transition: 0.3s;
 }
 
-.box{
-	transition: 0.3s;
+.box {
+  transition: 0.3s;
 }
 .box:hover {
   transform: scale(1.02);
-    /* box-shadow: rgba(124, 13, 100, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px !important; */
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-
-
-  
-  
-  }
+  /* box-shadow: rgba(124, 13, 100, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px !important; */
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
 
 .account-wrapper {
   max-width: 310px;
@@ -355,11 +344,11 @@ body {
 .secCard-profile {
   color: seashell;
 }
-.forthCard-title{
-    font-size: 20px;
-    font-weight: 600;
-    width: 222px;
-    text-align: center;
+.forthCard-title {
+  font-size: 20px;
+  font-weight: 600;
+  width: 222px;
+  text-align: center;
 }
 button {
   width: auto;
@@ -406,7 +395,7 @@ h5 {
   flex-wrap: wrap;
 }
 
-@media screen and (max-width: 1500px) {
+@media screen and (max-width: 2000px) {
   .wrapper {
     max-width: 1200px;
   }
@@ -483,7 +472,7 @@ h5 {
     text-align: center;
   }
 }
-.card{
+.card {
   /* border-radius: 15px !important; */
 }
 
@@ -494,11 +483,13 @@ h5 {
   font-weight: 600;
   letter-spacing: 2px;
 }
-.rate{
+.rate {
   color: white !important;
 }
 .account:hover {
   transform: scale(1.02);
   /* box-shadow: #48005a ; */
-  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px !important;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px !important;
 }
