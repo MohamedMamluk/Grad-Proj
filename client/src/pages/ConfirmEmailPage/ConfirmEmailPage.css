@@ -1,0 +1,40 @@
+/* *{
+    box-sizing: border-box;
+} */
+
+.body{
+    background-image: linear-gradient(142deg,#6D54DE,#EDEAFB);
+    font-family: "Lato", sans-serif;
+    height:100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin: 0;
+
+}
+
+.con{
+    /* background-color: (255,255,255,0.3); */
+    background: rgba( 255, 255, 255, 0.25 );
+     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+      backdrop-filter: blur( 4px );
+     -webkit-backdrop-filter: blur( 4px );
+      border-radius: 10px;
+       border: 1px solid rgba( 255, 255, 255, 0.18 );
+    /* background-color: aliceblue;
+    opacity: 0.5; */
+    border-radius: 10px;
+    padding: 30px;
+    max-width: 1000px;
+    text-align: center;
+}
+.brand-logo {
+    height: 200px;
+    width: 200px;
+    background: src("/logo-04.png");
+    margin: auto;
+    /* border-radius: 25%;
+    box-sizing: border-box;
+    box-shadow: 5px 5px 7px #cbced1, -5px -5px 7px white; */
+  }

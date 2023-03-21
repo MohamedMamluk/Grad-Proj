@@ -14,7 +14,6 @@ const enrollmentRoutes = require('./components/enrollment/enrollment.routes');
 const uploadRoutes = require('./components/upload/upload.route');
 const AdminModel = require('./components/admin/admin.model');
 const todoRoutes = require('./components/Todo_backend/todo.route');
-const contactUsRoutes = require('./components/contactUs/contactUs.routes')
 
 var cors = require('cors');
 
@@ -45,15 +44,19 @@ app.use('/api/upload', uploadRoutes);
 //courseInfo  route
 app.use('/api/courseinfo', courseInfoRoute);
 app.use('/api/student', StudentRoutes);
-app.use('/api/lessonsFinished', lessonsFinishedRoutes);
+app.use(
+  '/api/lessonsFinished',
+  (req, res, next) => {
+    console.log('In Lessons finished middleware');
+    next();
+  },
+  lessonsFinishedRoutes
+);
 app.use('/api/instructor', instructorRoutes);
 app.use('/api/course', courseRoutes);
 
 //todo route
 app.use('/api/todo', todoRoutes);
-
-//contactUs route
-app.use('/api/contactUs',contactUsRoutes)
 
 const connection = async () => {
   try {

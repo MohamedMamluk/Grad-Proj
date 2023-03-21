@@ -5,6 +5,7 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import { Link as RouterLink, useLocation, useParams } from 'react-router-dom';
+
 function LinkRouter(props) {
   return (
     <Link
@@ -24,8 +25,18 @@ export default function Breadcrumb() {
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
   console.log(pathnames)
+  const [course, setCourse] = useState({});
+  const [lesson, setLesson] = useState({});
 
   //Lets get Courses & Lessons to search feeh
+    useEffect(() => {
+        axios.get('/course/' + pathnames[2]).then((res) => {
+            setCourse(res.data);
+            axios.get('/lesson/' + pathnames[4]).then((res) =>{
+              setLesson(res.data);
+            })
+        });
+    }, []);
   
 
   return (
