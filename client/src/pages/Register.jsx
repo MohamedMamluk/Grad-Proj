@@ -24,6 +24,9 @@ import FormLabel from '@mui/material/FormLabel';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Copyright(props) {
   return (
@@ -55,6 +58,7 @@ export default function Register() {
     lastName: '',
     levelOfExperience: '',
   });
+  const [disableButton , setDisableButton] = useState(false)
   React.useEffect(() => {
     if (authSelector != null) {
       navigate('/dashboard');
@@ -67,10 +71,16 @@ export default function Register() {
   };
 
   const handleSubmit = (event) => {
+    setDisableButton(true);
     event.preventDefault();
     axios.post('/auth/register', data).then(() => {
+      setDisableButton(false);
+      toast('Successfully Signed up');
       navigate('/login');
       //console.log(res.data);
+    }).catch((err)=>{
+      toast.error('Wrong Input');
+      setDisableButton(false);
     });
   };
   var emaill = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -318,6 +328,7 @@ export default function Register() {
                 {/* submit button */}
                 <Button
                   type='submit'
+                  disabled={disableButton}
                   fullWidth
                   variant='contained'
                   style={{ backgroundColor: '#3f51b5' }}

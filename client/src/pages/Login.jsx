@@ -30,6 +30,7 @@ import {
 } from '@mui/material';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useState } from 'react';
 
 function Copyright(props) {
   return (
@@ -53,7 +54,8 @@ export default function SignIn() {
   const dispatch = useDispatch();
   const authSelector = useSelector((state) => state.auth.token);
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = React.useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [disableButton , setDisableButton] = useState(false)
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -77,6 +79,7 @@ export default function SignIn() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setDisableButton(true);
     axios.post('/auth/login', data)
     .then((res) => {
       dispatch(setUser(res.data));
@@ -104,9 +107,11 @@ export default function SignIn() {
       }
       const redirect = location.state?.from?.pathname || '/dashboard';
       toast('Successfully Logged in');
-
+      setDisableButton(false);
+      
       navigate(redirect, { replace: true });
     }).catch(error=>{
+      setDisableButton(false);
       // console.log(error.response.status)
       // console.log("error kbeeera ", error);
       toast.error('Wrong Email or Password',{position: "bottom-left"});
@@ -281,6 +286,7 @@ export default function SignIn() {
                   }
                 />
                 <Button
+                  disabled={disableButton}
                   type='submit'
                   fullWidth
                   variant='contained'
