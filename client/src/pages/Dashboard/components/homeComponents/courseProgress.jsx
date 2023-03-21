@@ -61,7 +61,7 @@ const CourseProgress = (props) => {
         setInstructor(res.data);
       });
     });
-  }, [courseProgress]);
+  }, [courses]);
 
   return (
     <Container

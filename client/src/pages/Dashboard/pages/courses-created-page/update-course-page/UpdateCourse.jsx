@@ -30,6 +30,7 @@ const UpdateCourse = () => {
     isPaied: '',
     img: '', //to be handeled
   });
+  const [disableButton , setDisableButton] = useState(false)
   const [lessonData, setLessonData] = useState([]);
   const insertNewLesson = useCallback(() => {
     setLessonData((prev) => [...prev, lessonDataObject]);
@@ -88,6 +89,7 @@ const UpdateCourse = () => {
   }, []);
 
   const handleCoursePatch = () => {
+    setDisableButton(true);
     const newCourseData = {
       name: newCourse.courseTitle,
       cost: newCourse.isPaied,
@@ -97,10 +99,15 @@ const UpdateCourse = () => {
     axios.patch(`/course/${id}`, newCourseData)
     .then((res)=>{
       toast('Successfully Updated Course');
+      setDisableButton(false);
           navigate('/dashboard/courses/'+id);
-    });;
+    }).catch((err)=>{
+      setDisableButton(false);
+      toast.error('ERROR.')
+    });
   };
   const handleCourseInfoPatch = () => {
+    setDisableButton(true);
     axios.patch(
       `/courseinfo/${newCourse.courseInfo}`,
       {
@@ -116,10 +123,15 @@ const UpdateCourse = () => {
       }
     ).then((res)=>{
       toast('Successfully Updated course info');
+      setDisableButton(false);
           navigate('/dashboard/courses/'+id);
+    }).catch((err)=>{
+      setDisableButton(false);
+      toast.error('ERROR.')
     });
   };
   const handleLessonsPatch = () => {
+    setDisableButton(true);
     lessonData.map((lesson) => {
       if (!lesson.id) {
         axios.post('/lesson', lesson).then((res) => {
@@ -138,10 +150,11 @@ const UpdateCourse = () => {
             }
           );
         }).then((res)=>{
-          console.log("waslna el 5artoooom");
+          setDisableButton(false);
           toast('Successfully Created');
           navigate('/courses');
         }).catch((err)=>{
+          setDisableButton(false);
           toast.error('ERROR.')
         });
       } else {
@@ -150,16 +163,15 @@ const UpdateCourse = () => {
             Authorization: `Bearer ${auth.token}`,
           },
         }).then((res)=>{
-          console.log("waslna el 5artoooom 222");
           toast('Successfully Updated');
+          setDisableButton(false);
           navigate('/courses');
         }).catch((err)=>{
+          setDisableButton(false);
           toast.error('ERROR.')
         });
       }
     });
-    
-    
   };
   return (
     <div>
@@ -167,6 +179,7 @@ const UpdateCourse = () => {
         <AddingNewCourseForm {...newCourse} setNewCourse={setNewCourse} />
         {/* <Button>Update Course</Button> */}
         <FullSizeButton
+        disabled={disableButton}
           onClick={() => handleCoursePatch()}
           buttonLabel={'Update Course'}
         ></FullSizeButton>
@@ -176,6 +189,7 @@ const UpdateCourse = () => {
           updateCourseInfo={setcourseInfoData}
         />
         <FullSizeButton
+        disabled={disableButton}
           onClick={() => handleCourseInfoPatch()}
           buttonLabel={'Update CourseInfo'}
         ></FullSizeButton>
@@ -196,10 +210,12 @@ const UpdateCourse = () => {
           );
         })}
         <FullSizeButton
+        disabled={disableButton}
           buttonLabel={'Insert New Lesson'}
           onClick={insertNewLesson}
         />
         <FullSizeButton
+        disabled={disableButton}
           onClick={() => handleLessonsPatch()}
           buttonLabel={'Update Lessons'}
         ></FullSizeButton>
