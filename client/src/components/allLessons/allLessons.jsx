@@ -13,7 +13,6 @@ const AllLessons = (lessonIdArr) => {
     const [lessons, setLessons] = useState([]);
     useEffect(() => {
         const getLesson = async (lesson) => {
-            console.log(lesson)
             const lessonData = await axios.all(
                 lessonIds.map(async (lesson) => {
                     const l = await axios.get("/lesson/" + lesson.lessonId);

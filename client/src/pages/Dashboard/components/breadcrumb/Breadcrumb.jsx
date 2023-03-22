@@ -24,20 +24,48 @@ function LinkRouter(props) {
 export default function Breadcrumb() {
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
-  console.log(pathnames)
-  const [course, setCourse] = useState({});
-  const [lesson, setLesson] = useState({});
-
-  //Lets get Courses & Lessons to search feeh
-    useEffect(() => {
-        axios.get('/course/' + pathnames[2]).then((res) => {
-            setCourse(res.data);
-            axios.get('/lesson/' + pathnames[4]).then((res) =>{
-              setLesson(res.data);
-            })
-        });
-    }, []);
+  // console.log(pathnames);
+  const [course, setCourse] = useState('');
+  const [lesson, setLesson] = useState('');
+  const [paths, setPaths] = useState([]);
   
+  useEffect(() => {
+    setPaths(...pathnames)
+    const getCourse = async(courseID)=>{
+      const data = await axios.get('/course/' +courseID )
+      setCourse(data.data.name);
+      return data.data.name;
+      ;}
+      const getLesson = async (lessonID)=>{
+        const lesData = await axios.get('/lesson/' + lessonID)
+        setLesson(lesData.data.title);
+        return lesData.data.title;
+    }
+    // if(pathnames.length == 3){
+    //   const cour = getCourse(pathnames[2]);
+    //   setPaths(...pathnames.slice(0,1 ), cour , ...pathnames.slice(3));
+    // }
+    // if(pathnames.length == 4){
+    //   getCourse(pathnames[3]);
+    // }
+    // if(pathnames.length == 5){
+    //   getCourse(pathnames[2]);
+    //   getLesson(pathnames[4]);
+    // }
+  }, []);
+  // setPathnames(pathnames.pop());
+  // console.log(course, lesson);
+  // console.log("path nameeee: ", paths);
+  if(pathnames.length == 3){
+    
+  }
+  // if(pathnames.length == 4){
+  //   pathnames[3] = course;
+  // }
+  // if(pathnames.length == 5){
+  //   pathnames[2] = course;
+  //   pathnames[4] = lesson;
+  // }
 
   return (
     <Breadcrumbs

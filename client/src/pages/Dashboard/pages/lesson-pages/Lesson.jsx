@@ -1,45 +1,95 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate,  useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import Video from '../../../../components/lessonTypes/Video';
 import LessonNav from '../../../../components/lessonNav/lessonNav';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import Box from '@mui/material/Box';
+import Test from '../../../../components/lessonTypes/Test';
+
 
 const Lesson = () => {
-  const { id: lessonid } = useParams();
+  const location = useLocation();
   const navigate = useNavigate();
+  const pathnames = location.pathname.split('/').filter((x) => x);
   const userData = useSelector((store) => store.auth);
-  const [courseInfo, setCourseInfo] = useState({});
+  const [course, setCourse] = useState({});
   const [lesson, setLesson] = useState({});
+  const [lessons,setLessons] = useState([]);
   useEffect(() => {
-    console.log('IN LESSON PAGE');
     const getLesson = async () => {
-      const data = await axios.get('/lesson/' + lessonid);
+      const data = await axios.get('/lesson/' + pathnames[4]);
+      console.log(data.data);
       setLesson(data.data);
-      const courseInfoData = await axios.get(
-        '/courseinfo/' + data.data.courseInfoId
-      );
-      setCourseInfo(courseInfoData.data);
     };
+    const getCourse = async()=>{
+      const courseData = await axios.get('/course/' + pathnames[2]);
+      console.log(courseData.data);
+      setCourse(courseData.data);
+      axios.get('/courseinfo/' + courseData.data.courseInfo).then((res) =>{
+        console.log(res.data.courseLessons)
+        setLessons(res.data.courseLessons);
+    })
+  }
     const updateLessonsFinished = async () => {
-      console.log('IN UPDATE LESSON FINISHED ', lessonid);
-      const lessonFinished = await axios.patch('/lessonsFinished/' + lessonid, {
+      const lessonFinished = await axios.patch('/lessonsFinished/' + pathnames[4], {
         studentId: userData.id,
       });
-      console.log(lessonFinished.data);
     };
     updateLessonsFinished();
     getLesson();
-  }, [lessonid]);
-  if (!lesson._id) {
+    getCourse();
+  }, []);
+
+  if (!lesson) {
     return <h1>loading...</h1>;
+  }
+  let index = lessons.filter(obj => {
+    return obj.lessonid == pathnames[4];
+  })
+  
+  // let prevBool = false;
+  // let nextBool = false;
+
+  const prev = ()=>{
+    if(index != 0){
+      console.log(lessons[index-1].lessonid)
+      navigate(`/dashboard/courses/${course._id}/lesson/${lessons[index-1].lessonid}`)
+    }
+  }
+
+  const overview = ()=>{
+    navigate(`/dashboard/courses/${course._id}/lesson/`)
+  }
+
+  const next = ()=>{
+    if(index != lessons.length){
+      console.log(lessons[index+1].lessonid)
+      navigate(`/dashboard/courses/${course._id}/lesson/${lessons[index-1].lessonid}`)
+    }
   }
   return (
     <>
-      <Video videoLink={lesson.link} />
-      {/* {courseInfo.courseLessons&& */}
-      {/* <LessonNav lessonArr={courseInfo?.courseLessons} courseId={lesson?.courseId}/> */}
-      {/* } */}
+      {lesson.type == 'Video' && <Video videoLink={lesson.link}/>}   
+      {lesson.type == 'Test' && <Test testLink={lesson.link}/>}   
+      <Box
+      sx={{
+        display: 'flex',
+        width:'maxContent',
+        justifyContent:'center',
+        alignItems: 'center',
+        '& > *': {
+          m: 2,
+        },
+        '& button': { p: 2 },
+      }}
+    >
+        <Button variant="outlined" onClick={prev}>Previous Lesson</Button>
+        <Button variant="outlined" onClick={overview}>Course Overview</Button>
+        <Button variant="outlined" onClick={next}>Next Lesson</Button>
+    </Box>
     </>
   );
 };
