@@ -10,6 +10,7 @@ import { Box, Button, Grid } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 import { useNavigate } from 'react-router-dom';
 
 const lessonDataObject = { type: '', title: '', link: '', description: '' };
@@ -78,6 +79,7 @@ const CreateCourse = () => {
       }).then(()=>{
         toast('Created Successfully');
         setDisableButton(false);
+
         navigate('/dashboard/courses');
 
       }).catch((err)=>{

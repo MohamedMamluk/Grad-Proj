@@ -11,6 +11,7 @@ import CourseCard from './CourseCard';
 import Pagination from './Pagination';
 import { useAnimation, motion } from 'framer-motion';
 
+
 const AllCourses = () => {
   const [courses, setCourse] = useState(null);
   const userData = useSelector((store) => store.auth.userData);
