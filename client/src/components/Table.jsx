@@ -22,8 +22,10 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 import { useState } from 'react';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 function descendingComparator(a, b, orderBy) {
+ 
   if (b[orderBy] < a[orderBy]) {
     return -1;
   }
@@ -34,6 +36,7 @@ function descendingComparator(a, b, orderBy) {
 }
 
 function getComparator(order, orderBy) {
+  
   return order === 'desc'
     ? (a, b) => descendingComparator(a, b, orderBy)
     : (a, b) => -descendingComparator(a, b, orderBy);
@@ -43,7 +46,9 @@ function getComparator(order, orderBy) {
 // stableSort() brings sort stability to non-modern browsers (notably IE11). If you
 // only support modern browsers you can replace stableSort(exampleArray, exampleComparator)
 // with exampleArray.slice().sort(exampleComparator)
+
 function stableSort(array, comparator) {
+  
   const stabilizedThis = array.map((el, index) => [el, index]);
   stabilizedThis.sort((a, b) => {
     const order = comparator(a[0], b[0]);
@@ -55,32 +60,7 @@ function stableSort(array, comparator) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-const headCells = [
-  {
-    id: 'name',
-    numeric: false,
-    disablePadding: true,
-    label: 'Student Name',
-  },
-  {
-    id: 'email',
-    numeric: false,
-    disablePadding: true,
-    label: 'Email',
-  },
-  {
-    id: 'phone',
-    numeric: false,
-    disablePadding: true,
-    label: 'Phone',
-  },
-  {
-    id: 'role',
-    numeric: false,
-    disablePadding: true,
-    label: 'Role',
-  },
-];
+
 
 function EnhancedTableHead(props) {
   const {
@@ -94,6 +74,35 @@ function EnhancedTableHead(props) {
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
+  let [t, i18n] = useTranslation();
+  const headCells = [
+  
+    { 
+      
+      id: 'name',
+      numeric: false,
+      disablePadding: true,
+      label: t('UserName'),
+    },
+    {
+      id: 'email',
+      numeric: false,
+      disablePadding: true,
+      label: t('Email'),
+    },
+    {
+      id: 'phone',
+      numeric: false,
+      disablePadding: true,
+      label: t('Phone Number'),
+    },
+    {
+      id: 'role',
+      numeric: false,
+      disablePadding: true,
+      label: t('Role'),
+    },
+  ];
 
   return (
     <TableHead>
@@ -148,6 +157,7 @@ EnhancedTableHead.propTypes = {
 function EnhancedTableToolbar(props) {
   const { numSelected } = props;
 
+  let [t, i18n] = useTranslation();
   return (
     <Toolbar
       sx={{
@@ -169,7 +179,7 @@ function EnhancedTableToolbar(props) {
           variant='subtitle1'
           component='div'
         >
-          {numSelected} selected
+          {numSelected}  {t("selected")}
         </Typography>
       ) : (
         <Typography
@@ -178,7 +188,7 @@ function EnhancedTableToolbar(props) {
           id='tableTitle'
           component='div'
         >
-          All Users
+         {t("All Users")}
         </Typography>
       )}
 
@@ -273,13 +283,13 @@ export default function EnhancedTable() {
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - StudentData.length) : 0;
-
+    let [t, i18n] = useTranslation();
   return (
     <Box sx={{ width: '100%' }} id='theBox'>
       <Paper sx={{ width: '100%', mb: 2 }}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
-          <React.Suspense fallback={<h1>Loading...</h1>}>
+          <React.Suspense fallback={<h1>{t("Loading...")}</h1>}>
             <Table
               sx={{ minWidth: 750 }}
               aria-labelledby='tableTitle'
@@ -350,7 +360,8 @@ export default function EnhancedTable() {
                           scope='row'
                           padding='none'
                         >
-                          {student.role}
+                          {t(`${student.role}`)}
+                          {/* {t(`${userData.role}`)} */}
                         </TableCell>
                       </TableRow>
                     );
@@ -381,7 +392,7 @@ export default function EnhancedTable() {
       </Paper>
       <FormControlLabel
         control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label='Dense padding'
+        label={t('Dense padding')}
         sx={{ color: 'indigo' }}
       />
     </Box>

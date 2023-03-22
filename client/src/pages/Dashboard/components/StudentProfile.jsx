@@ -298,7 +298,7 @@ const StudentProfile = ({ userData }) => {
             style={{ backgroundColor: '#3f51b5' }}
             sx={{ mt: 3, mb: 2 }}
           >
-            Update
+            {t("Update")}
           </Button>
         </Grid>
         <ul>

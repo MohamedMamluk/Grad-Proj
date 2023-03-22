@@ -104,7 +104,7 @@ export const MainListItems = () => {
           <ListItemIcon>
             <AlternateEmailIcon style={{ fill: '#6d54de' }} fontSize='large' />
           </ListItemIcon>
-          <ListItemText primary='Contact Us' />
+          <ListItemText primary={t("Contact Us")} />
         </ListItemButton>
       </Link>
       <Link

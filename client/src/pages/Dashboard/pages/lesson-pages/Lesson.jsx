@@ -4,13 +4,14 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import Video from '../../../../components/lessonTypes/Video';
 import LessonNav from '../../../../components/lessonNav/lessonNav';
-
+import { useTranslation } from 'react-i18next';
 const Lesson = () => {
   const { id: lessonid } = useParams();
   const navigate = useNavigate();
   const userData = useSelector((store) => store.auth);
   const [courseInfo, setCourseInfo] = useState({});
   const [lesson, setLesson] = useState({});
+  let [t, i18n] = useTranslation();
   useEffect(() => {
     console.log('IN LESSON PAGE');
     const getLesson = async () => {
@@ -32,7 +33,7 @@ const Lesson = () => {
     getLesson();
   }, [lessonid]);
   if (!lesson._id) {
-    return <h1>loading...</h1>;
+    return <h1>{t("loading...")}</h1>;
   }
   return (
     <>

@@ -14,8 +14,9 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { useTranslation } from 'react-i18next';
 export default function AddingNewCourseForm({
+  
   courseTitle,
   courseDuration,
   paid,
@@ -24,6 +25,7 @@ export default function AddingNewCourseForm({
   setNewCourse,
 }) {
   const handleChange = (event) => {
+    
     setNewCourse((prev) => {
       return { ...prev, paid: event.target.value };
       
@@ -32,6 +34,7 @@ export default function AddingNewCourseForm({
   const [uploading, setUploading] = useState(false);
   const [uploaded, setUploaded] = useState('');
   const handleFileChange = (e) => {
+    
     const file = e.target.files[0];
     const formData = new FormData();
     formData.append('file', file);
@@ -47,11 +50,12 @@ export default function AddingNewCourseForm({
         
       });
   };
+  let [t, i18n] = useTranslation();
   return (
     <React.Fragment>
       <Grid sx={{ mt: 3 }}>
         <Typography variant='h6' gutterBottom>
-          Adding New Course
+          {t("Adding New Course")}
         </Typography>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
@@ -59,7 +63,7 @@ export default function AddingNewCourseForm({
               required
               id='courseTitle'
               name='courseTitle'
-              label='Course title'
+              label={t("Course title")}
               value={courseTitle}
               onChange={(e) => {
                 setNewCourse((pre) => {
@@ -72,7 +76,7 @@ export default function AddingNewCourseForm({
             />
             {!courseTitle && (
               <label style={{ color: '#ff0000' }}>
-                Course title is required!
+                {t("Course title is required")}
               </label>
             )}
           </Grid>
@@ -82,7 +86,7 @@ export default function AddingNewCourseForm({
               id='courseDuration'
               value={courseDuration}
               name='courseDuration'
-              label='Please enter course duration'
+              label={t("Please enter course duration")}
               fullWidth
               variant='standard'
               onChange={(e) => {
@@ -93,13 +97,13 @@ export default function AddingNewCourseForm({
             />
             {!courseDuration && (
               <label style={{ color: '#ff0000' }}>
-                Course duration is required!
+                {t("Course duration is required")}
               </label>
             )}
           </Grid>
           <Grid item xs={12}>
             <Typography variant='h6' gutterBottom textAlign='center'>
-              Uplode course picture
+              {t("Upload course picture")}
             </Typography>
             <Grid display='flex' justifyContent='center' alignItems='center'>
               <Stack direction='row' alignItems='center' spacing={2}>
@@ -113,8 +117,12 @@ export default function AddingNewCourseForm({
                     color: uploading || uploaded.length > 0 ? 'red' : 'white',
                   }}
                 >
-                  {uploading && 'Uploading...'}
-                  {uploaded.length > 0 ? 'Uploaded ✔' : 'Upload'}
+                  {/* {uploading && 'Uploading...'}
+                  {uploaded.length > 0 ? 'Uploaded ✔' : 'Upload'} */}
+
+                  {uploaded.length > 0 && t("Uploaded ✔")}
+                    
+                  {uploaded.length <= 0 && t("Upload")}
                   <input
                     hidden
                     accept='image/*'
@@ -130,7 +138,7 @@ export default function AddingNewCourseForm({
           <Grid item xs={12} textAlign='center'>
             <FormControl>
               <Typography variant='h6' gutterBottom>
-                Course is paied?
+                {t("Is the course free or paid ?")}
               </Typography>
               <RadioGroup
                 aria-labelledby='demo-controlled-radio-buttons-group'
@@ -151,7 +159,7 @@ export default function AddingNewCourseForm({
                       }}
                     />
                   }
-                  label='Free'
+                  label={t("Free")}
                 />
                 <FormControlLabel
                   value='paid'
@@ -165,7 +173,7 @@ export default function AddingNewCourseForm({
                       }}
                     />
                   }
-                  label='Is Paid'
+                  label={t("Paid")}
                 />
               </RadioGroup>
             </FormControl>
@@ -176,7 +184,7 @@ export default function AddingNewCourseForm({
                 required
                 fullWidth
                 name='isPaied'
-                label='Enter your payment'
+                label={t("Enter the course price")}
                 type='isPaied'
                 variant='standard'
                 value={isPaied}
@@ -189,7 +197,7 @@ export default function AddingNewCourseForm({
                 autoComplete='isPaied'
               />
               {!isPaied && (
-                <label style={{ color: '#ff0000' }}>Payment is required!</label>
+                <label style={{ color: '#ff0000' }}>{t("Price is required")}</label>
               )}
             </Grid>
           )}

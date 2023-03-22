@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-
+import { useTranslation } from 'react-i18next';
 const ConfirmEmail = () => {
+  let [t, i18n] = useTranslation();
   const { code } = useParams();
   const navigate = useNavigate();
   console.log(code);
@@ -32,9 +33,9 @@ const ConfirmEmail = () => {
           </div>
         </div>
         <div className='text-center'>
-          <h1 className='text-gray-300'>Email Confirmed</h1>
+          <h1 className='text-gray-300'>{t("Email Confirmed")}</h1>
           <p className='text-gray-400'>
-            Please wait while we redirect you to the login page...
+            {t("Please wait while we redirect you to the login page...")}
           </p>
         </div>
       </div>

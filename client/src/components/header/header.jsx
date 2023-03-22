@@ -322,7 +322,7 @@ const Header = () => {
             </Box>
           ) : (
             <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>
-              <Button
+              {/* <Button
                 sx={{
                   textTransform: 'capitalize',
                   padding: '0px',
@@ -347,7 +347,7 @@ const Header = () => {
                 >
                   Register
                 </Link>
-              </Button>
+              </Button> */}
             </Box>
           )}
 

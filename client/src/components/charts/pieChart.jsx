@@ -5,10 +5,11 @@ import { padding } from '@mui/system';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-
+import { useTranslation } from 'react-i18next';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PieChart = () => {
+  let [t, i18n] = useTranslation();
   const [instructors, setInstructors] = useState([]);
   const [students, setStudents] = useState([]);
 
@@ -26,7 +27,7 @@ const PieChart = () => {
   }, []);
 
   const data = {
-    labels: ['Instructors', 'Students'],
+    labels: [t('Instructors'), t('Students')],
     datasets: [
       {
         data: [instructors, students],

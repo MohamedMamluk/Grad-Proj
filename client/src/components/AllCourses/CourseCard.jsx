@@ -3,8 +3,9 @@ import React, { useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useAnimation, motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-
+import { useTranslation } from 'react-i18next';
 function CourseCard({ course }) {
+  let [t, i18n] = useTranslation();
   const { name, description, cost, image } = course;
   const USD = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -14,6 +15,7 @@ function CourseCard({ course }) {
     show: { opacity: 1, transition: { duration: 1 } },
     hidden: { opacity: 0, transition: { duration: 1 } },
   }));
+
 
   return (
     <motion.div
@@ -28,7 +30,7 @@ function CourseCard({ course }) {
         <p className='text-gray-600 mt-2'>{description}</p>
         <div className='mt-4 flex flex-wrap items-center justify-between '>
           <span className='font-bold text-gray-700'>
-            {cost == 'free' ? 'Free' : USD.format(cost)}
+            {cost == 'free' ? t('Free') : USD.format(cost)}
           </span>
           {/* <button className='bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 w-auto rounded-md'>
             See More
@@ -40,7 +42,7 @@ function CourseCard({ course }) {
             className='bg-blue-500 hover:bg-blue-600 text-white  w-auto rounded-md'
           >
             <ListItemButton style={{ width: 'max-content' }}>
-              <ListItemText primary='See More' />
+              <ListItemText primary= {t('See More')} />
             </ListItemButton>
           </Link>
         </div>

@@ -4,9 +4,10 @@ import { useSelector } from 'react-redux';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import './ConfirmEmailPage.css';
-
+import { useTranslation } from 'react-i18next';
 
 const ConfirmEmailPage = () => {
+  let [t, i18n] = useTranslation();
     const location = useLocation();
   const authSelector = useSelector((state) => state.auth.token);
   const navigate = useNavigate();
@@ -36,9 +37,9 @@ const ConfirmEmailPage = () => {
         <div className="brand-logo">
             <img src="./logo-04.png" alt="MindsOn" />
         </div>
-            <h2>Verify Your Account !!</h2>
+            <h2>{t("Verify Your Account")}</h2>
             <p>
-                We emailed you a verification email, so please, go check your mail box &#9786;
+                {t("We emailed you a verification email, so please, go check your mail box")} &#9786;
             </p>
             {/* <label>
                 Did not receive an email? 

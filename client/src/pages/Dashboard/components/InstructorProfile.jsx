@@ -15,9 +15,10 @@ import axios from 'axios';
 import { setUserData } from '../../../features/auth/authSlice';
 
 import { toast, ToastContainer } from 'react-toastify';
-
+import { useTranslation } from 'react-i18next';
 
 const InstructorProfile = ({ userData }) => {
+  let [t, i18n] = useTranslation();
   const dispatch = useDispatch();
   const [uploading, setUploading] = useState(false);
   const [uploaded, setUploaded] = useState('');
@@ -118,7 +119,7 @@ const InstructorProfile = ({ userData }) => {
                   color='text.secondary'
                   align='center'
                 >
-                  <Chip label={userData.role} />
+                  <Chip label={t(`${userData.role}`)} />
                 </Typography>
                 <Typography
                   sx={{ mb: 1.5 }}
@@ -143,7 +144,7 @@ const InstructorProfile = ({ userData }) => {
                     onClick={() => setShowUpdateProfile(!showUpdateProfile)}
                     sx={{ width: 'max-content', wordBreak: 'keep-all' }}
                   >
-                    Update Profile
+                     {t("Update Profile")}
                   </Button>
                 </Stack>
               </Box>
@@ -158,7 +159,7 @@ const InstructorProfile = ({ userData }) => {
           >
             <Grid item xs={12}>
               <Typography variant='h6' gutterBottom textAlign='center'>
-                Update User Picture
+              {t("Update Your Profile Picture")}
               </Typography>
               <Grid display='flex' justifyContent='center' alignItems='center'>
                 <Stack direction='row' alignItems='center' spacing={2}>
@@ -172,8 +173,12 @@ const InstructorProfile = ({ userData }) => {
                       color: uploading || uploaded.length > 0 ? 'red' : 'white',
                     }}
                   >
-                    {uploading && 'Uploading...'}
-                    {uploaded.length > 0 ? 'Uploaded ✔' : 'Upload'}
+                    {/* {uploading && 'Uploading...'}
+                    {uploaded.length > 0 ? 'Uploaded ✔' : 'Upload'} */}
+
+                    {uploaded.length > 0 && t("Uploaded ✔")}
+                    
+                    {uploaded.length <= 0 && t("Upload")}
                     <input
                       hidden
                       accept='image/*'
@@ -196,7 +201,7 @@ const InstructorProfile = ({ userData }) => {
                   return { ...prev, firstName: e.target.value };
                 });
               }}
-              label='First Name'
+              label={t("First Name")}
               name='firstName'
               autoFocus
             />
@@ -211,7 +216,7 @@ const InstructorProfile = ({ userData }) => {
                   return { ...prev, lastName: e.target.value };
                 });
               }}
-              label='Last Name'
+              label={t("Last Name")}
               name='lastName'
               autoFocus
             />
@@ -227,7 +232,7 @@ const InstructorProfile = ({ userData }) => {
                   return { ...prev, email: e.target.value };
                 });
               }}
-              label='Email Address'
+              label={t("Email Address")}
               name='email'
               autoComplete='email'
               autoFocus
@@ -243,7 +248,7 @@ const InstructorProfile = ({ userData }) => {
                   return { ...prev, phone: e.target.value };
                 });
               }}
-              label='Phone'
+              label={t("Phone Number")}
               name='phone'
               autoComplete='phone'
               autoFocus
@@ -259,7 +264,7 @@ const InstructorProfile = ({ userData }) => {
                   return { ...prev, levelOfExperience: e.target.value };
                 });
               }}
-              label='Level Of Experience'
+              label={t("Level Of Experience")}
               name='levelOfExperience'
               autoComplete='levelOfExperience'
               autoFocus
@@ -271,7 +276,7 @@ const InstructorProfile = ({ userData }) => {
               style={{ backgroundColor: '#3f51b5' }}
               sx={{ mt: 3, mb: 2 }}
             >
-              Update
+              {t("Update")}
             </Button>
           </Grid>
         </div>
