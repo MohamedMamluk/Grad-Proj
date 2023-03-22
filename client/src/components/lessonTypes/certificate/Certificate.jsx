@@ -26,6 +26,9 @@ const Certificate = ({ courseName, studentName }) => {
       document.getElementById('imageRef').src = img;
     }
   }, [canvasRef.current]);
+  useEffect(() => {
+    document.title = courseName;
+  }, [courseName]);
   return (
     <div>
       <p>hint: if certificate is not showing please refresh the page</p>
