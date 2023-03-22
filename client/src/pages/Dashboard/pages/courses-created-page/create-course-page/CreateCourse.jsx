@@ -10,7 +10,7 @@ import { Box, Button, Grid } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const lessonDataObject = { type: '', title: '', link: '', description: '' };
 const CreateCourse = () => {
@@ -30,6 +30,7 @@ const CreateCourse = () => {
   });
   const [disableButton , setDisableButton] = useState(false)
   const [lessonData, setLessonData] = useState([lessonDataObject]);
+  const navigate = useNavigate();
   const insertNewLesson = useCallback(() => {
     setLessonData((prev) => [...prev, lessonDataObject]);
   }, []);
@@ -77,7 +78,7 @@ const CreateCourse = () => {
       }).then(()=>{
         toast('Created Successfully');
         setDisableButton(false);
-        Navigate('/dashboard/courses');
+        navigate('/dashboard/courses');
 
       }).catch((err)=>{
         toast.error('Creation Failed!');
