@@ -44,9 +44,10 @@ const Lesson = () => {
   if (!lesson) {
     return <h1>loading...</h1>;
   }
-  let index = lessons.filter(obj => {
+  let index = lessons.findIndex(obj => {
     return obj.lessonId == pathnames[4];
   })
+  console.log(index)
   
   // let prevBool = false;
   // let nextBool = false;
