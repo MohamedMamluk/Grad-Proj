@@ -21,6 +21,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { useTranslation } from 'react-i18next';
 import {
   FormControl,
   IconButton,
@@ -50,6 +51,7 @@ function Copyright(props) {
 const theme = createTheme({});
 
 export default function SignIn() {
+  let [t, i18n] = useTranslation();
   const location = useLocation();
   const dispatch = useDispatch();
   const authSelector = useSelector((state) => state.auth.token);
@@ -201,13 +203,13 @@ export default function SignIn() {
                       return { ...prev, email: e.target.value };
                     });
                   }}
-                  label='Email Address'
+                  label={t("Email Address")}
                   name='email'
                   autoComplete='email'
                   autoFocus
                 />
                 {data.email.length < 5 && (
-                  <div style={{ color: 'red' }}>Enter a valid email.</div>
+                  <div style={{ color: 'red' }}>{t("Enter a valid email")}</div>
                 )}
 
                 <FormControl
@@ -222,7 +224,7 @@ export default function SignIn() {
                   }}
                 >
                   <InputLabel htmlFor='standard-adornment-password'>
-                    Password
+                  {t("Password")}
                   </InputLabel>
                   <Input
                     sx={{ width: '100%' }}
@@ -272,11 +274,11 @@ export default function SignIn() {
                   autoComplete='current-password'
                 /> */}
                 {data.password.length < 6 && (
-                  <div style={{ color: 'red' }}>Enter a valid password.</div>
+                  <div style={{ color: 'red' }}>{t("Enter a valid password")}</div>
                 )}
                 <FormControlLabel
                   control={<Checkbox value='remember' color='primary' />}
-                  label='Remember me'
+                  label={t("Remember me")}
                   value={data.rememberMe}
                   onChange={(e) =>
                     setData((prev) => ({
@@ -293,20 +295,20 @@ export default function SignIn() {
                   style={{ backgroundColor: '#3f51b5' }}
                   sx={{ mt: 3, mb: 2 }}
                 >
-                  Sign In
+                  {t("Sign In")}
                 </Button>
                 <Link
                   to='/reset'
                   variant='body2'
                   // onClick={() => nagigateToOtp()}
-                  className='text-gray-800'
+                  // className='text-gray-800'
                 >
-                  Forgot password?
+                  {t("Forgot password?")}
                 </Link>
                 <Grid container>
                   <Grid item>
                     <Link to='/register' variant='body2'>
-                      {"Don't have an account? Sign Up"}
+                      {t("Don't have an account? Sign Up")}
                     </Link>
                   </Grid>
                 </Grid>

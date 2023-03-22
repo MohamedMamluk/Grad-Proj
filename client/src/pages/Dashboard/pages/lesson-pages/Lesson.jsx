@@ -5,6 +5,8 @@ import axios from 'axios';
 import Video from '../../../../components/lessonTypes/Video';
 import Certificate from '../../../../components/lessonTypes/certificate/Certificate.jsx';
 import LessonNav from '../../../../components/lessonNav/lessonNav';
+import { useTranslation } from 'react-i18next';
+
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
@@ -17,6 +19,7 @@ const Lesson = () => {
   const userData = useSelector((store) => store.auth);
   const [course, setCourse] = useState({});
   const [lesson, setLesson] = useState({});
+  let [t, i18n] = useTranslation();
   const [lessons, setLessons] = useState([]);
   useEffect(() => {
     const getLesson = async () => {
@@ -41,6 +44,7 @@ const Lesson = () => {
     };
     updateLessonsFinished();
     getLesson();
+
     getCourse();
   }, [pathnames[4]]);
 

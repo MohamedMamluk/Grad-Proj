@@ -13,7 +13,7 @@ import { Line } from 'react-chartjs-2';
 import { faker } from '@faker-js/faker';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-
+import { useTranslation } from 'react-i18next';
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -25,6 +25,7 @@ ChartJS.register(
 );
 
 export default function LineChart() {
+  let [t, i18n] = useTranslation();
   const [courses, setCourses] = useState([]);
   const [message, setMessage] = useState('Loading...');
   const user = useSelector((store) => store.auth);
@@ -72,7 +73,7 @@ export default function LineChart() {
     labels,
     datasets: [
       {
-        label: 'Balance',
+        label: t("Balance"),
         data: [0, ...user.userData.balance.map((item) => item.cost)],
         borderColor: 'rgb(255, 99, 132)',
         backgroundColor: 'rgba(255, 99, 132, 0.5)',

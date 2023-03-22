@@ -16,7 +16,7 @@ import Stack from '@mui/material/Stack';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-
+import { useTranslation } from 'react-i18next';
 export default function AddingLessonForm({
   type,
   title,
@@ -35,12 +35,12 @@ export default function AddingLessonForm({
       return { ...prev, type: event.target.value };
     });
   };
-
+  let [t, i18n] = useTranslation();
   return (
     <React.Fragment>
       <Box component='form' noValidate sx={{ mt: 3 }}>
         <Typography variant='h6' gutterBottom>
-          Lesson #{index + 1}
+          {t("Lesson")} #{index + 1}
         </Typography>
         {/* Lessons Form Input container */}
         <Grid container spacing={3}>
@@ -48,7 +48,7 @@ export default function AddingLessonForm({
           <Grid item xs={12} textAlign='center'>
             <FormControl>
               <Typography variant='h6' gutterBottom>
-                Lesson type
+                {t("Lesson type")}
               </Typography>
               <RadioGroup
                 aria-labelledby='demo-controlled-radio-buttons-group'
@@ -69,7 +69,7 @@ export default function AddingLessonForm({
                       }}
                     />
                   }
-                  label='Video'
+                  label={t("Video")}
                 />
                 <FormControlLabel
                   value='Test'
@@ -83,7 +83,7 @@ export default function AddingLessonForm({
                       }}
                     />
                   }
-                  label='Test'
+                  label={t("Test")}
                 />
                 <FormControlLabel
                   value='Resources'
@@ -97,7 +97,7 @@ export default function AddingLessonForm({
                       }}
                     />
                   }
-                  label='Resources'
+                  label={t("Resources")}
                 />
                 <FormControlLabel
                   value='Certificate'
@@ -111,7 +111,7 @@ export default function AddingLessonForm({
                       }}
                     />
                   }
-                  label='Certificate'
+                  label={t("Certificate")}
                 />
               </RadioGroup>
             </FormControl>
@@ -122,7 +122,7 @@ export default function AddingLessonForm({
               required
               id='lessonTitle'
               name='title'
-              label='Lesson title'
+              label={t("Lesson title")}
               value={title}
               onChange={updateState}
               fullWidth
@@ -138,7 +138,7 @@ export default function AddingLessonForm({
               id='lessonLink'
               error={''.length > 0 ? true : false}
               name='link'
-              label='Lesson Link'
+              label={t("Lesson Link")}
               value={link}
               fullWidth
               onChange={updateState}
@@ -154,7 +154,7 @@ export default function AddingLessonForm({
               id='lessonDescription'
               value={description}
               name='description'
-              label='Lesson Description'
+              label={t("Lesson Description")}
               fullWidth
               multiline
               onChange={updateState}

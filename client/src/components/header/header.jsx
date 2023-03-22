@@ -17,13 +17,18 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+const pages = ['Home', 'Login', 'Register', 'Courses'];
 
-const pages = ['Home', 'Courses'];
+
+
+
+
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const Header = () => {
   const user = useSelector((store) => store.auth);
   let navigate = useNavigate();
-
+  let [t,i18n] = useTranslation();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [search, setSearch] = React.useState('');
@@ -97,6 +102,18 @@ const Header = () => {
     }
   }, []);
   // React.useEffect(() => console.log(offset), [offset]);
+
+  function SelectLanguage(e)
+  {
+    if(e.target.value =="English")
+    {
+      i18n.changeLanguage("en")
+    }
+    else
+    {
+      i18n.changeLanguage("ar")
+    }
+  }
   return (
     <AppBar
       ref={headerRef}
@@ -198,7 +215,15 @@ const Header = () => {
             sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
             style={{ gap: '10px' }}
           >
-            <Link
+
+            <Link to='/' className={`navLink`}>
+            {t("Home")}
+              
+            </Link>
+            <Link to='/courses' className='navLink'>
+            {t("Courses")}
+            </Link>
+            {/* <Link
               to='/'
               className={`navLink ${offset > 0 ? 'text-white' : 'text-black'}`}
             >
@@ -209,7 +234,8 @@ const Header = () => {
               className={`navLink ${offset > 0 ? 'text-white' : 'text-black'}`}
             >
               Courses
-            </Link>
+
+            </Link> */}
           </Box>
 
           <div
@@ -248,6 +274,33 @@ const Header = () => {
               />
             </Button>
           </div>
+
+
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} style={{ gap: '10px' }}>
+            <Button
+              sx={{
+                textTransform: 'capitalize',
+                padding: '0px',
+                width: 'auto',
+                color:"#3f51b5"
+              }}
+            >
+              <Link to='/login' className='navLink'>
+              {t("Login")}
+              </Link>
+            </Button>
+            <Button sx={{ textTransform: 'capitalize', padding: '0px' , color:"#3f51b5"}}>
+            <Link to='/register' className='navLink'>
+            {t(" / Register")}
+              </Link>
+            </Button>
+          </Box>
+          <select name = "Language" onChange={SelectLanguage}>
+
+          <option value='English'> EN</option>
+          <option value='Arabic'> AR</option>
+          </select>
+
           {user.token ? (
             <Box sx={{ display: { xs: 'none', md: 'flex' }, mx: 2 }}>
               <Button
@@ -269,7 +322,7 @@ const Header = () => {
             </Box>
           ) : (
             <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>
-              <Button
+              {/* <Button
                 sx={{
                   textTransform: 'capitalize',
                   padding: '0px',
@@ -294,9 +347,10 @@ const Header = () => {
                 >
                   Register
                 </Link>
-              </Button>
+              </Button> */}
             </Box>
           )}
+
         </Toolbar>
       </Container>
     </AppBar>

@@ -11,7 +11,7 @@ import { Bar } from 'react-chartjs-2';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-
+import { useTranslation } from 'react-i18next';
 ChartJS.register(
   BarElement,
   CategoryScale,
@@ -20,6 +20,7 @@ ChartJS.register(
   Legend
 ); //to activate them
 const BarChart = () => {
+  let [t, i18n] = useTranslation();
   const [instructors, setInstructors] = useState([]);
   const [students, setStudents] = useState([]);
 
@@ -35,10 +36,10 @@ const BarChart = () => {
   }, []);
 
   const data = {
-    labels: ['Instructors', 'Students'],
+    labels: [t('Instructors'),t( 'Students')],
     datasets: [
       {
-        label: ['Instructors Vs. Students'],
+        label: [t('Instructors Vs Students')],
         data: [instructors, students],
         backgroundColor: ['#6D54DE', '#a494ea'],
         borderColor: 'black',

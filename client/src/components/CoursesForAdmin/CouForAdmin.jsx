@@ -7,6 +7,8 @@ import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import Loader from '../loading/loading';
 import './CouForAdmin.css';
+import { useTranslation } from 'react-i18next';
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -15,7 +17,7 @@ const CouForAdmin = () => {
     style: 'currency',
     currency: 'USD',
   });
-
+  let [t, i18n] = useTranslation();
   const [flag, setflag] = useState('ALL');
   const user = useSelector((store) => store.auth);
   const navigate = useNavigate();
@@ -85,18 +87,18 @@ const CouForAdmin = () => {
   return (
     <div>
       <div className='filterContainer mb-5' id='btnDiv'>
-        <label for='Cost'> Filter:</label>
+        <label for='Cost'> {t("Filter")}</label>
         <select name='Cost' value={flag} id='Categories' onChange={filtered}>
-          <option value='ALL'>All Courses </option>
-          <option value='Free'>Free</option>
-          <option value='>300'>Less Than 300 </option>
-          <option value='<=300'>Greater than or equal 300</option>
+          <option value='ALL'>{t("All Courses")}</option>
+          <option value='Free'>{t("Free")}</option>
+          <option value='>300'>{t("Less Than 300")}</option>
+          <option value='<=300'>{t("Greater than or equal 300")}</option>
         </select>
       </div>
 
       <div className='bg-gray-100 container'>
         {filteredCoursesflag.length == 0 && (
-          <h1 className='text-center'>No courses found</h1>
+          <h1 className='text-center'>{t("No courses found")}</h1>
         )}
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
           {filteredCoursesflag.map((course) => (
@@ -122,7 +124,7 @@ const CouForAdmin = () => {
                     className='bg-blue-500 hover:bg-blue-600 text-white flex-1 w-auto rounded-md'
                   >
                     <ListItemButton style={{ textAlign: 'center' }}>
-                      <ListItemText primary='View' />
+                      <ListItemText primary={t('View')} />
                     </ListItemButton>
                   </Link>
                   <Link
@@ -132,7 +134,7 @@ const CouForAdmin = () => {
                     className='bg-green-500 hover:bg-green-600 text-white flex-1  w-auto rounded-md'
                   >
                     <ListItemButton style={{ textAlign: 'center' }}>
-                      <ListItemText primary='Update' />
+                      <ListItemText primary={t('Update')} />
                     </ListItemButton>
                   </Link>
                   <Link
@@ -144,7 +146,7 @@ const CouForAdmin = () => {
                     className='bg-red-500 hover:bg-red-600 text-white flex-1  w-auto rounded-md'
                   >
                     <ListItemButton style={{ textAlign: 'center' }}>
-                      <ListItemText primary='Delete' />
+                      <ListItemText primary={t('Delete')} />
                     </ListItemButton>
                   </Link>
                 </div>

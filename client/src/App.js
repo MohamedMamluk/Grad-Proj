@@ -25,9 +25,13 @@ import LessonHome from './pages/Dashboard/pages/lesson-pages/LessonHome';
 import Balance from './pages/Dashboard/pages/balance/Balance';
 import ConfirmEmail from './pages/ConfirmEmail';
 import ResetPassword from './pages/ResetPassword';
+
+import "./i18n"
+
 import NotFound from './pages/not-found/NotFound.tsx';
 import ConfirmEmailPage from './pages/ConfirmEmailPage/ConfirmEmailPage';
 import EnrolledCourses from './pages/Dashboard/pages/enrolled-courses/EnrolledCourses';
+
 
 function App() {
   return (

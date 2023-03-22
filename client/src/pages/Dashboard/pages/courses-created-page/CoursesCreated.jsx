@@ -11,7 +11,9 @@ import styles from './course-created.module.css';
 import LinkButton from '../../../../components/buttons/LinkButton';
 import EnhancedTable from '../../../../components/Table';
 import CouForAdmin from '../../../../components/CoursesForAdmin/CouForAdmin';
+import { useTranslation } from 'react-i18next';
 const CoursesCreated = () => {
+  let [t, i18n] = useTranslation();
   return (
     <div>
       <div className={styles.add__course_container}>
@@ -26,7 +28,7 @@ const CoursesCreated = () => {
             <ListItemIcon>
               <AddIcon style={{ fill: '#6d54de' }} fontSize='large' />
             </ListItemIcon>
-            <ListItemText primary='Add New Course' />
+            <ListItemText primary={t('Add New Course')} />
           </ListItemButton>
         </Link>
         {/* <LinkButton

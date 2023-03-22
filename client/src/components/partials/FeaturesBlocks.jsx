@@ -1,6 +1,13 @@
-import React, { useEffect, useMemo } from 'react';
+
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import  { useEffect, useMemo } from 'react';
 import { useAnimation, motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+function FeaturesBlocks() {
+  let [t,i18n] = useTranslation();
+
+
 
 function FeaturesBlocks() {
   const blockVariants = useMemo(() => ({
@@ -23,13 +30,19 @@ function FeaturesBlocks() {
       },
     },
   }));
+
   return (
     <section>
-      <div className='max-w-6xl mx-auto px-4 sm:px-6'>
+      <div className ='max-w-6xl mx-auto px-4 sm:px-6'>
         <div className='py-12 md:py-20'>
           {/* Section header */}
+
+          <div className='max-w-3xl mx-auto text-center pb-12 md:pb-20'>
+            <h2 className='h2 mb-4'>{t("Why Our Website ?")}</h2>
+
           <div className='max-w-3xl mx-auto text-center pb-12 md:pb-20 text-black'>
             <h2 className='h2 mb-4'>Why pick MindsOn?</h2>
+
           </div>
 
           {/* Items */}
@@ -75,10 +88,13 @@ function FeaturesBlocks() {
                   strokeWidth='2'
                 />
               </svg>
+
+              <h4 className='h4 mb-2'>{t("Educational Standards")}</h4>
+
               <h4 className='h4 mb-2 text-black'>Educational Standards</h4>
+
               <p className='text-lg text-gray-400 text-center'>
-                MindsOn has the latest educational standards, easily accessible
-                and interesting.
+                {t("Our Website has the latest educational standards, easily accessible and interesting")}
               </p>
             </motion.div>
 
@@ -116,10 +132,13 @@ function FeaturesBlocks() {
                   strokeLinecap='square'
                 />
               </svg>
-              <h4 className='h4 mb-2 text-black'>Study System</h4>
+
+              {/* <h4 className='h4 mb-2'></h4> */}
+
+              <h4 className='h4 mb-2 text-black'>{t("Study System")}</h4>
+
               <p className='text-lg text-gray-400 text-center'>
-                Our material is very flexible. You can study at any time of the
-                year.
+               {t("Our System is so flexible. You can Take the Course at any time of the year also there is no limitation for a specific time to finish it")}
               </p>
             </motion.div>
 
@@ -158,17 +177,22 @@ function FeaturesBlocks() {
                   />
                 </g>
               </svg>
-              <h4 className='h4 mb-2 text-black'>Classes & Scheduling</h4>
+
+              {/* <h4 className='h4 mb-2'></h4> */}
+
+              <h4 className='h4 mb-2 text-black'>{t("Classes & Scheduling")}</h4>
+
               <p className='text-lg text-gray-400 text-center'>
-                You can choose the optimal time for yourself, morning or
-                afternoon. It doesn't matter
+                {t("You can choose the optimal time for yourself, morning or evening. It doesn't matter")}
               </p>
             </motion.div>
           </motion.div>
         </div>
       </div>
+      </div>
+
     </section>
   );
 }
-
+}
 export default FeaturesBlocks;

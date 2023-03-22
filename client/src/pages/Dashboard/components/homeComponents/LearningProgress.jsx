@@ -6,12 +6,14 @@ import Typography from '@mui/material/Typography';
 import { Box, Container } from '@mui/material';
 import axios from 'axios';
 import {useSelector} from 'react-redux'
-
+import { useTranslation } from 'react-i18next';
 function LinearProgressWithLabel(props) {
+
   return (
     <Box sx={{ display: 'flex', alignItems: 'center' }}>
       <Box sx={{ width: '100%', mr: 1 }}>
         <LinearProgress variant='determinate' {...props} />
+        
       </Box>
       <Box sx={{ minWidth: 35 }}>
         <Typography variant='body2' color='text.secondary'>{`${Math.round(
@@ -22,6 +24,7 @@ function LinearProgressWithLabel(props) {
   );
 }
 const LearningProgress = (props) => {
+  let [t, i18n] = useTranslation();
   const user = useSelector((store)=>{
     return store.auth;
   })
@@ -76,7 +79,7 @@ const LearningProgress = (props) => {
     >
       <Box className='left-box' sx={{ width: '100%' }}>
         <h6 className='home-welcome' style={{ fontSize: '1.5vw' }}>
-          Learning progress
+          {t("Learning progress")}
         </h6>
         {/* <Box sx={{ width: '98%' }}>
           <span style={{ fontSize: '80%' }}>
@@ -85,11 +88,11 @@ const LearningProgress = (props) => {
           <LinearProgressWithLabel value={progress} />
         </Box> */}
         <Box sx={{ width: '98%' }}>
-          <span style={{ fontSize: '80%' }}>Viewed lessons</span>
+          <span style={{ fontSize: '80%' }}>{t("Viewed lessons")}</span>
           <LinearProgressWithLabel value={lessonsCompleted} />
         </Box>
         <Box sx={{ width: '98%' }}>
-          <span style={{ fontSize: '80%' }}>Courses completed</span>
+          <span style={{ fontSize: '80%' }}>{t("Courses completed")}</span>
           <LinearProgressWithLabel value={coursesCompleted} />
         </Box>
       </Box>

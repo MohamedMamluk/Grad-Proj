@@ -13,8 +13,11 @@ import UpdateForm from './UpdateForm';
 import ToDo from './ToDo.jsx';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
+
 const TheTOdo = () => {
   // Tasks (ToDo List) State
+  let [t, i18n] = useTranslation();
   const user = useSelector((store) => {
     return store.auth;
   });
@@ -98,8 +101,11 @@ const TheTOdo = () => {
     });
   };
 
+
   return (
     <div className=' contanier col-sm-12 col-lg-6 col-m-6 testtt'>
+     
+       
       {updateData ? (
         <UpdateForm
           updateData={updateData}
@@ -115,7 +121,9 @@ const TheTOdo = () => {
         />
       )}
 
-      {toDo && toDo.length ? '' : 'No Tasks...'}
+      { toDo && toDo.length == 0 && t("No Tasks...")}
+      
+      {/* {uploaded.length > 0 && t("Uploaded ✔")} */}
 
       <ToDo
         toDo={toDo}

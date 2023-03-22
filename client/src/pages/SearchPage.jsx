@@ -6,8 +6,9 @@ import { useLocation } from 'react-router-dom';
 import Header from '../components/header/header';
 import CardWithImage from '../components/CardWithImage';
 import Loader from '../components/loading/loading';
-
+import { useTranslation } from 'react-i18next';
 const ShowData = ({ searchInput }) => {
+  
   const [searchOutput, setSearchOutput] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -57,12 +58,12 @@ const ShowData = ({ searchInput }) => {
 
 const SearchPage = () => {
   const { search } = useLocation();
-
+  let [t, i18n] = useTranslation();
   return (
     <div>
       <Header />
       <h1 style={{ textAlign: 'center', margin: '10px' }}>
-        Results for: {search.substring(1)}
+       {t("Results for:")}  {search.substring(1)}
       </h1>
       <ShowData searchInput={search} />
     </div>

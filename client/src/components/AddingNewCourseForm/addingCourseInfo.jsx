@@ -24,7 +24,7 @@ import Select from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
 import Chip from '@mui/material/Chip';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
-
+import { useTranslation } from 'react-i18next';
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -93,18 +93,18 @@ export default function AddingCourseInfoForm({
     });
     updateCourseInfo((prev) => ({ ...prev, whatYouWillLearn: updatedState }));
   };
-
+  let [t, i18n] = useTranslation();
   return (
     <React.Fragment>
       <Box component='form' noValidate sx={{ mt: 3 }}>
         {/* adding new course info */}
         <Typography variant='h6' gutterBottom textAlign={'center'}>
-          Adding Course Info
+          {t("Adding Course Details")}
         </Typography>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} lg={12} padding={3} textAlign={'center'}>
             <FormControl sx={{ m: 1, width: 300 }}>
-              <InputLabel id='demo-multiple-chip-label'>Category</InputLabel>
+              <InputLabel id='demo-multiple-chip-label'>{t("Category")}</InputLabel>
               <Select
                 labelId='demo-multiple-chip-label'
                 id='demo-multiple-chip'
@@ -142,7 +142,7 @@ export default function AddingCourseInfoForm({
               id='courseDescription'
               value={description}
               name='courseDescription'
-              label='Please enter course description'
+              label={t("Please enter course description")}
               fullWidth
               variant='standard'
               onChange={(e) => {
@@ -153,7 +153,7 @@ export default function AddingCourseInfoForm({
             />
             {!description && (
               <label style={{ color: '#ff0000' }}>
-                Course description is required! and more than 50 characters!
+                {t("Course description is required! and more than 50 characters")}
               </label>
             )}
           </Grid>
@@ -161,7 +161,7 @@ export default function AddingCourseInfoForm({
           <Grid item xs={12} textAlign='center' padding={3}>
             <FormControl>
               <Typography variant='h6' gutterBottom>
-                Course Level*
+               {t("Course Level")} 
               </Typography>
               <RadioGroup
                 aria-labelledby='demo-controlled-radio-buttons-group'
@@ -182,7 +182,7 @@ export default function AddingCourseInfoForm({
                       }}
                     />
                   }
-                  label='Beginner'
+                  label={t("Beginner")}
                 />
                 <FormControlLabel
                   value='Intermediate'
@@ -196,7 +196,7 @@ export default function AddingCourseInfoForm({
                       }}
                     />
                   }
-                  label='Intermediate'
+                  label={t("Intermediate")}
                 />
                 <FormControlLabel
                   value='Advanced'
@@ -210,7 +210,7 @@ export default function AddingCourseInfoForm({
                       }}
                     />
                   }
-                  label='Advanced '
+                  label={t("Advanced")}
                 />
               </RadioGroup>
             </FormControl>
@@ -218,7 +218,7 @@ export default function AddingCourseInfoForm({
           {/* coursse info what you will learn */}
           <Grid item xs={12} textAlign='center' padding={3}>
             <Typography variant='h6' gutterBottom>
-              What you will learn from the course
+              {t("What you will learn in the course")}
             </Typography>
             {whatYouWillLearn?.map((item, index) => {
               return (
@@ -230,7 +230,7 @@ export default function AddingCourseInfoForm({
                       id='whatYouWillLearnTitle'
                       value={item.title}
                       name='title'
-                      label='Please enter Tilte'
+                      label={t("Please enter Title")}
                       fullWidth
                       variant='standard'
                       onChange={updateWhatYouWillLearn(index)}
@@ -242,7 +242,7 @@ export default function AddingCourseInfoForm({
                       aria-label='empty textarea'
                       name='description'
                       value={item.description}
-                      placeholder='Enter what you will learn, please'
+                      placeholder={t("Enter what you will learn in details , please")}
                       style={{ width: '50%' }}
                       onChange={updateWhatYouWillLearn(index)}
                     />

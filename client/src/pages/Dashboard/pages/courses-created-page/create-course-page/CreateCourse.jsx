@@ -8,6 +8,7 @@ import FullSizeButton from '../../../../../components/buttons/FullSizeButton';
 import axios from 'axios';
 import { Box, Button, Grid } from '@mui/material';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -15,6 +16,7 @@ import { useNavigate } from 'react-router-dom';
 
 const lessonDataObject = { type: '', title: '', link: '', description: '' };
 const CreateCourse = () => {
+  let [t, i18n] = useTranslation();
   const auth = useSelector((state) => state.auth);
   const [courseInfoData, setcourseInfoData] = useState({
     categories: [{ name: 'name' }],
@@ -108,7 +110,7 @@ const CreateCourse = () => {
           );
         })}
         <FullSizeButton
-          buttonLabel={'Insert New Lesson'}
+          buttonLabel={t("Insert New Lesson")}
           onClick={insertNewLesson}
         />
         <Grid item xs={3}>
@@ -124,7 +126,7 @@ const CreateCourse = () => {
             mb: 2,
           }}
           >
-            Submit
+            {t("Submit")}
           </Button>
         </Grid>
       </Box>

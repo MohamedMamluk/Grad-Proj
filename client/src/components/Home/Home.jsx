@@ -7,9 +7,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Footer from '../partials/Footer';
 import Roadmaps from '../Roadmaps/Home/home';
 
+
 const Home = () => {
+ 
   return (
+    
     <div className='flex flex-col min-h-screen overflow-hidden'>
+       
       {/*  Site header */}
       {/* <Header /> */}
 
