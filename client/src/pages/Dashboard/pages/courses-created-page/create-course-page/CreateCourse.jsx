@@ -9,6 +9,11 @@ import axios from 'axios';
 import { Box, Button, Grid } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import { useNavigate } from 'react-router-dom';
+
 const lessonDataObject = { type: '', title: '', link: '', description: '' };
 const CreateCourse = () => {
   let [t, i18n] = useTranslation();
@@ -23,10 +28,12 @@ const CreateCourse = () => {
     courseTitle: '',
     courseDuration: '',
     paid: '',
-    isPaied: '',
+    isPaied: '0',
     img: '', //to be handeled
   });
+  const [disableButton , setDisableButton] = useState(false)
   const [lessonData, setLessonData] = useState([lessonDataObject]);
+  const navigate = useNavigate();
   const insertNewLesson = useCallback(() => {
     setLessonData((prev) => [...prev, lessonDataObject]);
   }, []);
@@ -41,6 +48,7 @@ const CreateCourse = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setDisableButton(true);
     let courseLessonsIds = [];
     axios
       .all(
@@ -70,6 +78,15 @@ const CreateCourse = () => {
           };
           axios.post('/course', newCourseData);
         });
+      }).then(()=>{
+        toast('Created Successfully');
+        setDisableButton(false);
+
+        navigate('/dashboard/courses');
+
+      }).catch((err)=>{
+        toast.error('Creation Failed!');
+        setDisableButton(false);
       });
   };
 
@@ -98,15 +115,16 @@ const CreateCourse = () => {
         />
         <Grid item xs={3}>
           <Button
-            type='submit'
-            fullWidth
-            variant='contained'
-            onClick={handleSubmit}
-            style={{ backgroundColor: '#3f51b5' }}
-            sx={{
-              mt: 3,
-              mb: 2,
-            }}
+          disabled={disableButton}
+          type='submit'
+          fullWidth
+          variant='contained'
+          onClick={handleSubmit}
+          style={{ backgroundColor: '#3f51b5' }}
+          sx={{
+            mt: 3,
+            mb: 2,
+          }}
           >
             {t("Submit")}
           </Button>

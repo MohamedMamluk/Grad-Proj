@@ -8,6 +8,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import Loader from '../loading/loading';
 import './CouForAdmin.css';
 import { useTranslation } from 'react-i18next';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const CouForAdmin = () => {
   const USD = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -55,7 +59,16 @@ const CouForAdmin = () => {
         setFilteredCoursesflag(res.data);
       }
     });
-  }, []);
+  }, [courses]);
+  const deletCourse = (event,id)=>{
+    axios.delete('/course/'+id).then(()=>{
+      // console.log("deleted insha2 allahh.");
+      toast('Deleted Successfuly')
+    }).catch((err)=>{
+      // console.log('m4 deleted , sorry -_-');
+      toast.error('Error -_-');
+    });
+  }
   if (!courses.length > 0) {
     return (
       <Container
@@ -104,6 +117,7 @@ const CouForAdmin = () => {
                 </h2>
                 <div className='mt-4 flex flex-wrap gap-2 items-center justify-between '>
                   <Link
+                  onClick={()=>{}}
                     to={`/dashboard/courses/${course._id}`}
                     style={{ textDecoration: 'none' }}
                     variant='body2'
@@ -124,6 +138,9 @@ const CouForAdmin = () => {
                     </ListItemButton>
                   </Link>
                   <Link
+                  onClick={(e)=>{
+                    deletCourse(e,course._id)
+                  }}
                     style={{ textDecoration: 'none' }}
                     variant='body2'
                     className='bg-red-500 hover:bg-red-600 text-white flex-1  w-auto rounded-md'

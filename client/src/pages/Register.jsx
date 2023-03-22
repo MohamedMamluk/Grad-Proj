@@ -27,6 +27,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
+
+
 function Copyright(props) {
   return (
     <Typography
@@ -58,6 +61,7 @@ export default function Register() {
     lastName: '',
     levelOfExperience: '',
   });
+  const [disableButton , setDisableButton] = useState(false)
   React.useEffect(() => {
     if (authSelector != null) {
       navigate('/dashboard');
@@ -70,16 +74,20 @@ export default function Register() {
   };
 
   const handleSubmit = (event) => {
+    setDisableButton(true);
     event.preventDefault();
     axios.post('/auth/register', data).then(() => {
-      toast.success('Successfully Registered');
+
+      setDisableButton(false);
+      toast('Successfully Signed up');
       navigate('/login');
       
       //console.log(res.data);
-    }).catch(()=>
-    toast.error("Error in Register"))
-       
-    
+
+    }).catch((err)=>{
+      toast.error('Wrong Input');
+      setDisableButton(false);
+    });
   };
   var emaill = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
@@ -328,6 +336,7 @@ export default function Register() {
                 {/* submit button */}
                 <Button
                   type='submit'
+                  disabled={disableButton}
                   fullWidth
                   variant='contained'
                   style={{ backgroundColor: '#3f51b5' }}

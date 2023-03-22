@@ -37,21 +37,22 @@ const MenuProps = {
 };
 
 const names = [
-  'Oliver Hansen',
-  'Van Henry',
-  'April Tucker',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
+  'Communication',
+  'Customer Service',
+  'Sales & Marketing',
+  'Leadership and Management Training',
+  'Programing',
+  'Web Development',
+  'Data Analytics',
+  'Data Science',
+  'Healthcare',
+  'Psychology and Forensics',
+  'History'
 ];
-function getStyles(name, personName, theme) {
+function getStyles(catName, catigoryName, theme) {
   return {
     fontWeight:
-      personName.indexOf(name) === -1
+      catigoryName.indexOf(catName) === -1
         ? theme.typography.fontWeightRegular
         : theme.typography.fontWeightMedium,
   };
@@ -71,13 +72,14 @@ export default function AddingCourseInfoForm({
   };
 
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState([]);
+  const [catigoryName, setCatigoryName] = React.useState([]);
 
   const handleSelection = (event) => {
     const {
       target: { value },
     } = event;
-    setPersonName(
+    console.log("inside Event selectio: ", event.target.value)
+    setCatigoryName(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value
     );
@@ -107,7 +109,7 @@ export default function AddingCourseInfoForm({
                 labelId='demo-multiple-chip-label'
                 id='demo-multiple-chip'
                 multiple
-                value={personName}
+                value={catigoryName}
                 onChange={handleSelection}
                 input={
                   <OutlinedInput id='select-multiple-chip' label='Catigory' />
@@ -125,7 +127,7 @@ export default function AddingCourseInfoForm({
                   <MenuItem
                     key={name}
                     value={name}
-                    style={getStyles(name, personName, theme)}
+                    style={getStyles(name, catigoryName, theme)}
                   >
                     {name}
                   </MenuItem>

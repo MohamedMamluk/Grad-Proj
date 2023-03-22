@@ -89,7 +89,7 @@ instructorSchema.pre('save', async function () {
 instructorSchema.methods.comparePassword = async function (
   USER_PASSWORD_FROM_FRONT
 ) {
-  const isValid = bcrypt.compareSync(USER_PASSWORD_FROM_FRONT, this.password);
+  const isValid = await bcrypt.compare(USER_PASSWORD_FROM_FRONT, this.password);
   return isValid;
 };
 instructorSchema.methods.genJWT = function () {
@@ -99,7 +99,7 @@ instructorSchema.methods.genJWT = function () {
     },
     process.env.JWT_SECRET,
     {
-      expiresIn: '1d',
+      expiresIn: '7d',
     }
   );
   return token;

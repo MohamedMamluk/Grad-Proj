@@ -22,7 +22,7 @@ const ConfirmEmail = () => {
   }, []);
   return (
     <div className='h-screen flex justify-center items-center'>
-      <div className='rounded-xl w-[800px] h-[600px] !border bodrer-l-white border-r-green-500 border-t-red-500 border-b-blue-500'>
+      <div className='rounded-xl w-[800px] h-[600px] !border border-l-white border-r-green-500 border-t-red-500 border-b-blue-500'>
         <div className='flex justify-center'>
           <div className='w-52 '>
             <img

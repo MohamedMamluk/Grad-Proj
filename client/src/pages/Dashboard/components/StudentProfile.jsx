@@ -301,40 +301,7 @@ const StudentProfile = ({ userData }) => {
             {t("Update")}
           </Button>
         </Grid>
-        <ul>
-          <div id='coursesContainer' className='container'>
-            {courses?.map((course) => (
-              <div key={course?._id} className='card p-3 m-2 '>
-                <div id='card-image__container'>
-                  <img src={course?.image} id='card-image' alt='...' />
-                </div>
-                <div className='card-body'>
-                  <p className='card-text' title={course?.name}>
-                    {course.name?.length > 50
-                      ? course?.name.substring(0, 45) + '...'
-                      : course?.name}
-                  </p>
-                  <p className='card-text'>{course?.cost}</p>
-                  <p className='card-text'>{course?.duration}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </ul>
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            p: 1,
-            m: 1,
-            bgcolor: 'background.paper',
-            borderRadius: 1,
-          }}
-        >
-          <Stack spacing={1}>
-            <Pagination count={5} disabled />
-          </Stack>
-        </Box>
+
       </div>
     </div>
   );

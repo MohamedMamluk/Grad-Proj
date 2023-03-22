@@ -1,11 +1,9 @@
 import React from 'react';
-
 import PageIllustration from '../partials/PageIllustration';
 import HeroHome from '../partials/HeroHome';
 import FeaturesBlocks from '../partials/FeaturesBlocks';
 import FeaturesZigZag from '../partials/FeaturesZigzag';
 import { motion, AnimatePresence } from 'framer-motion';
-
 import Footer from '../partials/Footer';
 import Roadmaps from '../Roadmaps/Home/home';
 

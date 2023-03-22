@@ -16,26 +16,26 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     const user = await loginService(req.body);
-    console.log(user);
     if (!user.email) {
       console.log('here email');
       return res
         .status(StatusCodes.NOT_FOUND)
         .json({ message: 'WRONG EMAIL OR PASSWORD' });
     }
-    const isValid = user.comparePassword(req.body.password);
+    const isValid = await user.comparePassword(req.body.password);
     console.log(isValid);
     if (!isValid) {
-      console.log('here');
-
       return res
         .status(StatusCodes.NOT_FOUND)
         .json({ message: 'WRONG EMAIL OR PASSWORD' });
     }
-    console.log(user.confirmationCode);
     if (user.confirmationCode) {
-      if (user.status != 'Active'){
-        await sendConfirmationEmail(user.firstName,user.email,user.confirmationCode)
+      if (user.status != 'Active') {
+        await sendConfirmationEmail(
+          user.firstName,
+          user.email,
+          user.confirmationCode
+        );
         return res.status(401).send({
           message: 'Pending Account. Please Verify Your Email!',
         });

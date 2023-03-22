@@ -16,6 +16,8 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout, getAuth } from '../../../features/auth/authSlice';
 import { useTranslation } from 'react-i18next';
+import CastForEducationIcon from '@mui/icons-material/CastForEducation';
+
 export const MainListItems = () => {
   let [t, i18n] = useTranslation();
   const dispatch = useDispatch();
@@ -99,6 +101,19 @@ export const MainListItems = () => {
           <ListItemText primary={t("Profile")}/>
         </ListItemButton>
       </Link>
+
+      {auth.role == 'student' && ( <Link
+        to='/dashboard/enrolled-courses'
+        style={{ textDecoration: 'none', color: 'GrayText' }}
+      >
+        <ListItemButton>
+          <ListItemIcon>
+            <CastForEducationIcon style={{ fill: '#6d54de' }} fontSize='large' />
+          </ListItemIcon>
+          <ListItemText primary='Enrolled Courses' />
+        </ListItemButton>
+      </Link>)}
+
       <Link to='/contact' style={{ textDecoration: 'none', color: 'GrayText' }}>
         <ListItemButton>
           <ListItemIcon>
