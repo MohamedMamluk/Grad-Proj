@@ -86,11 +86,11 @@ const Header = () => {
     setAnchorElUser(null);
   };
   const headerRef = React.useRef(null);
-  const [offset, setOffset] = React.useState(0);
+  const [offset, setOffset] = React.useState(1);
 
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
-      const onScroll = () => setOffset(window.pageYOffset);
+      const onScroll = () => setOffset(window.pageYOffset + 1);
       // clean up code
       window.removeEventListener('scroll', onScroll);
       window.addEventListener('scroll', onScroll, { passive: true });
@@ -244,7 +244,7 @@ const Header = () => {
                 borderTopLeftRadius: '10px',
                 borderBottomLeftRadius: '10px',
               }}
-              className={` ${offset > 0 ? 'text-white' : 'text-black'}`}
+              className={` ${offset > 0 ? 'text-white' : '!text-black'}`}
               onChange={(e) => setSearch(e.target.value)}
             />
             <Button
@@ -260,7 +260,7 @@ const Header = () => {
               }}
             >
               <SearchIcon
-                className={`${offset > 0 ? 'text-white' : 'text-black'}`}
+                className={`${offset > 0 ? 'text-white' : '!text-black'}`}
               />
             </Button>
           </div>
@@ -295,7 +295,7 @@ const Header = () => {
           </Box>
           <select
             name='Language'
-            className='text-black'
+            className='!text-black'
             onChange={SelectLanguage}
           >
             <option value='English'> EN</option>
@@ -314,7 +314,7 @@ const Header = () => {
                 <Link
                   to='/dashboard'
                   className={`navLink ${
-                    offset > 0 ? 'text-white' : 'text-black'
+                    offset > 0 ? 'text-white' : '!text-black'
                   }`}
                 >
                   Dashboard
