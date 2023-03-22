@@ -40,7 +40,7 @@ body {
   background: rgba(109, 84, 222, 0.65) !important;
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  /* backdrop-filter: blur(5.6px); */
+  backdrop-filter: blur(5.6px);
   -webkit-backdrop-filter: blur(5.6px);
   border: 1px solid rgba(109, 84, 222, 0.86);
   padding: 40px 30px;
@@ -471,9 +471,6 @@ h5 {
     flex-direction: column;
     text-align: center;
   }
-}
-.card {
-  /* border-radius: 15px !important; */
 }
 
 .title {
