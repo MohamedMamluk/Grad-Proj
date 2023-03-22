@@ -9,11 +9,8 @@ import { useTranslation } from 'react-i18next';
 //   const [videoModalOpen, setVideoModalOpen] = useState(false);
 //   const videoRef = useRef(null);
 
-
-
-
 function HeroHome() {
-    let [t,i18n] = useTranslation();
+  let [t, i18n] = useTranslation();
   const [videoModalOpen, setVideoModalOpen] = useState(false);
   const videoRef = useRef(null);
   const container = {
@@ -33,7 +30,7 @@ function HeroHome() {
 
   return (
     <section>
-      <div className='max-w-6xl mx-auto px-4 sm:px-6 relative'>
+      <div className='max-w-6xl mx-auto px-4 sm:px-6 mt-16 relative'>
         {/* Illustration behind hero content */}
         <div
           className='absolute left-0 bottom-0 -ml-20 hidden lg:block pointer-events-none'
@@ -73,159 +70,157 @@ function HeroHome() {
 
         {/* Hero content */}
         {/* <div className='relative pt-32 pb-10 md:pt-40 md:pb-16'> */}
-          {/* Section header */}
-{/* 
+        {/* Section header */}
+        {/* 
           <div className='max-w-3xl mx-auto text-center pb-12 md:pb-16'> */}
-            {/* <h1 className='h1 mb-4 flex flex-col' data-aos='fade-up'>
+        {/* <h1 className='h1 mb-4 flex flex-col' data-aos='fade-up'>
               <span>{t("Anytime , Anywhere")}</span>
               <span>
                 {t("Learn On")}<br>
                 </br><span className='text-purple-500'> MindsOn</span>
               </span>
             </h1> */}
-            {/* <h5 className='text-md text-[#edeafb]'> */}
-              
-              {/* {t("Success is no accident. It is hard work, perseverance, learning, studying, sacrifice and most of all, love of what you are doing or learning to do")} */}
-              {/* <img src='light.png' alt='light image' className='lightImg' /> */}
-              
-            {/* </h5>
+        {/* <h5 className='text-md text-[#edeafb]'> */}
+
+        {/* {t("Success is no accident. It is hard work, perseverance, learning, studying, sacrifice and most of all, love of what you are doing or learning to do")} */}
+        {/* <img src='light.png' alt='light image' className='lightImg' /> */}
+
+        {/* </h5>
             <div className='max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center'> */}
 
-          <motion.div
-            variants={container}
-            initial='hidden'
-            animate='show'
-            className='max-w-3xl mx-auto text-center pb-12 md:pb-16'
+        <motion.div
+          variants={container}
+          initial='hidden'
+          animate='show'
+          className='max-w-3xl mx-auto text-center pb-12 md:pb-16'
+        >
+          <motion.h1
+            variants={item}
+            className='h1 mb-4 flex flex-col text-gray-700'
           >
-            <motion.h1
-              variants={item}
-              className='h1 mb-4 flex flex-col text-gray-700'
-            >
-              <motion.span>{t("Anytime , Anywhere")}</motion.span>
-              <motion.span>
-                {t("Learn On")}
-                <br>
-                </br><span className='text-purple-500'> MindsOn</span>
-              </motion.span>
-            </motion.h1>
-            <motion.h5 className='text-md text-gray-400' variants={item}>
-              {t("Success is no accident. It is hard work, perseverance, learning, studying, sacrifice and most of all, love of what you are doing or learning to do")}
-              {/* <img src='light.png' alt='light image' className='lightImg' /> */}
-              
-            </motion.h5>
-            <motion.div className='max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center'>
-
-              {/* <LinkButton label={'Start free trial'} link={'/login'} /> */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                transition={{ delay: 0.5 }}
-                animate={{ opacity: 1 }}
-                data-aos='fade-up'
-                data-aos-delay='400'
-              >
-                <Link
-                  className='btn text-white !bg-purple-600 hover:!bg-purple-700 w-full mb-4 sm:w-auto sm:mb-0'
-                  to='/login'
-                >
-                  
-                  {t("Join Now")}
-                </Link>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0 }}
-                transition={{ delay: 0.7 }}
-                animate={{ opacity: 1 }}
-              >
-                <a
-                  className='btn text-white !bg-gray-700 hover:!bg-gray-800 w-full sm:w-auto sm:ml-4'
-                  href='#roadmaps'
-                >
-                  
-                  {t("Check Our Roadmaps")}
-                </a>
-              </motion.div>
-            </motion.div>
-          </motion.div>
-
-          {/* Hero image */}
-          <div>
+            <motion.span>{t('Anytime , Anywhere')}</motion.span>
+            <motion.span>
+              {t('Learn On')}
+              <br></br>
+              <span className='text-purple-500'> MindsOn</span>
+            </motion.span>
+          </motion.h1>
+          <motion.h5 className='text-md text-gray-400' variants={item}>
+            {t(
+              'Success is no accident. It is hard work, perseverance, learning, studying, sacrifice and most of all, love of what you are doing or learning to do'
+            )}
+            {/* <img src='light.png' alt='light image' className='lightImg' /> */}
+          </motion.h5>
+          <motion.div className='max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center'>
+            {/* <LinkButton label={'Start free trial'} link={'/login'} /> */}
             <motion.div
               initial={{ opacity: 0 }}
-              transition={{ delay: 1.2, duration: 0.8 }}
+              transition={{ delay: 0.5 }}
               animate={{ opacity: 1 }}
-              className='relative flex justify-center items-center'
               data-aos='fade-up'
-              data-aos-delay='200'
+              data-aos-delay='400'
             >
-              <img
-                className='mx-auto'
-                src={HeroImage}
-                width='1024'
-                height='504'
-                alt='Hero'
-              />
-              <a
-                className='absolute group'
-                href='#0'
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  setVideoModalOpen(true);
-                  videoRef.current.play();
-                }}
-                aria-controls='modal'
+              <Link
+                className='btn text-white !bg-purple-600 hover:!bg-purple-700 w-full mb-4 sm:w-auto sm:mb-0'
+                to='/login'
               >
-                <svg
-                  className='w-16 h-16 sm:w-20 sm:h-20 hover:opacity-75 transition duration-150 ease-in-out'
-                  viewBox='0 0 88 88'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <defs>
-                    <linearGradient
-                      x1='78.169%'
-                      y1='9.507%'
-                      x2='24.434%'
-                      y2='90.469%'
-                      id='a'
-                    >
-                      <stop stopColor='#EBF1F5' stopOpacity='.8' offset='0%' />
-                      <stop stopColor='#EBF1F5' offset='100%' />
-                    </linearGradient>
-                  </defs>
-                  <circle fill='url(#a)' cx='44' cy='44' r='44' />
-                  <path
-                    className='fill-current text-purple-600'
-                    d='M52 44a.999.999 0 00-.427-.82l-10-7A1 1 0 0040 37V51a.999.999 0 001.573.82l10-7A.995.995 0 0052 44V44c0 .001 0 .001 0 0z'
-                  />
-                </svg>
+                {t('Join Now')}
+              </Link>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              transition={{ delay: 0.7 }}
+              animate={{ opacity: 1 }}
+            >
+              <a
+                className='btn text-white !bg-gray-700 hover:!bg-gray-800 w-full sm:w-auto sm:ml-4'
+                href='#roadmaps'
+              >
+                {t('Check Our Roadmaps')}
               </a>
             </motion.div>
+          </motion.div>
+        </motion.div>
 
-            {/* Modal */}
-            <Modal
-              id='modal'
-              ariaLabel='modal-headline'
-              show={videoModalOpen}
-              handleClose={() => {
-                setVideoModalOpen(false);
-                // console.log(videoRef.current);
-                videoRef.current.currentTime = 0;
-                videoRef.current.pause();
+        {/* Hero image */}
+        <div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            transition={{ delay: 1.2, duration: 0.8 }}
+            animate={{ opacity: 1 }}
+            className='relative flex justify-center items-center'
+            data-aos='fade-up'
+            data-aos-delay='200'
+          >
+            <img
+              className='mx-auto'
+              src={HeroImage}
+              width='1024'
+              height='504'
+              alt='Hero'
+            />
+            <a
+              className='absolute group'
+              href='#0'
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setVideoModalOpen(true);
+                videoRef.current.play();
               }}
+              aria-controls='modal'
             >
-              <div className='relative pb-9/16 border border-red-700 h-96'>
-                <video
-                  className='absolute w-full h-full'
-                  ref={videoRef}
-                  src='homeVideo.mp4'
-                  title='Video'
-                  controls
-                  allowFullScreen
-                ></video>
-              </div>
-            </Modal>
-          </div>
+              <svg
+                className='w-16 h-16 sm:w-20 sm:h-20 hover:opacity-75 transition duration-150 ease-in-out'
+                viewBox='0 0 88 88'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <defs>
+                  <linearGradient
+                    x1='78.169%'
+                    y1='9.507%'
+                    x2='24.434%'
+                    y2='90.469%'
+                    id='a'
+                  >
+                    <stop stopColor='#EBF1F5' stopOpacity='.8' offset='0%' />
+                    <stop stopColor='#EBF1F5' offset='100%' />
+                  </linearGradient>
+                </defs>
+                <circle fill='url(#a)' cx='44' cy='44' r='44' />
+                <path
+                  className='fill-current text-purple-600'
+                  d='M52 44a.999.999 0 00-.427-.82l-10-7A1 1 0 0040 37V51a.999.999 0 001.573.82l10-7A.995.995 0 0052 44V44c0 .001 0 .001 0 0z'
+                />
+              </svg>
+            </a>
+          </motion.div>
+
+          {/* Modal */}
+          <Modal
+            id='modal'
+            ariaLabel='modal-headline'
+            show={videoModalOpen}
+            handleClose={() => {
+              setVideoModalOpen(false);
+              // console.log(videoRef.current);
+              videoRef.current.currentTime = 0;
+              videoRef.current.pause();
+            }}
+          >
+            <div className='relative pb-9/16 border border-red-700 h-96'>
+              <video
+                className='absolute w-full h-full'
+                ref={videoRef}
+                src='homeVideo.mp4'
+                title='Video'
+                controls
+                allowFullScreen
+              ></video>
+            </div>
+          </Modal>
         </div>
+      </div>
       {/* </div>
       </div>
       </div> */}

@@ -20,15 +20,11 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 const pages = ['Home', 'Login', 'Register', 'Courses'];
 
-
-
-
-
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const Header = () => {
   const user = useSelector((store) => store.auth);
   let navigate = useNavigate();
-  let [t,i18n] = useTranslation();
+  let [t, i18n] = useTranslation();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [search, setSearch] = React.useState('');
@@ -103,15 +99,11 @@ const Header = () => {
   }, []);
   // React.useEffect(() => console.log(offset), [offset]);
 
-  function SelectLanguage(e)
-  {
-    if(e.target.value =="English")
-    {
-      i18n.changeLanguage("en")
-    }
-    else
-    {
-      i18n.changeLanguage("ar")
+  function SelectLanguage(e) {
+    if (e.target.value == 'English') {
+      i18n.changeLanguage('en');
+    } else {
+      i18n.changeLanguage('ar');
     }
   }
   return (
@@ -215,13 +207,11 @@ const Header = () => {
             sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
             style={{ gap: '10px' }}
           >
-
             <Link to='/' className={`navLink`}>
-            {t("Home")}
-              
+              {t('Home')}
             </Link>
             <Link to='/courses' className='navLink'>
-            {t("Courses")}
+              {t('Courses')}
             </Link>
             {/* <Link
               to='/'
@@ -275,30 +265,41 @@ const Header = () => {
             </Button>
           </div>
 
-
-          <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} style={{ gap: '10px' }}>
+          <Box
+            sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
+            style={{ gap: '10px' }}
+          >
             <Button
               sx={{
                 textTransform: 'capitalize',
                 padding: '0px',
                 width: 'auto',
-                color:"#3f51b5"
+                color: '#3f51b5',
               }}
             >
               <Link to='/login' className='navLink'>
-              {t("Login")}
+                {t('Login')}
               </Link>
             </Button>
-            <Button sx={{ textTransform: 'capitalize', padding: '0px' , color:"#3f51b5"}}>
-            <Link to='/register' className='navLink'>
-            {t(" / Register")}
+            <Button
+              sx={{
+                textTransform: 'capitalize',
+                padding: '0px',
+                color: '#3f51b5',
+              }}
+            >
+              <Link to='/register' className='navLink'>
+                {t(' / Register')}
               </Link>
             </Button>
           </Box>
-          <select name = "Language" onChange={SelectLanguage}>
-
-          <option value='English'> EN</option>
-          <option value='Arabic'> AR</option>
+          <select
+            name='Language'
+            className='text-black'
+            onChange={SelectLanguage}
+          >
+            <option value='English'> EN</option>
+            <option value='Arabic'> AR</option>
           </select>
 
           {user.token ? (
@@ -350,7 +351,6 @@ const Header = () => {
               </Button> */}
             </Box>
           )}
-
         </Toolbar>
       </Container>
     </AppBar>
