@@ -11,6 +11,9 @@ const Balance = () => {
   const user = useSelector((store) => store.auth);
   useEffect(() => {
     const getBalanceData = async () => {
+      if (user.userData.balance.length == 0) {
+        setMessage("You don't have any payments yet!");
+      }
       const data = await axios.all(
         user.userData.balance.map(async (course) => {
           return await (

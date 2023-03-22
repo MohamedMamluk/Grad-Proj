@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-
+import image from './ceer.test.jpg';
 const Certificate = ({ courseName, studentName }) => {
   const canvasRef = useRef(null);
   const imageRef = useRef(null);
@@ -8,7 +8,7 @@ const Certificate = ({ courseName, studentName }) => {
       let context = canvasRef.current.getContext('2d');
 
       let imgObj = new Image();
-      imgObj.src = 'ceer.test.jpg';
+      imgObj.src = image;
       context.beginPath();
       context.drawImage(imgObj, 0, 0);
       context.font = '13pt Calibri';
@@ -26,6 +26,9 @@ const Certificate = ({ courseName, studentName }) => {
       document.getElementById('imageRef').src = img;
     }
   }, [canvasRef.current]);
+  useEffect(() => {
+    document.title = courseName;
+  }, [courseName]);
   return (
     <div>
       <p>hint: if certificate is not showing please refresh the page</p>
