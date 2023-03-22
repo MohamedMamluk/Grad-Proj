@@ -82,6 +82,20 @@ const Lesson = () => {
   };
   return (
     <>
+    <Box sx={{
+        display: 'flex',
+        width:'maxContent',
+        justifyContent:'center',
+        alignItems: 'center',
+        '& > *': {
+          m: 2,
+        },
+        '& button': { p: 2 },
+      }}>
+      {lesson.type == 'Video' && <Video videoLink={lesson.link}/>}   
+      {lesson.type == 'Test' && <Test testLink={lesson.link}/>}      
+    </Box>
+
       <Box
         sx={{
           display: 'flex',
