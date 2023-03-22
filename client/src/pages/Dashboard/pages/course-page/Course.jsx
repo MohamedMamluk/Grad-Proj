@@ -22,7 +22,7 @@ import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
 import LocalAtmOutlinedIcon from '@mui/icons-material/LocalAtmOutlined';
 import Avatar from '@mui/material/Avatar';
 import CastForEducationOutlinedIcon from '@mui/icons-material/CastForEducationOutlined';
-import HoverRating from '../../components/HoverRating.tsx';
+// import HoverRating from '../../components/HoverRating.tsx';
 
 const Course = () => {
   const { id } = useParams();
@@ -30,9 +30,20 @@ const Course = () => {
   const userData = useSelector((store) => store.auth);
   const [course, setCourse] = useState({});
   const [courseInfo, setCourseInfo] = useState({});
+  const [instructor, setInstructor] = useState({});
+  const USD = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  });
+
   useEffect(() => {
     axios.get('/course/' + id).then((res) => {
       setCourse(res.data);
+      axios
+        .get('/instructor/' + res.data.instructor)
+        .then((instructorResponse) =>
+          setInstructor(instructorResponse.data.user)
+        );
       axios
         .get('/courseinfo/' + res.data.courseInfo)
         .then((res) => setCourseInfo(res.data));
@@ -82,7 +93,7 @@ const Course = () => {
                 <div class='point'>
                   <LocalAtmOutlinedIcon /> Price{' '}
                 </div>
-                <div class='sub-point'>{course.cost} $</div>
+                <div class='sub-point'>{USD.format(course.cost)} </div>
               </div>
             </div>
           </div>
@@ -116,12 +127,12 @@ const Course = () => {
               : 'Enroll Now'}
           </button>
         </div>
-        <div class='secCard card box' style={{ delay: '.4s' }}>
+        <div className='secCard card box !min-h-auto' style={{ delay: '.4s' }}>
           <div class='title'>
             <LightbulbOutlinedIcon />
             What You Will Learn
           </div>
-          <div class='secCard-wrapper'>
+          <div class='secCard-wrapper flex-col'>
             <div class='secCard-info'>
               {courseInfo.whatYouWillLearn.map((learningOutcome) => {
                 return (
@@ -139,28 +150,22 @@ const Course = () => {
                 );
               })}
             </div>
-            <div class='secCard-chart'>
-              {/* <div class="circle">
-              <div class="pie">
-               <svg>
-                <circle cx="60" cy="60" r="50"></circle>
-               </svg>
-              </div>
-              <div class="counter">80%</div>
-             </div> */}
+            {/* <div class='secCard-chart'>
               <div className='rate'>
                 <HoverRating />
               </div>
 
               <h5>Rating</h5>
-            </div>
+            </div> */}
           </div>
           <div class='secCard-profile'>
             <span class='by'>By:</span>
-            <Avatar class='secCard-img' src='/broken-image.jpg' />
+            <Avatar class='secCard-img' src={instructor.image} />
             <div class='secCard-detail'>
-              <div class='secCard-name'>{courseInfo.courseInstructor}</div>
-              <div class='secCard-type'>{courseInfo.instructorDescription}</div>
+              <div class='secCard-name'>
+                {instructor.firstName} {instructor.lastName}
+              </div>
+              {/* <div class='secCard-type'>{instructor.instructorDescription}</div> */}
             </div>
           </div>
         </div>
