@@ -5,10 +5,13 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { ListItemButton, ListItemText } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link , useLocation} from 'react-router-dom';
 import Loader from "../loading/loading";
 
 const AllLessons = (lessonIdArr) => {
+    const location = useLocation();
+    const pathnames = location.pathname.split('/').filter((x) => x);
+
     const lessonIds = lessonIdArr.lessonsArr;
     const [lessons, setLessons] = useState([]);
     useEffect(() => {
@@ -54,7 +57,7 @@ const AllLessons = (lessonIdArr) => {
                             </Typography>
                         </CardContent>
                         <CardActions>
-                            <Link to={`/dashboard/courses/${lesson.courseId}/lesson/${lesson._id}`} variant="body2">
+                            <Link to={`/dashboard/courses/${pathnames[2]}/lesson/${lesson._id}`} variant="body2">
                                 <ListItemButton style={{ width: "max-content" }}>
                                     <ListItemText primary="Start Lesson" />
                                 </ListItemButton>

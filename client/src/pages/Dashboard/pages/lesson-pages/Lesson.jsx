@@ -21,12 +21,10 @@ const Lesson = () => {
   useEffect(() => {
     const getLesson = async () => {
       const data = await axios.get('/lesson/' + pathnames[4]);
-      console.log(data.data);
       setLesson(data.data);
     };
     const getCourse = async()=>{
       const courseData = await axios.get('/course/' + pathnames[2]);
-      console.log(courseData.data);
       setCourse(courseData.data);
       axios.get('/courseinfo/' + courseData.data.courseInfo).then((res) =>{
         console.log(res.data.courseLessons)
@@ -47,7 +45,7 @@ const Lesson = () => {
     return <h1>loading...</h1>;
   }
   let index = lessons.filter(obj => {
-    return obj.lessonid == pathnames[4];
+    return obj.lessonId == pathnames[4];
   })
   
   // let prevBool = false;
@@ -55,8 +53,8 @@ const Lesson = () => {
 
   const prev = ()=>{
     if(index != 0){
-      console.log(lessons[index-1].lessonid)
-      navigate(`/dashboard/courses/${course._id}/lesson/${lessons[index-1].lessonid}`)
+      console.log(lessons[index-1].lessonId)
+      navigate(`/dashboard/courses/${course._id}/lesson/${lessons[index-1].lessonId}`)
     }
   }
 
@@ -66,18 +64,28 @@ const Lesson = () => {
 
   const next = ()=>{
     if(index != lessons.length){
-      console.log(lessons[index+1].lessonid)
-      navigate(`/dashboard/courses/${course._id}/lesson/${lessons[index-1].lessonid}`)
+      console.log(lessons[index+1].lessonId)
+      navigate(`/dashboard/courses/${course._id}/lesson/${lessons[index+1].lessonId}`)
     }
   }
   return (
     <>
+    <Box sx={{
+        display: 'flex',
+        width:'maxContent',
+        justifyContent:'center',
+        alignItems: 'center',
+        '& > *': {
+          m: 2,
+        },
+        '& button': { p: 2 },
+      }}>
       {lesson.type == 'Video' && <Video videoLink={lesson.link}/>}   
       {lesson.type == 'Test' && <Test testLink={lesson.link}/>}   
+    </Box>
       <Box
       sx={{
         display: 'flex',
-        width:'maxContent',
         justifyContent:'center',
         alignItems: 'center',
         '& > *': {

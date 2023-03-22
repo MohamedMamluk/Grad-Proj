@@ -215,7 +215,7 @@ const Header = () => {
           <div
             style={{ padding: '10px' }}
             id='search__wrapper'
-            className={`!border hidden md:flex ${
+            className={`!border hidden md:!flex ${
               offset > 0 ? 'border-white' : 'border-black'
             }`}
           >
