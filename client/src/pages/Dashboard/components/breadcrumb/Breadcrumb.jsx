@@ -41,31 +41,36 @@ export default function Breadcrumb() {
         setLesson(lesData.data.title);
         return lesData.data.title;
     }
-    // if(pathnames.length == 3){
-    //   const cour = getCourse(pathnames[2]);
-    //   setPaths(...pathnames.slice(0,1 ), cour , ...pathnames.slice(3));
-    // }
-    // if(pathnames.length == 4){
-    //   getCourse(pathnames[3]);
-    // }
-    // if(pathnames.length == 5){
-    //   getCourse(pathnames[2]);
-    //   getLesson(pathnames[4]);
-    // }
-  }, []);
+    if(pathnames.length == 3){
+      const cour = getCourse(pathnames[2]);
+      setPaths(...pathnames.slice(0,1 ), cour , ...pathnames.slice(3));
+    }
+    if(pathnames.length == 4){
+      const cour = getCourse(pathnames[2]);
+      getCourse(pathnames[3]);
+      setPaths(...pathnames.slice(0,2 ), cour);
+    }
+    if(pathnames.length == 5){
+      const cour = getCourse(pathnames[2]);
+      const less = getCourse(pathnames[2]);
+      getCourse(pathnames[2]);
+      getLesson(pathnames[4]);
+      setPaths(...pathnames.slice(0,1 ), cour, pathnames[3],less);
+    }
+  }, [pathnames[2],pathnames[4]]);
   // setPathnames(pathnames.pop());
   // console.log(course, lesson);
   // console.log("path nameeee: ", paths);
   if(pathnames.length == 3){
     
   }
-  // if(pathnames.length == 4){
-  //   pathnames[3] = course;
-  // }
-  // if(pathnames.length == 5){
-  //   pathnames[2] = course;
-  //   pathnames[4] = lesson;
-  // }
+  if(pathnames.length == 4){
+    pathnames[3] = course;
+  }
+  if(pathnames.length == 5){
+    pathnames[2] = course;
+    pathnames[4] = lesson;
+  }
 
   return (
     <Breadcrumbs

@@ -9,7 +9,6 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
 import Test from '../../../../components/lessonTypes/Test';
 
-
 const Lesson = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -82,7 +81,7 @@ const Lesson = () => {
         '& button': { p: 2 },
       }}>
       {lesson.type == 'Video' && <Video videoLink={lesson.link}/>}   
-      {lesson.type == 'Test' && <Test testLink={lesson.link}/>}   
+      {lesson.type == 'Test' && <Test testLink={lesson.link}/>}      
     </Box>
       <Box
       sx={{
